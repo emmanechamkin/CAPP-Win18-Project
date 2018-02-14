@@ -37,14 +37,19 @@ city_list = ['birmingham-al', 'mobile-al', 'montgomery-al', 'fresno-ca', 'los-an
 'seattle-wa', 'spokane-wa', 'tacoma-wa', 'charleston-wv', 'wheeling-wv', 
 'kenosha-wi', 'madison-wi', 'oshkosh-wi', 'racine-wi', 'milwaukee-co.-wi']
 
+GeoJson = 'GeoJson'
+Shapefile = 'Shapefile'
+driver_location = '~/Documents/CS 122 Project Files/chromedriver'
 
-def geojson_by_city(driver_location, city):
+
+def geojson_by_city(driver_location, city, file_type):
 	'''
 	Pulls GeoJson map file by city using Chrome
 
 	Inputs:
 		driver_location (str): locatiion of chromedriver on individual computer
 		city (str): city to pull, only those in city_list are valid values
+		file_type (str): takes GeoJson or Shapefile, whichever file time is desired
 
 	Returns nothing, downloads a file
 	'''
@@ -58,20 +63,21 @@ def geojson_by_city(driver_location, city):
 	driver.find_element(By.CLASS_NAME, "intro-modal-button").click()
 	WebDriverWait(driver, 10)
 	driver.find_element(By.CLASS_NAME, "downloadicon").click()
-	driver.find_element(By.LINK_TEXT, "GeoJson").click()
+	driver.find_element(By.LINK_TEXT, file_type).click()
 	driver.close()
 
 
-def geojson_all_cities(driver_location):
+def geojson_all_cities(driver_location, file_type):
 	'''
 	Pulls GeoJson map files for all available using Chrome
 
 	Inputs:
 		driver_location (str): locatiion of chromedriver on individual computer
+		file_type (str): takes GeoJson or Shapefile, whichever file time is desired
 
 	Returns nothing, downloads files for all cities
 	'''
-	driver = webdriver.Chrome('/Users/claire/Downloads/chromedriver')
+	driver = webdriver.Chrome(driver_location)
 	driver.get('https://dsl.richmond.edu/panorama/redlining')
 	soup = bs4.BeautifulSoup(driver.page_source)
 
@@ -89,7 +95,7 @@ def geojson_all_cities(driver_location):
 		driver.find_element(By.CLASS_NAME, "intro-modal-button").click()
 		WebDriverWait(driver, 10)
 		driver.find_element(By.CLASS_NAME, "downloadicon").click()
-		driver.find_element(By.LINK_TEXT, "GeoJson").click()
+		driver.find_element(By.LINK_TEXT, file_type).click()
 		driver.close()
 
 
