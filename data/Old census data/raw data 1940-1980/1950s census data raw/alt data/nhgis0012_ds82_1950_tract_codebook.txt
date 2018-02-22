@@ -1,0 +1,211 @@
+--------------------------------------------------------------------------------
+Codebook for NHGIS data file 'nhgis0012_ds82_1950_tract'
+--------------------------------------------------------------------------------
+ 
+Contents
+    - Data Summary
+    - Data Dictionary
+    - Citation and Use
+ 
+Additional documentation on NHGIS data sources is available at: 
+    https://www.nhgis.org/documentation/tabular-data 
+ 
+--------------------------------------------------------------------------------
+Data Summary
+--------------------------------------------------------------------------------
+ 
+Year:             1950
+Geographic level: Census Tract (by State--County)
+Dataset:          1950 Census: Population & Housing Data [Tracts: Major Cities & Surrounds]
+   NHGIS code:    1950_tPH_Major
+   NHGIS ID:      ds82
+ 
+Tables:
+ 
+1. Total Population
+   Universe:    Persons
+   Source code: NT1
+   NHGIS code:  BZ8
+ 
+2. Population by Race
+   Universe:    Persons
+   Source code: NT2
+   NHGIS code:  B0J
+ 
+3. Years of School Completed by Persons 25 Years and Over
+   Universe:    Persons 25 Years and Over
+   Source code: NT12
+   NHGIS code:  B0B
+ 
+4. Median Years of School Completed by Persons 25 Years and Over
+   Universe:    Persons 25 Years and Over
+   Source code: NT13
+   NHGIS code:  B0C
+ 
+5. Families and Unrelated Individuals by Income
+   Universe:    Families and Unrelated Individuals
+   Source code: NT15
+   NHGIS code:  B0E
+ 
+6. Median Income
+   Universe:    Families and Unrelated Individuals
+   Source code: NT16
+   NHGIS code:  B0F
+ 
+7. Total Dwelling Units
+   Universe:    Dwelling Units
+   Source code: NT28
+   NHGIS code:  B0S
+ 
+8. Dwelling Units by Occupancy Type
+   Universe:    Dwelling Units
+   Source code: NT29
+   NHGIS code:  B0T
+ 
+9. Median Value
+   Universe:    1-Dwelling-Unit Structures Reporting Value
+   Source code: NT42
+   NHGIS code:  B09
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Context Fields 
+    GISJOIN:     GIS Join Match Code
+    YEAR:        Data File Year
+    STATE:       State Name
+    STATEA:      State Code
+    COUNTY:      County Name
+    COUNTYA:     County Code
+    PRETRACTA:   Census Tract Prefix Code
+    TRACTA:      Census Tract Code
+    POSTTRCTA:   Census Tract Suffix Code
+    AREANAME:    Area Name
+ 
+Table 1:     Total Population
+Universe:    Persons
+Source code: NT1
+NHGIS code:  BZ8
+    BZ8001:      Total
+ 
+Table 2:     Population by Race
+Universe:    Persons
+Source code: NT2
+NHGIS code:  B0J
+    B0J001:      White
+    B0J002:      Negro
+    B0J003:      Other non-white
+ 
+Table 3:     Years of School Completed by Persons 25 Years and Over
+Universe:    Persons 25 Years and Over
+Source code: NT12
+NHGIS code:  B0B
+    B0B001:      No school completed
+    B0B002:      Elementary 1 - 4
+    B0B003:      Elementary 5 - 6
+    B0B004:      Elementary 7
+    B0B005:      Elementary 8
+    B0B006:      High school 1 - 3
+    B0B007:      High school 4
+    B0B008:      College 1 - 3
+    B0B009:      College 4 or more
+    B0B010:      Not reported
+ 
+Table 4:     Median Years of School Completed by Persons 25 Years and Over
+Universe:    Persons 25 Years and Over
+Source code: NT13
+NHGIS code:  B0C
+    B0C001:      Median years of school completed
+ 
+Table 5:     Families and Unrelated Individuals by Income
+Universe:    Families and Unrelated Individuals
+Source code: NT15
+NHGIS code:  B0E
+    B0E001:      Less than $500
+    B0E002:      $500 - $999
+    B0E003:      $1000 - $1499
+    B0E004:      $1500 - $1999
+    B0E005:      $2000 - $2499
+    B0E006:      $2500 - $2999
+    B0E007:      $3000 - $3499
+    B0E008:      $3500 - $3999
+    B0E009:      $4000 - $4499
+    B0E010:      $4500 - $4999
+    B0E011:      $5000 - $5999
+    B0E012:      $6000 - $6999
+    B0E013:      $7000 - $9999
+    B0E014:      $10000 or more
+    B0E015:      Income not reported
+ 
+Table 6:     Median Income
+Universe:    Families and Unrelated Individuals
+Source code: NT16
+NHGIS code:  B0F
+    B0F001:      Median income
+ 
+Table 7:     Total Dwelling Units
+Universe:    Dwelling Units
+Source code: NT28
+NHGIS code:  B0S
+    B0S001:      Total
+ 
+Table 8:     Dwelling Units by Occupancy Type
+Universe:    Dwelling Units
+Source code: NT29
+NHGIS code:  B0T
+    B0T001:      Occupied: Owner occupied
+    B0T002:      Occupied: Renter occupied
+    B0T003:      Vacant: Vacant nonseasonal, etc
+    B0T004:      Vacant: Other vacant
+ 
+Table 9:     Median Value
+Universe:    1-Dwelling-Unit Structures Reporting Value
+Source code: NT42
+NHGIS code:  B09
+    B09001:      Median value
+ 
+--------------------------------------------------------------------------------
+Citation and Use of NHGIS Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* Publications and research reports employing NHGIS data (either tabular or GIS)
+  must cite it appropriately. The citation should include the following:
+
+    Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. 
+    IPUMS National Historical Geographic Information System: Version 12.0 [Database]. 
+    Minneapolis: University of Minnesota. 2017. 
+    http://doi.org/10.18128/D050.V12.0
+
+* Publications and research reports employing school attendance areas data
+  (either tabular or GIS) must cite it appropriately. The citation should
+  include the following:
+
+    The College of William and Mary and the Minnesota Population Center.
+    School Attendance Boundary Information System (SABINS): Version 1.0.
+    Minneapolis, MN: University of Minnesota 2011.
+
+* For policy briefs or articles in the popular press, we recommend that you cite the use of NHGIS data as follows:
+
+    IPUMS NHGIS, University of Minnesota, www.nhgis.org.
+
+* If possible, citations involving school attendance areas should also include
+  the URL for the SABINS site:
+
+    http://www.sabinsdata.org/.
+
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+Printed matter should be sent to:
+
+    NHGIS
+    Minnesota Population Center
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455
+
+Send electronic material to: nhgis@umn.edu
