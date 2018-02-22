@@ -1,0 +1,210 @@
+--------------------------------------------------------------------------------
+Codebook for NHGIS data file 'nhgis0009_ds96_1970_tract'
+--------------------------------------------------------------------------------
+ 
+Contents
+    - Data Summary
+    - Data Dictionary
+    - Citation and Use
+ 
+Additional documentation on NHGIS data sources is available at: 
+    https://www.nhgis.org/documentation/tabular-data 
+ 
+--------------------------------------------------------------------------------
+Data Summary
+--------------------------------------------------------------------------------
+ 
+Year:             1970
+Geographic level: Census Tract (by State--County)
+Dataset:          1970 Census: Count 3 - 100% Data [Blocks & Tracts: Restricted to Areas with Block Statistics]
+   NHGIS code:    1970_Cnt3
+   NHGIS ID:      ds96
+ 
+Tables:
+ 
+1. Aggregate Monthly Contract Rent for Occupied Units
+   Universe:    Negro Renter-Occupied Units with All Plumbing Facilities for Which Rent is Tabulated
+   Source code: NT4B
+   NHGIS code:  CM3
+ 
+2. Sex
+   Universe:    Persons
+   Source code: NT5A
+   NHGIS code:  CM5
+ 
+3. Race by Sex
+   Universe:    Non-White Persons
+   Source code: NT5B
+   NHGIS code:  CM6
+ 
+4. Tenure in Occupied Units
+   Universe:    White Occupied Units
+   Source code: NT12B
+   NHGIS code:  CK3
+ 
+5. Tenure in Occupied Units
+   Universe:    Negro Occupied Units
+   Source code: NT12C
+   NHGIS code:  CK4
+ 
+6. Negro Persons in Occupied Units
+   Universe:    Negro Persons in Occupied Units
+   Source code: NT15B3
+   NHGIS code:  CLF
+ 
+7. Tenure in Occupied Units
+   Universe:    Negro Persons in Occupied Units
+   Source code: NT15B4
+   NHGIS code:  CLG
+ 
+8. Negro Owner-Occupied Units for Which Value Is Tabulated
+   Universe:    Negro Owner-Occupied Units for Which Value Is Tabulated
+   Source code: NT22B2
+   NHGIS code:  CLV
+ 
+9. Negro Renter-Occupied Units for Which Cash Rent Is Paid and Tabulated
+   Universe:    Negro Renter-Occupied Units for Which Cash Rent Is Paid and Tabulated
+   Source code: NT23B2
+   NHGIS code:  CLZ
+ 
+10. Household Type for Occupied Units
+    Universe:    Occupied Units
+    Source code: NT27
+    NHGIS code:  CL4
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Context Fields 
+    GISJOIN:     GIS Join Match Code
+    YEAR:        Data File Year
+    STATE:       State Name
+    STATEA:      State Code
+    COUNTY:      County Name
+    COUNTYA:     County Code
+    CTY_SUBA:    County Subdivision Code
+    PLACEA:      Place Code
+    TRACTA:      Census Tract Code
+    SCSAA:       Standard Consolidated Statistical Area Code
+    SMSAA:       Standard Metropolitan Statistical Area Code
+    URB_AREAA:   Urban Area Code
+    BLOCKA:      Block Code
+    CDA:         Congressional District Code
+    AREANAME:    Area Name
+ 
+Table 1:     Aggregate Monthly Contract Rent for Occupied Units
+Universe:    Negro Renter-Occupied Units with All Plumbing Facilities for Which Rent is Tabulated
+Source code: NT4B
+NHGIS code:  CM3
+    CM3001:      Aggregate monthly contract rent
+ 
+Table 2:     Sex
+Universe:    Persons
+Source code: NT5A
+NHGIS code:  CM5
+    CM5001:      Male
+    CM5002:      Female
+ 
+Table 3:     Race by Sex
+Universe:    Non-White Persons
+Source code: NT5B
+NHGIS code:  CM6
+    CM6001:      Negro >> Male
+    CM6002:      Negro >> Female
+    CM6003:      Other >> Male
+    CM6004:      Other >> Female
+ 
+Table 4:     Tenure in Occupied Units
+Universe:    White Occupied Units
+Source code: NT12B
+NHGIS code:  CK3
+    CK3001:      Owner occupied
+    CK3002:      Renter occupied
+ 
+Table 5:     Tenure in Occupied Units
+Universe:    Negro Occupied Units
+Source code: NT12C
+NHGIS code:  CK4
+    CK4001:      Owner occupied
+    CK4002:      Renter occupied
+ 
+Table 6:     Negro Persons in Occupied Units
+Universe:    Negro Persons in Occupied Units
+Source code: NT15B3
+NHGIS code:  CLF
+    CLF001:      Total
+ 
+Table 7:     Tenure in Occupied Units
+Universe:    Negro Persons in Occupied Units
+Source code: NT15B4
+NHGIS code:  CLG
+    CLG001:      Owner occupied
+    CLG002:      Renter occupied
+ 
+Table 8:     Negro Owner-Occupied Units for Which Value Is Tabulated
+Universe:    Negro Owner-Occupied Units for Which Value Is Tabulated
+Source code: NT22B2
+NHGIS code:  CLV
+    CLV001:      Total
+ 
+Table 9:     Negro Renter-Occupied Units for Which Cash Rent Is Paid and Tabulated
+Universe:    Negro Renter-Occupied Units for Which Cash Rent Is Paid and Tabulated
+Source code: NT23B2
+NHGIS code:  CLZ
+    CLZ001:      Total
+ 
+Table 10:    Household Type for Occupied Units
+Universe:    Occupied Units
+Source code: NT27
+NHGIS code:  CL4
+    CL4001:      Husband-wife family
+    CL4002:      Other family with male head
+    CL4003:      Family with female head
+    CL4004:      Male primary individual
+    CL4005:      Female primary individual
+ 
+--------------------------------------------------------------------------------
+Citation and Use of NHGIS Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* Publications and research reports employing NHGIS data (either tabular or GIS)
+  must cite it appropriately. The citation should include the following:
+
+    Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. 
+    IPUMS National Historical Geographic Information System: Version 12.0 [Database]. 
+    Minneapolis: University of Minnesota. 2017. 
+    http://doi.org/10.18128/D050.V12.0
+
+* Publications and research reports employing school attendance areas data
+  (either tabular or GIS) must cite it appropriately. The citation should
+  include the following:
+
+    The College of William and Mary and the Minnesota Population Center.
+    School Attendance Boundary Information System (SABINS): Version 1.0.
+    Minneapolis, MN: University of Minnesota 2011.
+
+* For policy briefs or articles in the popular press, we recommend that you cite the use of NHGIS data as follows:
+
+    IPUMS NHGIS, University of Minnesota, www.nhgis.org.
+
+* If possible, citations involving school attendance areas should also include
+  the URL for the SABINS site:
+
+    http://www.sabinsdata.org/.
+
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+Printed matter should be sent to:
+
+    NHGIS
+    Minnesota Population Center
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455
+
+Send electronic material to: nhgis@umn.edu
