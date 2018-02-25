@@ -1,0 +1,820 @@
+--------------------------------------------------------------------------------
+Codebook for NHGIS data file 'nhgis0008_ds92_1960_tract'
+--------------------------------------------------------------------------------
+ 
+Contents
+    - Data Summary
+    - Data Dictionary
+    - Citation and Use
+ 
+Additional documentation on NHGIS data sources is available at: 
+    https://www.nhgis.org/documentation/tabular-data 
+ 
+--------------------------------------------------------------------------------
+Data Summary
+--------------------------------------------------------------------------------
+ 
+Year:             1960
+Geographic level: Census Tract (by State--County)
+Dataset:          1960 Census: Population & Housing Data [Tracts: Major Cities & Surrounds]
+   NHGIS code:    1960_tPH
+   NHGIS ID:      ds92
+ 
+Tables:
+ 
+1. Total Housing Units
+   Universe:    Housing Units
+   Source code: NTSUP3
+   NHGIS code:  CA5
+ 
+2. Owner-Occupied Housing Units Reporting Value
+   Universe:    Owner-Occupied Housing Units Reporting Value
+   Source code: NTSUP4
+   NHGIS code:  CA6
+ 
+3. Occupied Year-Round Housing Units by Tenure
+   Universe:    Occupied Year-Round Housing Units
+   Source code: NT2
+   NHGIS code:  B8F
+ 
+4. Vacant Year-Round Housing Units by Occupancy/Vacancy Status
+   Universe:    Vacant Year-Round Housing Units
+   Source code: NT3
+   NHGIS code:  B8Q
+ 
+5. Occupied Year-Round Housing Units by Tenure
+   Universe:    Occupied Year-Round Housing Units with Nonwhite Householder
+   Source code: NT4
+   NHGIS code:  B83
+ 
+6. Occupied and Vacant Units by Housing Quality
+   Universe:    Units
+   Source code: NT5
+   NHGIS code:  B9E
+ 
+7. Occupied and Vacant Units by Housing Quality
+   Universe:    Units with Nonwhite Householder
+   Source code: NT6
+   NHGIS code:  B9Q
+ 
+8. Occupied and Vacant Housing Units by Number of Rooms in Unit
+   Universe:    Housing Units
+   Source code: NT7
+   NHGIS code:  B93
+ 
+9. Occupied and Vacant Housing Units by Number of Rooms in Unit
+   Universe:    Housing Units with Nonwhite Householder
+   Source code: NT8
+   NHGIS code:  CAF
+ 
+10. Occupied Housing Units by Number of Persons in Unit
+    Universe:    Occupied Housing Units
+    Source code: NT9
+    NHGIS code:  CAS
+ 
+11. Occupied Housing Units by Number of Persons in Unit
+    Universe:    Occupied Housing Units with Nonwhite Householder
+    Source code: NT10
+    NHGIS code:  B70
+ 
+12. Owner-Occupied Units Reporting Value by Value
+    Universe:    Owner-Occupied Units Reporting Value
+    Source code: NT13
+    NHGIS code:  B78
+ 
+13. Renter-Occupied Units Reporting Rent
+    Universe:    Renter-Occupied Units Reporting Rent
+    Source code: NT15
+    NHGIS code:  B8A
+ 
+14. Aggregate Dollar Monthly Contract Rent for Renter-Occupied Units Reporting Rent
+    Universe:    Renter-Occupied Units Reporting Rent
+    Source code: NT16
+    NHGIS code:  B8B
+ 
+15. Nonwhite Persons by Race by Sex
+    Universe:    Nonwhite Persons
+    Source code: NT17
+    NHGIS code:  B8C
+ 
+16. Families by Income in 1959
+    Universe:    Families
+    Source code: NT35
+    NHGIS code:  B8W
+ 
+17. Nonwhite Families by Income in 1959
+    Universe:    Nonwhite Families
+    Source code: NT36
+    NHGIS code:  B8X
+ 
+18. Families by Income in 1959
+    Universe:    Puerto Rican or Spanish Surname Families
+    Source code: NT36A
+    NHGIS code:  B8Y
+ 
+19. Persons 14 Years and Over by Sex by Employment Status
+    Universe:    Persons 14 Years and Over
+    Source code: NT39
+    NHGIS code:  B82
+ 
+20. Employed Civilians 14 and Over by Sex by Occupation
+    Universe:    Employed Civilians 14 Years and Over
+    Source code: NT47
+    NHGIS code:  B9B
+ 
+21. Persons 14 and Over Not in Labor Force by Sex by Current Activity
+    Universe:    Persons 14 Years and Over Not in Labor Force
+    Source code: NT56
+    NHGIS code:  B9L
+ 
+22. Occupied Housing Units by Tenure
+    Universe:    Occupied Housing Units
+    Source code: NT58
+    NHGIS code:  B9O
+ 
+23. Occupied Housing Units by Tenure
+    Universe:    Occupied Housing Units with Nonwhite Householder
+    Source code: NT59
+    NHGIS code:  B9P
+ 
+24. Vacant Housing Units by Vacancy Status
+    Universe:    Vacant Housing Units
+    Source code: NT60
+    NHGIS code:  B9R
+ 
+25. Total Nonwhite Population
+    Universe:    Nonwhite Persons
+    Source code: NT62
+    NHGIS code:  B9T
+ 
+26. Occupied and Vacant Housing Units by Condition
+    Universe:    Housing Units with Nonwhite Householder
+    Source code: NT65
+    NHGIS code:  B9W
+ 
+27. Occupied and Vacant Housing Units by Number of Bathrooms
+    Universe:    Housing Units
+    Source code: NT67
+    NHGIS code:  B9Y
+ 
+28. Occupied and Vacant Housing Units by Rooms in Unit
+    Universe:    Housing Units
+    Source code: NT68
+    NHGIS code:  B9Z
+ 
+29. Occupied and Vacant Housing Units by Rooms in Unit
+    Universe:    Housing Units with Puerto Rican or Spanish Surname Householder
+    Source code: NT68B
+    NHGIS code:  B91
+ 
+30. Owner Occupied Units Reporting Value by Value of Unit
+    Universe:    Owner-Occupied Units Reporting Value
+    Source code: NT86
+    NHGIS code:  CAO
+ 
+31. Owner Occupied Units Reporting Value by Value of Unit
+    Universe:    Owner Occupied Units Reporting Value with Nonwhite Head of Household
+    Source code: NT87
+    NHGIS code:  CAP
+ 
+32. Renter-Occupied Units Reporting Gross Rent
+    Universe:    Renter-Occupied Units Reporting Gross Rent
+    Source code: NT89
+    NHGIS code:  CAR
+ 
+33. Renter-Occupied Units Reporting Gross Rent
+    Universe:    Renter-Occupied Units Reporting Gross Rent with Nonwhite Householder
+    Source code: NT90
+    NHGIS code:  CAT
+ 
+34. Renter-Occupied Units Reporting Gross Rent
+    Universe:    Renter-Occupied Units Reporting Gross Rent with Puerto Rican or Spanish Surname Householder
+    Source code: NT91
+    NHGIS code:  CAU
+ 
+35. Renter Occupied Units and Vacant-for-Rent Units Reporting Contract Rent
+    Universe:    Renter-Occupied Units and Vacant-for-Rent Units Reporting Contract Rent
+    Source code: NT92
+    NHGIS code:  CAV
+ 
+36. Population Between the Ages of 5 - 34 Years by School Enrollment [from printed report]
+    Universe:    Persons 5 to 34 Years of Age
+    Source code: NBT16
+    NHGIS code:  B6A
+ 
+37. Population Aged 25 Years or More by Years of School Completed [from printed report]
+    Universe:    Persons 25 Years and Over
+    Source code: NBT17
+    NHGIS code:  B6B
+ 
+38. Family Income in 1959 [from printed report]
+    Universe:    Families in 1959
+    Source code: NBT19
+    NHGIS code:  B6D
+ 
+39. Total House Units [from printed report]
+    Universe:    House Units
+    Source code: NBT40
+    NHGIS code:  B61
+ 
+40. All Housing Units [from printed report]
+    Universe:    Housing Units
+    Source code: NBT41
+    NHGIS code:  B62
+ 
+41. Occupied Housing Units by Tenure [from printed report]
+    Universe:    Occupied Housing Units
+    Source code: NBT42
+    NHGIS code:  B63
+ 
+42. Occupied Housing Units by Tenure Status by Race of Occupant [from printed report]
+    Universe:    Occupied Housing Units
+    Source code: NBT43
+    NHGIS code:  B64
+ 
+43. Housing Units by Vacancy [from printed report]
+    Universe:    Housing Units
+    Source code: NBT44
+    NHGIS code:  B65
+ 
+44. Available Housing Units by Market Status [from printed report]
+    Universe:    Available Housing Units
+    Source code: NBT45
+    NHGIS code:  B66
+ 
+45. Houses by Condition [from printed report]
+    Universe:    Houses
+    Source code: NBT46
+    NHGIS code:  B67
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Context Fields 
+    GISJOIN:     GIS Join Match Code
+    YEAR:        Data File Year
+    STATE:       State Name
+    STATEA:      State Code
+    COUNTY:      County Name
+    COUNTYA:     County Code
+    PRETRACTA:   Census Tract Prefix Code
+    TRACTA:      Census Tract Code
+    POSTTRCTA:   Census Tract Suffix Code
+    AREANAME:    Area Name
+ 
+Table 1:     Total Housing Units
+Universe:    Housing Units
+Source code: NTSUP3
+NHGIS code:  CA5
+    CA5001:      Total
+ 
+Table 2:     Owner-Occupied Housing Units Reporting Value
+Universe:    Owner-Occupied Housing Units Reporting Value
+Source code: NTSUP4
+NHGIS code:  CA6
+    CA6001:      Total
+ 
+Table 3:     Occupied Year-Round Housing Units by Tenure
+Universe:    Occupied Year-Round Housing Units
+Source code: NT2
+NHGIS code:  B8F
+    B8F001:      Owner-occupied
+    B8F002:      Renter-occupied
+ 
+Table 4:     Vacant Year-Round Housing Units by Occupancy/Vacancy Status
+Universe:    Vacant Year-Round Housing Units
+Source code: NT3
+NHGIS code:  B8Q
+    B8Q001:      Vacant for rent
+    B8Q002:      Vacant for sale
+ 
+Table 5:     Occupied Year-Round Housing Units by Tenure
+Universe:    Occupied Year-Round Housing Units with Nonwhite Householder
+Source code: NT4
+NHGIS code:  B83
+    B83001:      Owner-occupied
+    B83002:      Renter-occupied
+ 
+Table 6:     Occupied and Vacant Units by Housing Quality
+Universe:    Units
+Source code: NT5
+NHGIS code:  B9E
+    B9E001:      Sound, with all facilities
+    B9E002:      Sound, lacking or sharing hot water only
+    B9E003:      Sound, lacking or sharing other facilities
+    B9E004:      Deteriorating
+    B9E005:      Deteriorating, with all facilities
+    B9E006:      Deteriorating, lacking or sharing hot water only
+    B9E007:      Dilapidated
+ 
+Table 7:     Occupied and Vacant Units by Housing Quality
+Universe:    Units with Nonwhite Householder
+Source code: NT6
+NHGIS code:  B9Q
+    B9Q001:      Sound, with all facilities
+    B9Q002:      Sound, lacking or sharing some facilities
+    B9Q003:      Deteriorating, with all facilities
+    B9Q004:      Deteriorating, lacking or sharing some facilities
+    B9Q005:      Dilapidated
+ 
+Table 8:     Occupied and Vacant Housing Units by Number of Rooms in Unit
+Universe:    Housing Units
+Source code: NT7
+NHGIS code:  B93
+    B93001:      1 room in unit
+    B93002:      2 rooms
+    B93003:      3 rooms
+    B93004:      4 rooms
+    B93005:      5 rooms
+    B93006:      6 rooms
+    B93007:      7 rooms
+    B93008:      8 or more rooms
+ 
+Table 9:     Occupied and Vacant Housing Units by Number of Rooms in Unit
+Universe:    Housing Units with Nonwhite Householder
+Source code: NT8
+NHGIS code:  CAF
+    CAF001:      1 room in unit
+    CAF002:      2 rooms
+    CAF003:      3 rooms
+    CAF004:      4 rooms
+    CAF005:      5 rooms
+    CAF006:      6 rooms
+    CAF007:      7 rooms
+    CAF008:      8 or more rooms
+ 
+Table 10:    Occupied Housing Units by Number of Persons in Unit
+Universe:    Occupied Housing Units
+Source code: NT9
+NHGIS code:  CAS
+    CAS001:      1 person in unit
+    CAS002:      2 persons
+    CAS003:      3 persons
+    CAS004:      4 persons
+    CAS005:      5 persons
+    CAS006:      6 persons
+    CAS007:      7 persons
+    CAS008:      8 persons or more
+ 
+Table 11:    Occupied Housing Units by Number of Persons in Unit
+Universe:    Occupied Housing Units with Nonwhite Householder
+Source code: NT10
+NHGIS code:  B70
+    B70001:      1 person in unit
+    B70002:      2 persons
+    B70003:      3 persons
+    B70004:      4 persons
+    B70005:      5 persons
+    B70006:      6 persons
+    B70007:      7 persons
+    B70008:      8 persons or more
+ 
+Table 12:    Owner-Occupied Units Reporting Value by Value
+Universe:    Owner-Occupied Units Reporting Value
+Source code: NT13
+NHGIS code:  B78
+    B78001:      Under $5,000
+    B78002:      $5,000 - $9,999
+    B78003:      $10,000 - $14,999
+    B78004:      $15,000 - $19,999
+    B78005:      $20,000 - $24,999
+    B78006:      $25,000 or more
+ 
+Table 13:    Renter-Occupied Units Reporting Rent
+Universe:    Renter-Occupied Units Reporting Rent
+Source code: NT15
+NHGIS code:  B8A
+    B8A001:      Total
+ 
+Table 14:    Aggregate Dollar Monthly Contract Rent for Renter-Occupied Units Reporting Rent
+Universe:    Renter-Occupied Units Reporting Rent
+Source code: NT16
+NHGIS code:  B8B
+    B8B001:      Aggregate dollar monthly contact rent
+ 
+Table 15:    Nonwhite Persons by Race by Sex
+Universe:    Nonwhite Persons
+Source code: NT17
+NHGIS code:  B8C
+    B8C001:      Negroes >> Male
+    B8C002:      Negroes >> Female
+    B8C003:      Other Nonwhites >> Male
+    B8C004:      Other Nonwhites >> Female
+ 
+Table 16:    Families by Income in 1959
+Universe:    Families
+Source code: NT35
+NHGIS code:  B8W
+    B8W001:      Less than $1,000
+    B8W002:      $1,000-$1,999
+    B8W003:      $2,000-$2,999
+    B8W004:      $3,000-$3,999
+    B8W005:      $4,000-$4,999
+    B8W006:      $5,000-$5,999
+    B8W007:      $6,000-$6,999
+    B8W008:      $7,000-$7,999
+    B8W009:      $8,000-$8,999
+    B8W010:      $9,000-$9,999
+    B8W011:      $10,000-$14,999
+    B8W012:      $15,000-$24,999
+    B8W013:      $25,000 and over
+ 
+Table 17:    Nonwhite Families by Income in 1959
+Universe:    Nonwhite Families
+Source code: NT36
+NHGIS code:  B8X
+    B8X001:      Less than $1,000
+    B8X002:      $1,000-$1,999
+    B8X003:      $2,000-$2,999
+    B8X004:      $3,000-$3,999
+    B8X005:      $4,000-$4,999
+    B8X006:      $5,000-$5,999
+    B8X007:      $6,000-$6,999
+    B8X008:      $7,000-$7,999
+    B8X009:      $8,000-$8,999
+    B8X010:      $9,000-$9,999
+    B8X011:      $10,000 and over
+ 
+Table 18:    Families by Income in 1959
+Universe:    Puerto Rican or Spanish Surname Families
+Source code: NT36A
+NHGIS code:  B8Y
+    B8Y001:      Less than $1,000
+    B8Y002:      $1,000-$1,999
+    B8Y003:      $2,000-$2,999
+    B8Y004:      $3,000-$3,999
+    B8Y005:      $4,000-$4,999
+    B8Y006:      $5,000-$5,999
+    B8Y007:      $6,000-$6,999
+    B8Y008:      $7,000-$7,999
+    B8Y009:      $8,000-$8,999
+    B8Y010:      $9,000-$9,999
+    B8Y011:      $10,000 and over
+ 
+Table 19:    Persons 14 Years and Over by Sex by Employment Status
+Universe:    Persons 14 Years and Over
+Source code: NT39
+NHGIS code:  B82
+    B82001:      Male >> Employed civilians
+    B82002:      Male >> Unemployed
+    B82003:      Male >> Armed forces
+    B82004:      Male >> Not in labor force
+    B82005:      Female >> Employed civilians
+    B82006:      Female >> Unemployed
+    B82007:      Female >> Armed forces
+    B82008:      Female >> Not in labor force
+ 
+Table 20:    Employed Civilians 14 and Over by Sex by Occupation
+Universe:    Employed Civilians 14 Years and Over
+Source code: NT47
+NHGIS code:  B9B
+    B9B001:      Male >> Professional, technical or kindred workers
+    B9B002:      Male >> Farmers and farm managers
+    B9B003:      Male >> Managers, officials, and proprietors
+    B9B004:      Male >> Clerical and kindred workers
+    B9B005:      Male >> Sales workers
+    B9B006:      Male >> Craftsmen, foremen, and kindred workers
+    B9B007:      Male >> Operatives and kindred workers, including mine
+    B9B008:      Male >> Private household workers
+    B9B009:      Male >> Service workers, except household
+    B9B010:      Male >> Farm laborers and foremen
+    B9B011:      Male >> Laborers except farm and mine
+    B9B012:      Male >> Not Reported
+    B9B013:      Female >> Professional, technical or kindred workers
+    B9B014:      Female >> Farmers and farm managers
+    B9B015:      Female >> Managers, officials, and proprietors
+    B9B016:      Female >> Clerical and kindred workers
+    B9B017:      Female >> Sales workers
+    B9B018:      Female >> Craftsmen, foremen, and kindred workers
+    B9B019:      Female >> Operatives and kindred workers, including mine
+    B9B020:      Female >> Private household workers
+    B9B021:      Female >> Service workers, except household
+    B9B022:      Female >> Farm laborers and foremen
+    B9B023:      Female >> Laborers except farm and mine
+    B9B024:      Female >> Not Reported
+ 
+Table 21:    Persons 14 and Over Not in Labor Force by Sex by Current Activity
+Universe:    Persons 14 Years and Over Not in Labor Force
+Source code: NT56
+NHGIS code:  B9L
+    B9L001:      Male >> Inmate
+    B9L002:      Male >> Enrolled in school (ages 14-34 only)
+    B9L003:      Male >> Other under 65
+    B9L004:      Male >> Other, 65 and over
+    B9L005:      Female >> Inmate
+    B9L006:      Female >> Enrolled in school (ages 14-34 only)
+    B9L007:      Female >> Other under 65
+    B9L008:      Female >> Other, 65 and over
+ 
+Table 22:    Occupied Housing Units by Tenure
+Universe:    Occupied Housing Units
+Source code: NT58
+NHGIS code:  B9O
+    B9O001:      Owner-occupied
+    B9O002:      Renter-occupied
+ 
+Table 23:    Occupied Housing Units by Tenure
+Universe:    Occupied Housing Units with Nonwhite Householder
+Source code: NT59
+NHGIS code:  B9P
+    B9P001:      Owner-occupied
+    B9P002:      Renter-occupied
+ 
+Table 24:    Vacant Housing Units by Vacancy Status
+Universe:    Vacant Housing Units
+Source code: NT60
+NHGIS code:  B9R
+    B9R001:      Vacant for sale only
+    B9R002:      Vacant for rent
+    B9R003:      Other vacant (includes seasonal and migratory)
+ 
+Table 25:    Total Nonwhite Population
+Universe:    Nonwhite Persons
+Source code: NT62
+NHGIS code:  B9T
+    B9T001:      Total
+ 
+Table 26:    Occupied and Vacant Housing Units by Condition
+Universe:    Housing Units with Nonwhite Householder
+Source code: NT65
+NHGIS code:  B9W
+    B9W001:      Sound, with all facilities
+    B9W002:      Sound, lacking or sharing some facilities
+    B9W003:      Deteriorating, with all facilities
+    B9W004:      Deteriorating, lacking or sharing some facilities
+    B9W005:      Dilapidated
+ 
+Table 27:    Occupied and Vacant Housing Units by Number of Bathrooms
+Universe:    Housing Units
+Source code: NT67
+NHGIS code:  B9Y
+    B9Y001:      One bath
+    B9Y002:      More than one
+    B9Y003:      Shared or none inside structure
+ 
+Table 28:    Occupied and Vacant Housing Units by Rooms in Unit
+Universe:    Housing Units
+Source code: NT68
+NHGIS code:  B9Z
+    B9Z001:      1 room in unit
+    B9Z002:      2 rooms
+    B9Z003:      3 rooms
+    B9Z004:      4 rooms
+    B9Z005:      5 rooms
+    B9Z006:      6 rooms
+    B9Z007:      7 rooms
+    B9Z008:      8 or more rooms
+ 
+Table 29:    Occupied and Vacant Housing Units by Rooms in Unit
+Universe:    Housing Units with Puerto Rican or Spanish Surname Householder
+Source code: NT68B
+NHGIS code:  B91
+    B91001:      1 room in unit
+    B91002:      2 rooms
+    B91003:      3 rooms
+    B91004:      4 rooms
+    B91005:      5 rooms
+    B91006:      6 rooms
+    B91007:      7 rooms
+    B91008:      8 or more rooms
+ 
+Table 30:    Owner Occupied Units Reporting Value by Value of Unit
+Universe:    Owner-Occupied Units Reporting Value
+Source code: NT86
+NHGIS code:  CAO
+    CAO001:      Under $5,000
+    CAO002:      $5,00-$7,499
+    CAO003:      $7,500-$9,999
+    CAO004:      $10,000-$12,499
+    CAO005:      $12,500-$14,999
+    CAO006:      $15,000-$17,499
+    CAO007:      $17,500-$19,999
+    CAO008:      $20,000-$24,999
+    CAO009:      $25,000-$34,999
+    CAO010:      $35,000 or more
+ 
+Table 31:    Owner Occupied Units Reporting Value by Value of Unit
+Universe:    Owner Occupied Units Reporting Value with Nonwhite Head of Household
+Source code: NT87
+NHGIS code:  CAP
+    CAP001:      Under $5,000
+    CAP002:      $5,00-$7,499
+    CAP003:      $7,500-$9,999
+    CAP004:      $10,000-$12,499
+    CAP005:      $12,500-$14,999
+    CAP006:      $15,000-$17,499
+    CAP007:      $17,500-$19,999
+    CAP008:      $20,000-$24,999
+    CAP009:      $25,000-$34,999
+    CAP010:      $35,000 or more
+ 
+Table 32:    Renter-Occupied Units Reporting Gross Rent
+Universe:    Renter-Occupied Units Reporting Gross Rent
+Source code: NT89
+NHGIS code:  CAR
+    CAR001:      Less than $20
+    CAR002:      $20-29
+    CAR003:      $30-39
+    CAR004:      $40-49
+    CAR005:      $50-59
+    CAR006:      $60-69
+    CAR007:      $70-79
+    CAR008:      $80-89
+    CAR009:      $90-99
+    CAR010:      $100-119
+    CAR011:      $120-149
+    CAR012:      $150-199
+    CAR013:      $200 or more
+ 
+Table 33:    Renter-Occupied Units Reporting Gross Rent
+Universe:    Renter-Occupied Units Reporting Gross Rent with Nonwhite Householder
+Source code: NT90
+NHGIS code:  CAT
+    CAT001:      Less than $20
+    CAT002:      $20-29
+    CAT003:      $30-39
+    CAT004:      $40-49
+    CAT005:      $50-59
+    CAT006:      $60-69
+    CAT007:      $70-79
+    CAT008:      $80-89
+    CAT009:      $90-99
+    CAT010:      $100-119
+    CAT011:      $120-149
+    CAT012:      $150 or more
+    CAT013:      No cash rent
+ 
+Table 34:    Renter-Occupied Units Reporting Gross Rent
+Universe:    Renter-Occupied Units Reporting Gross Rent with Puerto Rican or Spanish Surname Householder
+Source code: NT91
+NHGIS code:  CAU
+    CAU001:      Less than $20
+    CAU002:      $20-29
+    CAU003:      $30-39
+    CAU004:      $40-49
+    CAU005:      $50-59
+    CAU006:      $60-69
+    CAU007:      $70-79
+    CAU008:      $80-89
+    CAU009:      $90-99
+    CAU010:      $100-119
+    CAU011:      $120-149
+    CAU012:      $150 or more
+    CAU013:      No cash rent
+ 
+Table 35:    Renter Occupied Units and Vacant-for-Rent Units Reporting Contract Rent
+Universe:    Renter-Occupied Units and Vacant-for-Rent Units Reporting Contract Rent
+Source code: NT92
+NHGIS code:  CAV
+    CAV001:      Less than $20
+    CAV002:      $20-29
+    CAV003:      $30-39
+    CAV004:      $40-49
+    CAV005:      $50-59
+    CAV006:      $60-69
+    CAV007:      $70-79
+    CAV008:      $80-89
+    CAV009:      $90-99
+    CAV010:      $100-119
+    CAV011:      $120-149
+    CAV012:      $150 or more
+    CAV013:      No cash rent
+ 
+Table 36:    Population Between the Ages of 5 - 34 Years by School Enrollment [from printed report]
+Universe:    Persons 5 to 34 Years of Age
+Source code: NBT16
+NHGIS code:  B6A
+    B6A001:      Total kindergarten
+    B6A002:      Public kindergarten
+    B6A003:      Total elementary
+    B6A004:      Public elementary
+    B6A005:      Total high school
+    B6A006:      Public high school
+    B6A007:      College
+ 
+Table 37:    Population Aged 25 Years or More by Years of School Completed [from printed report]
+Universe:    Persons 25 Years and Over
+Source code: NBT17
+NHGIS code:  B6B
+    B6B001:      No school years completed
+    B6B002:      Elementary 1-4
+    B6B003:      Elementary 5-7
+    B6B004:      Elementary 8
+    B6B005:      High school 1-3
+    B6B006:      High school 4
+    B6B007:      College 1-3
+    B6B008:      College 4 plus
+ 
+Table 38:    Family Income in 1959 [from printed report]
+Universe:    Families in 1959
+Source code: NBT19
+NHGIS code:  B6D
+    B6D001:      Under $1000
+    B6D002:      $1000 - $1999
+    B6D003:      $2000 - $2999
+    B6D004:      $3000 - $3999
+    B6D005:      $4000 - $4999
+    B6D006:      $5000 - $5999
+    B6D007:      $6000 - $6999
+    B6D008:      $7000 - $7999
+    B6D009:      $8000 - $8999
+    B6D010:      $9000 - $9999
+    B6D011:      $10000 - $14999
+    B6D012:      $15000 - $24999
+    B6D013:      $25000 plus
+ 
+Table 39:    Total House Units [from printed report]
+Universe:    House Units
+Source code: NBT40
+NHGIS code:  B61
+    B61001:      Total
+ 
+Table 40:    All Housing Units [from printed report]
+Universe:    Housing Units
+Source code: NBT41
+NHGIS code:  B62
+    B62001:      Total
+ 
+Table 41:    Occupied Housing Units by Tenure [from printed report]
+Universe:    Occupied Housing Units
+Source code: NBT42
+NHGIS code:  B63
+    B63001:      Owner-occupied
+    B63002:      Renter-occupied
+ 
+Table 42:    Occupied Housing Units by Tenure Status by Race of Occupant [from printed report]
+Universe:    Occupied Housing Units
+Source code: NBT43
+NHGIS code:  B64
+    B64001:      Owner-occupied >> White
+    B64002:      Owner-occupied >> Non-white
+    B64003:      Renter-occupied >> White
+    B64004:      Renter-occupied >> Non-white
+ 
+Table 43:    Housing Units by Vacancy [from printed report]
+Universe:    Housing Units
+Source code: NBT44
+NHGIS code:  B65
+    B65001:      Available vacant
+    B65002:      Other vacant
+ 
+Table 44:    Available Housing Units by Market Status [from printed report]
+Universe:    Available Housing Units
+Source code: NBT45
+NHGIS code:  B66
+    B66001:      For sale only
+    B66002:      For rent only
+ 
+Table 45:    Houses by Condition [from printed report]
+Universe:    Houses
+Source code: NBT46
+NHGIS code:  B67
+    B67001:      Sound
+    B67002:      Deteriorated
+    B67003:      Delapidated
+ 
+--------------------------------------------------------------------------------
+Citation and Use of NHGIS Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* Publications and research reports employing NHGIS data (either tabular or GIS)
+  must cite it appropriately. The citation should include the following:
+
+    Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. 
+    IPUMS National Historical Geographic Information System: Version 12.0 [Database]. 
+    Minneapolis: University of Minnesota. 2017. 
+    http://doi.org/10.18128/D050.V12.0
+
+* Publications and research reports employing school attendance areas data
+  (either tabular or GIS) must cite it appropriately. The citation should
+  include the following:
+
+    The College of William and Mary and the Minnesota Population Center.
+    School Attendance Boundary Information System (SABINS): Version 1.0.
+    Minneapolis, MN: University of Minnesota 2011.
+
+* For policy briefs or articles in the popular press, we recommend that you cite the use of NHGIS data as follows:
+
+    IPUMS NHGIS, University of Minnesota, www.nhgis.org.
+
+* If possible, citations involving school attendance areas should also include
+  the URL for the SABINS site:
+
+    http://www.sabinsdata.org/.
+
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+Printed matter should be sent to:
+
+    NHGIS
+    Minnesota Population Center
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455
+
+Send electronic material to: nhgis@umn.edu
