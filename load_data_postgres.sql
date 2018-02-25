@@ -16,4 +16,10 @@ COPY overall_health (geo_id, geo_name, ind_id, ohs_hi_ci, ohs_low_ci,
 	ohs_weight, wt_num, year)
 FROM '/Users/alenastern/Documents/Win2018/CAPP30122/CAPP-Win18-Project/data/ohs_2016.csv' WITH CSV HEADER;
 
-#wriigig
+#load CHA infant mortality data
+create table infant_mortality
+(geo_id varchar(50), geo_name varchar(50), ind_id varchar(10), 
+inf_mort_avg float8, inf_mort_crude float8, year int);
+
+COPY infant_mortality(geo_id, geo_name, ind_id, inf_mort_avg, inf_mort_crude, year)
+FROM '/Users/alenastern/Documents/Win2018/CAPP30122/CAPP-Win18-Project/data/CHA_im.csv' WITH CSV HEADER;
