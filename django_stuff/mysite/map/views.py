@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
 from . import forms
-import genquery
+from . import genquery
 
 
 # Create your views here.
@@ -19,7 +19,9 @@ def index(request):
 				args['ind'] = form.cleaned_data['ind']
 			if form.cleaned_data['yr']:
 				args['yr'] = form.cleaned_data['yr']
+			
 			# feed args to script here
+#			map_info = genquery = run_query(args)
 
 
 	return render(request, 'index.html', {'form': form})

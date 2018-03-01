@@ -1,8 +1,15 @@
 <!DOCTYPE html>
+{% load leaflet_tags %}
+
 <html>
 	<head>
 		<title>Impact of HOLC Redlining, 1940-2010</title>
+        {% leaflet_js %}
+        {% leaflet_css %}
 	</head>
+    <style>
+      .leaflet-container { height: 100%; }
+    </style>
 	<body>
 		<div class="frame">
             <form method="get">
@@ -12,6 +19,7 @@
                 </table>
                 <input type="submit" value="Submit" />
             </form>
+            {% leaflet_map "yourmap" %}
         </div>
 	</body>
 </html>
