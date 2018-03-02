@@ -6,20 +6,17 @@ from . import genquery
 
 
 # Create your views here.
-
-#def index(request):
-#	return HttpResponse("Maps page to be built")
-
 def index(request):
 	args = {}
 	if request.method == 'GET':
-		form = forms.DataForm(request.GET)
+		form = forms.DataForm()
+	if request.method == 'POST':
+		form = forms.DataForm(request.POST)
 		if form.is_valid():
 			if form.cleaned_data['ind']:
 				args['ind'] = form.cleaned_data['ind']
 			if form.cleaned_data['yr']:
 				args['yr'] = form.cleaned_data['yr']
-			
 			# feed args to script here
 #			map_info = genquery = run_query(args)
 
