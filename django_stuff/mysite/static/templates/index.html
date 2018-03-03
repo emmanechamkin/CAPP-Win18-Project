@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--{% load leaflet_tags %}-->
+<html>
+	<head>
+		<title>Impact of HOLC Redlining, 1940-2010</title>
+        
+        {% leaflet_js %}
+        {% leaflet_css %}
+
+        <style>
+            .leaflet-container {  /* all maps */
+            width:  635px;
+            height: 600px;
+            }
+        </style>
+        <script type="text/javascript">
+            var map = L.map('map').setView([41.881832, -87.623177], 13);
+            
+            //L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            //    maxZoom: 18,
+            //    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            //        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            //        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            //    id: 'mapbox.light'
+            //}).addTo(map);
+
+            // Add L.geoJson(holc boundaries from database).addTo(map)
+            // Define get color function, dynamic, based on choide of variable
+            // Define style feature
+            // Add L.geoJson(pull buffers from database, {style: style}).addTo(map)
+            // add interaction and info control?
+            
+        </script>
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    font-family: "helvetica";
+}
+
+h1 {
+    font-size: 50px
+}
+
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(79, 83, 84);
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #f1f1f1;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: rgb(53, 204, 255);
+}
+
+.main {
+    margin-left: 160px; 
+    margin-right: 300px;
+    width: 100%;
+    min-width: 10000px;
+    font-size: 18px; 
+    padding: 0px 10px;
+}
+
+.rightbar {
+    height: 600px;
+    position: fixed;
+    top: 125px;
+    right: 0;
+    display: block;
+    float: right;
+    width: 300px;
+    background-color: #d5e5e8;
+    padding: 0px 10px;
+}
+
+.titlebar{
+    width: 100%;
+    top: 0;
+    margin-left: 160px;
+    padding: 0px 12px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 10px;}
+}
+</style>        
+</head>
+
+<div class="sidenav">
+  <a href="#proj">Overview </a>
+  <a href="{% url 'map:index' %}">Maps</a>
+  <a href="#methods">Methods</a>
+  <a href="#sources">References</a>
+  <a href="#contact">Contact us</a>
+</div>
+
+<div class="titlebar">
+     <body style="background-color:rgb(215, 215, 215);">
+        <h1 style="font-family:helvetica;"> Impact of HOLC Redlining, 1940-2010 </h1> 
+    </body>
+</div>
+        
+<div class="main">
+        <body style="background-color:rgb(215, 215, 215);">       
+         <map>
+            {% leaflet_map "main" %}
+        </map>
+        <p style="font-family:helvetica;"> Some narration goes here </p>
+</div>
+    
+		<div class="rightbar" style="font-family:helvetica;">
+            <h2> View options </h2>
+            <p style="font-family:helvetica;"> Please select an indicator... intro text here </p>
+            <form method="post">
+            	{% csrf_token %}
+                <table class="form">
+                {{ form.as_p }}
+                </table>
+                <input type="submit" value="Submit" />
+            </form>
+            <h2> Legend </h2>
+            <p style="font-family:helvetica;"> More text here </p>
+        </div>
+</body>
+
+</html>

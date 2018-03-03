@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Impact of HOLC Redlining, 1940-2010</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    font-family: "helvetica";
+}
+
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(79, 83, 84);
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f1f1f1;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: rgb(53, 204, 255);
+}
+
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 18px; 
+    padding: 0px 10px;
+}
+
+.titlebar{
+    width: 100%;
+    top: 0;
+    margin-left: 160px;
+    padding: 0px 12px;
+}
+
+h1 {
+    font-size: 50px
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 10px;}
+}
+</style>        
+</head>
+
+<div class="sidenav">
+  <a href="">Home</a>
+  <a href="#proj">Overview </a>
+  <a href="{% url 'map:index' %}">Maps</a>
+  <a href="#methods">Methods</a>
+  <a href="#sources">References</a>
+  <a href="#contact">Contact us</a>
+</div>
+
+<div class="titlebar">
+	        <body style="background-color:rgb(215, 215, 215);">
+        <h1 style="font-family:helvetica;"> Impact of HOLC Redlining, 1940-2010 </h1>
+</body>
+</div>
+	<div class="main">
+        <p style="font-family:helvetica;"> let's put a picture and maybe some text underneath?? </p>
+ 	</body>
+</div>
+
+</html>
