@@ -25,6 +25,7 @@ def old_census_to_sql(year):
 
 	return create_table_str,  copy_str + from_str
 
+'''
 def census_to_sql_60_80(year):
 	table_name = "census_" + str(year)
 	create_table_str =  "CREATE TABLE " + table_name + " (GISJOIN varchar (50), YEAR int, TRACTA int, COUNTY varchar(20), STATE varchar(10), Total_Pop float8, PCT_WHITE float8, PCT_BLACK float8, PCT_OTHER float8, TOTAL_UNITS float8, Median float8, PCT_OCCUPIED float8, PCT_VACANT float8, PCT_OWN_OCC float8, PCT_RENT_OCC float8, PRIMARY KEY (GISJOIN));"
@@ -32,6 +33,7 @@ def census_to_sql_60_80(year):
 	from_str = " FROM " + "'/Users/alenastern/Documents/Win2018/CAPP30122/CAPP-Win18-Project/data/Old census data/raw data 1940-1980/" + str(year)+"s census data raw/"+str(year)+"s_fordb.csv' WITH DELIMITER AS ',' CSV HEADER NULL AS '';"
 
 	return create_table_str,  copy_str + from_str
+'''
 
 
 conn = psycopg2.connect(database="capp30122", user="alenastern", password='', host="localhost", port="5432")
@@ -50,6 +52,16 @@ for year in old_year_list:
 	table_old, copy_old = old_census_to_sql(year)
 	c.execute(table_old)
 	c.execute(copy_old)
+
+ALTER TABLE census_1960 add Median int;
+UPDATE census_1960 SET Median = -1;
+
+ALTER TABLE census_1970 add Median int;
+UPDATE census_1970 SET Median = -1;
+
+ALTER TABLE census_1980 add Median int;
+UPDATE census_1980 SET Median = -1;
+
 
 conn.commit()
 c.close()

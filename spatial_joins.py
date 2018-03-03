@@ -20,6 +20,10 @@ FROM (SELECT c90.pct_black, c90s.geom FROM census_1990 AS c90 JOIN census_1990_s
 JOIN redline_poly on ST_Intersects(c.geom, redline_poly.geom) 
 GROUP BY redline_poly.poly_id;
 
+#Table of all averages:
+
+SELECT redline
+
 #Weighted averages:
 #https://gis.stackexchange.com/questions/40808/area-weighted-calculation-on-an-intersection
 
