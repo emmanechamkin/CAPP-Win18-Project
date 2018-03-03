@@ -1,9 +1,23 @@
 <!DOCTYPE html>
+<!--{% load leaflet_tags %}-->
 <html>
 	<head>
 		<title>Impact of HOLC Redlining, 1940-2010</title>
+        <!-- leaflet elements
+        {% leaflet_js %}
+        {% leaflet_css %}
+        <style>
+            .leaflet-container { height: 100%; }
+        </style>
+        <script type="text/javascript">
+            Placeholder for leaflet script
+        </script>script>
+        -->
 	</head>
 	<body>
+        <!-- mapping object here, may need to move
+        <h1>Indicator Mapping</h1>
+        {% leaflet_map "main" -->
 		<div class="frame">
             <form method="get">
             	{% csrf_token %}
