@@ -12,11 +12,11 @@ IND_CHOICES = (('pa', 'percent aa'), ('seg', 'segregation'),
 
 class DataForm(forms.Form):
 	ind = forms.ChoiceField(
-		label = 'Indicator to select', 
+		label = 'Indicator', 
 		required = True, 
 		choices = IND_CHOICES)
 	yr = forms.ChoiceField(
-		label = 'Year to render', 
+		label = 'Year', 
 		required = True, 
 		choices = YEAR_CHOICES)
 

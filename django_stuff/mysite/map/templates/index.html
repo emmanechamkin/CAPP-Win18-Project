@@ -3,11 +3,15 @@
 <html>
 	<head>
 		<title>Impact of HOLC Redlining, 1940-2010</title>
-        <!-- leaflet elements
+        
         {% leaflet_js %}
         {% leaflet_css %}
+
         <style>
-            .leaflet-container { height: 100%; }
+            .leaflet-container {  /* all maps */
+            width:  600px;
+            height: 400px;
+            }
         </style>
         <script type="text/javascript">
             var map = L.map('map').setView([41.881832, -87.623177], 13);
@@ -26,20 +30,26 @@
             # Add L.geoJson(pull buffers from database, {style: style}).addTo(map)
             # add interaction and info control?
         </script>
-        -->
 	</head>
 	<body>
+        <body style="background-color:rgb(215, 215, 215);">
+        <h2 style="font-family:courier;"> Impact of HOLC Redlining, 1940-2010 </h2>
+        <p style="font-family:courier;"> Please select an indicator... intro text here </p>
         <!-- mapping object here, may need to move, does this need a div?
         <h1>Indicator Mapping</h1>
         {% leaflet_map "main" -->
 		<div class="frame">
-            <form method="get">
+            <form method="post">
             	{% csrf_token %}
                 <table class="form">
                 {{ form.as_p }}
                 </table>
                 <input type="submit" value="Submit" />
             </form>
+        <map>
+            {% leaflet_map "map" %}
+        </map>
+        <h3 style="font-family:courier;"> Some narration goes here </h3>
         </div>
 	</body>
 </html>
