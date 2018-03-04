@@ -68,6 +68,12 @@ ogr2ogr -f "GeoJSON" census_all_1990.geojson  \
 PG:"host='localhost' dbname='capp30122' user='alenastern' password='' port='5432'" \
 -sql "SELECT * from census_avg_all;" -t_srs EPSG:4326
 
+# export final census_all
+ogr2ogr -f "GeoJSON" census_all_final.geojson  \
+PG:"host='localhost' dbname='capp30122' user='alenastern' password='' port='5432'" \
+-sql "SELECT * from Census_Weighted_Avg_All;" -t_srs EPSG:4326
+
+
 #geoJSON of percent black holc grade in 1990
 ogr2ogr -f GeoJSON -t_srs EPSG:4326 pctblack_holc_1990.geojson \
 PG:"host='localhost' dbname='capp30122' user='alenastern' password='' port='5432'" 
