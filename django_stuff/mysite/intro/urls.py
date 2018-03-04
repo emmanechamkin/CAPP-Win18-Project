@@ -3,7 +3,7 @@ from django.conf.urls import include, url
 
 from . import views
 
-app_name = 'map'
+app_name = 'homep'
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.index, name='homepage'),
 ]

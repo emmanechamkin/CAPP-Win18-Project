@@ -30,11 +30,11 @@ ALLOWED_HOSTS = []
 
 # Application definition
 LEAFLET_CONFIG = {
-    'SPATIAL_EXTENT': (5.0, 44.0, 7.5, 46),
-    'DEFAULT_CENTER': (6.0, 45.0),
-    'DEFAULT_ZOOM': 16,
-    'MIN_ZOOM': 3,
-    'MAX_ZOOM': 18,
+    'SPATIAL_EXTENT': (-87.5, 41.85, -87.8, 42),
+    'DEFAULT_CENTER': (0,0),
+    'DEFAULT_ZOOM': 10,
+    'MIN_ZOOM': 8,
+    'MAX_ZOOM': 25,
 
 }
 
@@ -67,7 +67,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['../map/templates'],
+        'DIRS': ['static/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

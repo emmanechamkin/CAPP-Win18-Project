@@ -18,7 +18,7 @@ def index(request):
 			if form.cleaned_data['yr']:
 				args['yr'] = form.cleaned_data['yr']
 			# feed args to script here
-#			map_info = genquery = run_query(args)
+			#map_info = genquery.run_query(args)
 
 
 	return render(request, 'index.html', {'form': form})
