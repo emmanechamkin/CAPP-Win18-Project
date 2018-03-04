@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block main %} 
+<h3> Methods </h3>
+
+<table style="width:900px">
+<tr> <th align="left"> Identifying the area for analysis </th> </tr>
+<tr> <td> To assess the effect of Redlining, we compare outcomes on either side of HOLC boundaries demarcating areas that received different grades. We first identified the HOLC boundaries using data from the <a href="https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8"> Mapping Inequality </a> project at the University of Richmond. We then generate a 1/4 mile “buffer” on either side of the border between HOLC areas of different grades and restrict our analysis to the areas that fall within these “boundary buffers” as shown in figure 1 below. Note that borders demarcating areas that received the same HOLC grade are not considered in our analysis as we are interested in the differences in outcomes between areas that received different HOLC grades.<td></tr>
+<tr><td></td></tr>
+<tr> <th align="left"> Figure 1 </th> </tr>
+<tr> <td> Step 1: Defining HOLC areas <img src="HOLCareas.jpg" alt="Fig 1a: Mapping"> </td></tr>
+
+{% endblock %}

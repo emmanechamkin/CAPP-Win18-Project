@@ -1,130 +1,35 @@
-<!DOCTYPE html>
-<!--{% load leaflet_tags %}-->
-<html>
-	<head>
-		<title>Impact of HOLC Redlining, 1940-2010</title>
-        
+{% extends "base.html" %}
+
+{% block lljs %}
+		{% load leaflet_tags %}
         {% leaflet_js %}
         {% leaflet_css %}
+{% endblock %}
 
-        <style>
-            .leaflet-container {  /* all maps */
-            width:  635px;
-            height: 600px;
-            }
-        </style>
-            
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-    font-family: "helvetica";
-}
-
-h1 {
-    font-size: 50px
-}
-
-.sidenav {
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(79, 83, 84);
-    overflow-x: hidden;
-    padding-top: 20px;
-}
-
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 24px;
-    color: #f1f1f1;
-    display: block;
-}
-
-.sidenav a:hover {
-    color: rgb(53, 204, 255);
-}
-
-.main {
-    margin-left: 160px; 
-    margin-right: 300px;
-    width: 100%;
-    min-width: 10000px;
-    font-size: 18px; 
-    padding: 0px 10px;
-}
-
-.rightbar {
-    height: 600px;
-    position: fixed;
-    top: 125px;
-    left: 830px;
-    right: 0;
-    display: block;
-    float: right;
-    width: 300px;
-    background-color: #d5e5e8;
-    padding: 0px 10px;
-}
-
-.titlebar{
-    width: 100%;
-    top: 0;
-    margin-left: 160px;
-    padding: 0px 12px;
-}
-
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 10px;}
-}
-</style>        
-</head>
-
-<div class="sidenav">
-  <a href="#proj">Overview </a>
-  <a href="{% url 'map:index' %}">Maps</a>
-  <a href="{% url 'homep:homepage' %}">Home</a>
-  <a href="#methods">Methods</a>
-  <a href="#sources">References</a>
-  <a href="#contact">Contact us</a>
+{% block main %}
+<div class="rightbar">
+	<h2> View options </h2>
+   	<p> Please select an indicator... intro text here </p>
+    <form method="post">
+    	{% csrf_token %}
+    	<table class="form">
+    		{{ form.as_p }}
+    	</table>
+    	<input type="submit" value="Submit" />
+    	</form>
+    <h2> Legend </h2>
 </div>
 
-<div class="titlebar">
-     <body style="background-color:rgb(215, 215, 215);">
-        <h1 style="font-family:helvetica;"> Impact of HOLC Redlining, 1940-2010 </h1> 
-    </body>
-</div>
-        
-<div class="main">
-        <body style="background-color:rgb(215, 215, 215);">       
-         <map>
+
+<div class="map">
+		<map>
             {% leaflet_map "main" callback="mainmap" %}
         </map>
         <script type="text/javascript">
             //var map = L.map('map')
             function mainmap(options){
-            
-        }
+        	}
         </script>
-</div>
-    
-		<div class="rightbar" style="font-family:helvetica;">
-            <h2> View options </h2>
-            <p style="font-family:helvetica;"> Please select an indicator... intro text here </p>
-            <form method="post">
-            	{% csrf_token %}
-                <table class="form">
-                {{ form.as_p }}
-                </table>
-                <input type="submit" value="Submit" />
-            </form>
-            <h2> Legend </h2>
-            <p style="font-family:helvetica;"> More text here </p>
-        </div>
-</body>
+	</div>
 
-</html>
+{% endblock %}

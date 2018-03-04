@@ -22,3 +22,20 @@ def index(request):
 
 
 	return render(request, 'index.html', {'form': form})
+
+def home(request):
+	return render(request, 'homepage.html', {})
+
+def overview(request):
+	return render(request, 'overview.html', {})
+
+def methods(request):
+	return render(request, 'methods.html', {})
+
+def references(request):
+	return render(request, 'reference.html', {})
+
+def contact(request):
+	return render(request, 'contact.html', {})
+
+
