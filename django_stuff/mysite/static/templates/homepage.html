@@ -57,12 +57,12 @@ h1 {
 </head>
 
 <div class="sidenav">
-  <a href="">Home</a>
-  <a href="#proj">Overview </a>
+  <a href="{% url 'homep:homepage' %}">Home</a>
+  <a href="{% url 'homep:overview">Overview </a>
   <a href="{% url 'map:index' %}">Maps</a>
-  <a href="#methods">Methods</a>
-  <a href="#sources">References</a>
-  <a href="#contact">Contact us</a>
+  <a href="{% url 'homep:methods' %}">Methods</a>
+  <a href="{% url 'homep:sources' %}">References</a>
+  <!--<a href="{% url 'cxus:contact' %}">Contact us</a> -->
 </div>
 
 <div class="titlebar">
