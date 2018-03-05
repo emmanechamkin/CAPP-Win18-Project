@@ -1,13 +1,15 @@
 from django import forms
 
+# ["Total_Pop", "PCT_WHITE", "PCT_BLACK", "PCT_OTHER", 
+# "TOTAL_UNITS", "Median", "PCT_OCCUPIED", "PCT_VACANT", "PCT_OWN_OCC", "PCT_RENT_OCC"]
 
 YEAR_CHOICES = (('1940', '1940'), ('1950', '1950'), 
 	('1960', '1960'), ('1970', '1970'), ('1980', '1980'),
 	('1990', '1990'), ('2000', '2000'), ('2010','2010'))
 
-IND_CHOICES = (('pa', 'percent aa'), ('seg', 'segregation'), 
-	('mhv', 'median home value'), ('pv', 'percent vacant'),
-	('pr', 'percent rented'))
+IND_CHOICES = (('PCT_WHITE', 'Percent white'), ('PCT_BLACK', 'Percent black'), 
+	('Median', 'Median home value'), ('PCT_VACANT', 'Percent vacant'),
+	('PCT_RENT_OCC', 'Percent renter occupied'), ('PCT_OWN_OCC', 'Percent owner occupied'))
 
 
 class DataForm(forms.Form):
