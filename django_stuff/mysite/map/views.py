@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django import forms
 from . import forms
 from . import genquery
-
+from . import data_read
 
 # Create your views here.
 def index(request):
@@ -18,18 +18,29 @@ def index(request):
 				args['ind'] = form.cleaned_data['ind']
 			if form.cleaned_data['yr']:
 				args['yr'] = form.cleaned_data['yr']
+				cx['data'] = process_data(data_read.filename, form.cleaned_data['yr'])
 	
-	cx = {'form': form}
-	# feed args to script here
-	# map_info = genquery.run_query(args)
+	# Build remaining context
+	cx['form'] = form
+	cx['args'] = args
+
 	return render(request, 'index.html', cx)
 
-def process_db(all_rows):
+def process_data(filename, year):
 	'''
-	process the rows of the db and construct context for the html
+	process the rows of the file
 	'''
-	pass
-	#return more_context, whatever
+	geojson = {}
+	geojson['type'] = data['type']
+	geojson['crs'] = data['crs']
+	geojson['features'] = []	
+
+	with open('test.json') as f:
+		data = json.load(f)
+
+	for feature in data['features']:
+		if feature['properties']['year'] == year:
+			geojson['features'].append(feature)
 
 def home(request):
 	return render(request, 'homepage.html', {})
