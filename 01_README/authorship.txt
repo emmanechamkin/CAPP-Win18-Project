@@ -1,0 +1,14 @@
+File: authorship.txt
+Contains: primary contact for each part of code
+
+Directory | File                    | Author   | Notes on code
+-------------------------------------------------------------------
+01        | blahblah.py             | Alena S. | Original code
+-------------------------------------------------------------------
+01        | blahblahblah.py         | Emma N.  | Sections modified 
+	  |  			    |  	       | from w3schools:
+	  |			    |	       |    - CSS style
+	  |			    |	       |      - other
+	  |			    |	       | Original code:
+	  |			    |	       |      - blah 
+	  |			    |	       |      - blah 2

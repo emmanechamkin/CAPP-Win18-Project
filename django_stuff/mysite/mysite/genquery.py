@@ -1,11 +1,11 @@
 import psycopg2 
 
-### NOT A DJANGO FILE
-
+# Fill in global vars
 DB = 'db'
 TABLE = 'table'
 GEOCODE = 'code'
 GEOSHAPE = 'shape'
+
 
 def connect(DB):
 	try:
