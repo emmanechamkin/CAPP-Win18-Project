@@ -28,7 +28,91 @@
         <script type="text/javascript">
             //var map = L.map('map')
             function mainmap(options){
-        	}
+
+                // CHLOROPLETH //
+                // need this function to switch if not %, perhaps to indicate which scale is low/high?
+                // change these color options to blues rather than reds
+                function getColor(n) {
+                    return n > .8 ? '#b10026'
+                           : n > .7 ? '#e31a1c'
+                           : n > .6 ? '#fc4e2a'
+                           : n > .5 ? '#fd8d3c'
+                           : n > .4  ? '#feb24c'
+                           : n > .3  ? '#fed976'
+                           : n > .2  ? '#ffeda0'
+                           : n > .1  ? '#ffffcc'
+                           : n > .0  ? '#ffffcc'
+                           : '#85929E';
+                }
+
+                function getBufferColor(geojson, var_of_interest) {
+                    var color;
+                    color = getColor(geojson.properties.var_of_interest);
+                    return color;
+                }
+
+                function style(feature) {
+                    return {
+                        weight: 1,
+                        opacity: 1,
+                        color: 'black',
+                        fillOpacity: 0.7,
+                        fillColor: getBufferColor(feature, var_of_interest)
+                    };
+                }
+                
+                // MOUSEOVER CONTROLS //
+                // popup information as well?
+                var geojson;
+                 
+                function resetHighlight(e) {
+                    geojson.resetStyle(e.target);
+                    info.update();
+                }
+                 
+                function zoomToFeature(e) {
+                    map.fitBounds(e.target.getBounds());
+                }
+                 
+                function onEachFeature(feature, layer) {
+                    layer.on({
+                        mouseover: highlightFeature,
+                        mouseout: resetHighlight,
+                        click: zoomToFeature
+                    });
+                }
+
+                // ADD FEATURES TO MAP //
+                var geojson = L.geoJson(data, {
+                    style: style,
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+
+                // LEGEND CODING //
+                var legend = L.control({position: 'bottomright'});
+
+                legend.onAdd = function (map) {
+                 
+                    var div = L.DomUtil.create('div', 'info legend'),
+                        // grades need to be dynamic based on field
+                        grades = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+                        labels = [],
+                        from, to;
+                 
+                    // need piece to assign colors to grades
+                         
+                    //    labels.push(
+                    //        '<i style="background:' + var_color + '"></i> ' +
+                    //         var_from_to);
+                    //}
+                 
+                    div.innerHTML = labels.join('<br>');
+                    return div;
+                };
+                 
+                legend.addTo(map);
+            }
+
         </script>
 	</div>
 
