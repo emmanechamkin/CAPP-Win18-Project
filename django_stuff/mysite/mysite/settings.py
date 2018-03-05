@@ -35,6 +35,8 @@ LEAFLET_CONFIG = {
     'DEFAULT_ZOOM': 10,
     'MIN_ZOOM': 8,
     'MAX_ZOOM': 25,
+    'TILES': [('Base','http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
+       {'attribution': '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'})],
 
 }
 
