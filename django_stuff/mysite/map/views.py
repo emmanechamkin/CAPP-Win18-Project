@@ -8,6 +8,7 @@ from . import genquery
 # Create your views here.
 def index(request):
 	args = {}
+	cx = {}
 	if request.method == 'GET':
 		form = forms.DataForm()
 	if request.method == 'POST':
@@ -17,11 +18,18 @@ def index(request):
 				args['ind'] = form.cleaned_data['ind']
 			if form.cleaned_data['yr']:
 				args['yr'] = form.cleaned_data['yr']
-			# feed args to script here
-			#map_info = genquery.run_query(args)
+	
+	cx = {'form': form}
+	# feed args to script here
+	# map_info = genquery.run_query(args)
+	return render(request, 'index.html', cx)
 
-
-	return render(request, 'index.html', {'form': form})
+def process_db(all_rows):
+	'''
+	process the rows of the db and construct context for the html
+	'''
+	pass
+	#return more_context, whatever
 
 def home(request):
 	return render(request, 'homepage.html', {})
