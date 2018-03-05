@@ -8,16 +8,29 @@
 
 {% block main %}
 <div class="rightbar">
-	<h2> View options </h2>
-   	<p> Please select an indicator... intro text here </p>
-    <form method="post">
-    	{% csrf_token %}
-    	<table class="form">
-    		{{ form.as_p }}
-    	</table>
-    	<input type="submit" value="Submit" />
-    	</form>
-    <h2> Legend </h2>
+	<h3> Select an indicator: </h3>
+   	<form method="post">
+        {% csrf_token %}
+        <table class="form" align="center">    
+            <tr>
+                <td>{{ form.as_p }} </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Submit">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <h3>
+        <b> Explanation of indicators: </b>
+    </h3>
+    <ul>
+        <li> <b> Percent white or black: </b> Percentage of residents that are of the given race </li> 
+        <li> <b> Median home value: </b> The median home value as reported on the US Censuss; not available for 1950, 1960, and 1970 </li>
+        <li><b> Percent vacant: </b> Share of the homes that are unoccupied </li>
+        <li><b> Percent owner or renter occupied: </b> Share of occupied homes that are owned or rented </li>
+    </ul>
 </div>
 
 
