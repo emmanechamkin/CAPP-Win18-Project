@@ -1,6 +1,23 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 {% block main %} 
-<h3> [Page welcome - maybe introduce table of contents?] </h3>
+<div class="introright">
+	<br>
+
+	<h3> Mapping Redlining in Chicago </h3>
+
+	<p> 
+		Redlining has long-term, entrenched, and persistent effects on socioeconomic indicators in Chicago. 
+	</p>
+	<p>
+		This website visualizes the long-term impact of redlining on socioeconomic indicators.
+	</p>
+</div>
+
+<img src="{% static 'map/HOLC_SouthSide.jpg' %}">
+<br>
+<a href="https://ajustchicago.org/2017/06/new-study-impact-segregationist-policies/">Source: A Just Chicago</a>
+
+
 {% endblock %}
