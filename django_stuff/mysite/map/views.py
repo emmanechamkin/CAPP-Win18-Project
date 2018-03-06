@@ -6,7 +6,7 @@ from . import genquery
 import json
 from django.core.serializers import serialize
 
-filename = 'data/census_all_final_2v_wyear.geojson'
+filename = 'data/census_all_2v.geojson'
 
 # Create your views here.
 def index(request):
@@ -25,7 +25,7 @@ def index(request):
 	
 	# Build remaining context
 	cx['form'] = form
-	cx['args'] = args
+	cx['args'] = json.dumps(args)
 
 	return render(request, 'index.html', cx)
 
@@ -33,8 +33,6 @@ def process_data(filename, year):
 	'''
 	process the rows of the file
 	'''
-	#geojson = {}
-
 	with open(filename) as f:
 		data = json.load(f)
 

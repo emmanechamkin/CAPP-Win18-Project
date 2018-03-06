@@ -12,7 +12,7 @@
    	<form method="post">
         {% csrf_token %}
         <table class="form" align="center">    
-            <tr>
+            <tr>              
                 <td>{{ form.as_p }} </td>
             </tr>
             <tr>
@@ -39,12 +39,15 @@
             {% leaflet_map "main" callback="mainmap" %}
         </map>
         <script type="text/javascript">
-            //var map = L.map('map')
+
             function mainmap(map, options) {
                 data = JSON.parse("{{ data|escapejs }}");
-                //var_of_interest = "{{ args }}";
+                args = JSON.parse("{{ args|escapejs }}");
+                var_of_interest = args.ind.toLowerCase();
+                
                 console.log(data)
-
+                console.log(var_of_interest)
+                
                 // CHLOROPLETH //
                 // need this function to switch if not %, perhaps to indicate which scale is low/high?
                 // change these color options to blues rather than reds
@@ -61,26 +64,42 @@
                            : '#85929E';
                 }
 
-                //function getBufferColor(geojson, var_of_interest) {
-                //    var color;
-                //    color = getColor(geojson.properties.var_of_interest);
-                //    return color;
-                //}
+                function getBufferColor(feature) {
+                    var color;
+                    color = getColor(feature.properties[var_of_interest]);
+                    return color;
+                }
 
-                //function style(feature) {
-                //    return {
-                //        weight: 1,
-                //        opacity: 1,
-                //        color: 'black',
-                //        fillOpacity: 0.7,
-                //        fillColor: getBufferColor(feature, var_of_interest)
-                //    };
-                //}
+                function style(feature) {
+                    return {
+                        weight: 1,
+                        opacity: 1,
+                        color: 'black',
+                        fillOpacity: 0.7,
+                        fillColor: getBufferColor(feature)
+                    };
+                }
                 
                 // MOUSEOVER CONTROLS //
                 // popup information as well?
-                var geojson;
+                function highlightFeature(e) {
+                    var layer = e.target;
                  
+                    layer.setStyle({
+                        weight: 2,
+                        color: '#333',
+                        dashArray: '',
+                        fillOpacity: 0.7
+                    });
+                 
+                    if (!L.Browser.ie && !L.Browser.opera) {
+                        layer.bringToFront();
+                    }
+                 
+                    info.update(layer.feature.properties);
+                }
+
+
                 function resetHighlight(e) {
                     geojson.resetStyle(e.target);
                     info.update();
@@ -98,38 +117,14 @@
                     });
                 }
 
-                // ADD FEATURES TO MAP //
-                //style: style,
-                //onEachFeature: onEachFeature
-                //var geojson = L.geoJson(data).addTo(map);
 
+                var geojson;
 
-                geojson = L.geoJson().addTo(map);
-                geojson.addData(data);
-                //map.fitBounds(geojson.getBounds());  
-                // LEGEND CODING //
-                var legend = L.control({jsonLayer: 'bottomright'});
+                geojson = L.geoJson(data, {
+                    style: style,
+                    onEachFeature: onEachFeature
+                }).addTo(map);      
 
-                legend.onAdd = function (map) {
-                 
-                    var div = L.DomUtil.create('div', 'info legend'),
-                        // grades need to be dynamic based on field
-                        grades = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
-                        labels = [],
-                        from, to;
-                 
-                    // need piece to assign colors to grades
-                         
-                    //    labels.push(
-                    //        '<i style="background:' + var_color + '"></i> ' +
-                    //         var_from_to);
-                    //}
-                 
-                    div.innerHTML = labels.join('<br>');
-                    return div;
-                };
-                 
-                legend.addTo(map);
             }
 
         </script>
