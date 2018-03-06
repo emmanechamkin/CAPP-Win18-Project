@@ -51,7 +51,7 @@ for var in var_list:
     c.execute(update_null)
 
 add_id_unique = "ALTER TABLE Census_Weighted_Avg_All ADD COLUMN id_unique varchar(10);"
-update_id_unique = "UPDATE Census_Weighted_Avg_All SET id_unique = CAST(poly_id AS varchar(10) ) + CAST(year AS varchar(10) );"
+update_id_unique = "UPDATE Census_Weighted_Avg_All SET id_unique = concat(poly_id::text, year::text);"
 c.execute(add_id_unique)
 c.execute(update_id_unique)
 
@@ -66,6 +66,7 @@ conn.close()
 
 #Cutoff of 15% for 1940 OR 70% of buffer areas gives us 862 buffers - FINAL SELECTION
 #Cutoff of 50% for 1990 or 70% of buffer area gives us 1492 buffers - FINAL SELECTION
+
 
 
 #SELECT SUM(CASE WHEN pct_black IS NULL THEN 1 END) AS count_null FROM census_weighted_avg_all;

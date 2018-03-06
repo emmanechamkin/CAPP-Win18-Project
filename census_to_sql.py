@@ -53,13 +53,13 @@ for year in old_year_list:
 	c.execute(table_old)
 	c.execute(copy_old)
 
-ALTER TABLE census_1960 add Median int;
+ALTER TABLE census_1960 add Median float8;
 UPDATE census_1960 SET Median = -1;
 
-ALTER TABLE census_1970 add Median int;
+ALTER TABLE census_1970 add Median float8;
 UPDATE census_1970 SET Median = -1;
 
-ALTER TABLE census_1980 add Median int;
+ALTER TABLE census_1980 add Median float8;
 UPDATE census_1980 SET Median = -1;
 
 
