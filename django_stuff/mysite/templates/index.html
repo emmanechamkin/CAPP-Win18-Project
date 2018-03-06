@@ -4,6 +4,10 @@
 		{% load leaflet_tags %}
         {% leaflet_js %}
         {% leaflet_css %}
+        <style>#map { width: 800px; height: 500px; }
+        .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+        .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+        </style>
 {% endblock %}
 
 {% block main %}
@@ -41,32 +45,81 @@
         <script type="text/javascript">
 
             function mainmap(map, options) {
+                // Pull information from context
                 data = JSON.parse("{{ data|escapejs }}");
                 args = JSON.parse("{{ args|escapejs }}");
                 var_of_interest = args.ind.toLowerCase();
+
+                var standard = ["pct_white", "pct_black", "pct_own_occ", "pct_rent_occ"]
+                var median = ["median"]
+                var vacant = ["pct_vacant"]
+
                 
                 console.log(data)
                 console.log(var_of_interest)
                 
+                // control what shows state info on hover
+                var info = L.control();
+                 
+                info.onAdd = function (map) {
+                    this._div = L.DomUtil.create('div', 'info');
+                    this.update();
+                    return this._div;
+                };
+                 
+                // Modify popup text 
+                info.update = function (props) {
+                    this._div.innerHTML = '<p>Indicator of Interest</p>' +  (props ?
+                        '<b>' + var_of_interest + '</b> ' + props.properties[var_of_interest] + ' lonely homes'
+                        : '<small>Hover over buffer</small>');
+                    console.log(props)
+                };
+                 
+                info.addTo(map);
+
+
+
                 // CHLOROPLETH //
-                // need this function to switch if not %, perhaps to indicate which scale is low/high?
-                // change these color options to blues rather than reds
+                // Scaling changes for median, % vacant 
                 function getColor(n) {
-                    return n > .8 ? '#b10026'
-                           : n > .7 ? '#e31a1c'
-                           : n > .6 ? '#fc4e2a'
-                           : n > .5 ? '#fd8d3c'
-                           : n > .4  ? '#feb24c'
-                           : n > .3  ? '#fed976'
-                           : n > .2  ? '#ffeda0'
-                           : n > .1  ? '#ffffcc'
-                           : n > .0  ? '#ffffcc'
-                           : '#85929E';
+                    if (standard.includes(var_of_interest)) {
+                        return n > .8 ? '#b10026'
+                               : n > .7 ? '#e31a1c'
+                               : n > .6 ? '#fc4e2a'
+                               : n > .5 ? '#fd8d3c'
+                               : n > .4  ? '#feb24c'
+                               : n > .3  ? '#fed976'
+                               : n > .2  ? '#ffeda0'
+                               : n > .1  ? '#ffffcc'
+                               : n > .0  ? '#ffffcc'
+                               : '#85929E';
+                    }
+                    else if (vacant.includes(var_of_interest)) {
+                        return n > .08 ? '#b10026'
+                               : n > .06 ? '#fc4e2a'
+                               : n > .04  ? '#feb24c'
+                               : n > .02  ? '#ffeda0'
+                               : n > .0  ? '#ffffcc'
+                               : '#85929E';
+                    }
+                    else {
+                        return n > 160000 ? '#b10026'
+                               : n > 140000 ? '#e31a1c'
+                               : n > 120000 ? '#fc4e2a'
+                               : n > 100000 ? '#fd8d3c'
+                               : n > 80000  ? '#feb24c'
+                               : n > 60000  ? '#fed976'
+                               : n > 40000  ? '#ffeda0'
+                               : n > 20000  ? '#ffffcc'
+                               : n > 0  ? '#ffffcc'
+                               : '#85929E';
+                    }
                 }
 
                 function getBufferColor(feature) {
                     var color;
                     color = getColor(feature.properties[var_of_interest]);
+                    console.log(feature.properties[var_of_interest])
                     return color;
                 }
 
@@ -113,10 +166,9 @@
                     layer.on({
                         mouseover: highlightFeature,
                         mouseout: resetHighlight,
-                        click: zoomToFeature
+                        click: zoomToFeature,
                     });
                 }
-
 
                 var geojson;
 
@@ -125,7 +177,30 @@
                     onEachFeature: onEachFeature
                 }).addTo(map);  
 
-                //map.fitBounds(geojson.getBounds());    
+                // LEGEND CODING //
+                var legend = L.control({geojson: 'bottomright'});
+
+                legend.onAdd = function (map) {
+                 
+                    var div = L.DomUtil.create('div', 'info legend'),
+                        // grades need to be dynamic based on field
+                        grades = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+                        labels = [],
+                        from, to;
+                 
+                    // need piece to assign colors to grades
+                         
+                    //    labels.push({
+                      //      '<i style="background:' + var_color + '"></i> ' +
+                        //     var_from_to);
+                    //}
+                 
+                    div.innerHTML = labels.join('<br>');
+                    return div;
+                };
+                 
+                legend.addTo(map);
+
 
             }
 
