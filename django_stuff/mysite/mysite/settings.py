@@ -84,6 +84,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+SERIALIZATION_MODULES = {
+    'geojson': 'djgeojson.serializers'
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases

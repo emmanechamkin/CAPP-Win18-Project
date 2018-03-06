@@ -14,7 +14,6 @@
         <table class="form" align="center">    
             <tr>
                 <td>{{ form.as_p }} </td>
-                <td>{{ data }} </td>
             </tr>
             <tr>
                 <td>
@@ -42,7 +41,8 @@
         <script type="text/javascript">
             //var map = L.map('map')
             function mainmap(map, options) {
-                data = {{ data }} // want this to call in from cx as defined in views: index(request)
+                data = JSON.parse("{{ data|escapejs }}");
+                //var_of_interest = "{{ args }}";
                 console.log(data)
 
                 // CHLOROPLETH //
@@ -61,21 +61,21 @@
                            : '#85929E';
                 }
 
-                function getBufferColor(geojson, var_of_interest) {
-                    var color;
-                    color = getColor(geojson.properties.var_of_interest);
-                    return color;
-                }
+                //function getBufferColor(geojson, var_of_interest) {
+                //    var color;
+                //    color = getColor(geojson.properties.var_of_interest);
+                //    return color;
+                //}
 
-                function style(feature) {
-                    return {
-                        weight: 1,
-                        opacity: 1,
-                        color: 'black',
-                        fillOpacity: 0.7,
-                        fillColor: getBufferColor(feature, var_of_interest)
-                    };
-                }
+                //function style(feature) {
+                //    return {
+                //        weight: 1,
+                //        opacity: 1,
+                //        color: 'black',
+                //        fillOpacity: 0.7,
+                //        fillColor: getBufferColor(feature, var_of_interest)
+                //    };
+                //}
                 
                 // MOUSEOVER CONTROLS //
                 // popup information as well?
@@ -99,13 +99,16 @@
                 }
 
                 // ADD FEATURES TO MAP //
-                var geojson = L.geoJson(data, {
-                    style: style,
-                    onEachFeature: onEachFeature
-                }).addTo(map);
+                //style: style,
+                //onEachFeature: onEachFeature
+                //var geojson = L.geoJson(data).addTo(map);
 
+
+                geojson = L.geoJson().addTo(map);
+                geojson.addData(data);
+                //map.fitBounds(geojson.getBounds());  
                 // LEGEND CODING //
-                var legend = L.control({position: 'bottomright'});
+                var legend = L.control({jsonLayer: 'bottomright'});
 
                 legend.onAdd = function (map) {
                  
