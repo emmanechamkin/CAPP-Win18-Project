@@ -6,7 +6,7 @@ from . import genquery
 import json
 from django.core.serializers import serialize
 
-filename = 'data/census_all_2v.geojson'
+filename = 'data/census_all_final2.geojson'
 
 # Create your views here.
 def index(request):
