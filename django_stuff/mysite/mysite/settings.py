@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 LEAFLET_CONFIG = {
-    'SPATIAL_EXTENT': (-87.5, 41.85, -87.8, 42),
+    'SPATIAL_EXTENT': (-87.5, 41.6, -87.8, 42),
     'DEFAULT_CENTER': (0,0),
     'DEFAULT_ZOOM': 10,
     'MIN_ZOOM': 8,
@@ -136,3 +136,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Add so it can email our console
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'prince@cs122.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False 
+EMAIL_PORT = 1025
