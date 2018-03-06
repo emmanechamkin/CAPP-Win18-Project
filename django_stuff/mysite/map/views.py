@@ -6,7 +6,7 @@ from . import genquery
 import json
 
 
-filename = 'data/census_all_final2.geojson'
+filename = 'data/census_all_final5.geojson'
 
 # Create your views here.
 def index(request):
