@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django import forms
 from . import forms
 from . import genquery
-from . import data_read
+import json
+
+filename = '../'
 
 # Create your views here.
 def index(request):
@@ -18,7 +20,7 @@ def index(request):
 				args['ind'] = form.cleaned_data['ind']
 			if form.cleaned_data['yr']:
 				args['yr'] = form.cleaned_data['yr']
-				cx['data'] = process_data(data_read.filename, form.cleaned_data['yr'])
+				cx['data'] = process_data(filename, form.cleaned_data['yr'])
 	
 	# Build remaining context
 	cx['form'] = form
@@ -31,16 +33,21 @@ def process_data(filename, year):
 	process the rows of the file
 	'''
 	geojson = {}
+
+	with open(filename) as f:
+		data = json.load(f)
+
 	geojson['type'] = data['type']
 	geojson['crs'] = data['crs']
 	geojson['features'] = []	
 
-	with open('test.json') as f:
-		data = json.load(f)
-
 	for feature in data['features']:
 		if feature['properties']['year'] == year:
 			geojson['features'].append(feature)
+
+	json.dumps
+
+	return geojson
 
 def home(request):
 	return render(request, 'homepage.html', {})

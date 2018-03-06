@@ -14,6 +14,7 @@
         <table class="form" align="center">    
             <tr>
                 <td>{{ form.as_p }} </td>
+                <td>{{ data }} </td>
             </tr>
             <tr>
                 <td>
@@ -40,7 +41,9 @@
         </map>
         <script type="text/javascript">
             //var map = L.map('map')
-            function mainmap(map, options, data, var_of_interest){
+            function mainmap(map, options) {
+                data = {{ data }} // want this to call in from cx as defined in views: index(request)
+                console.log(data)
 
                 // CHLOROPLETH //
                 // need this function to switch if not %, perhaps to indicate which scale is low/high?
