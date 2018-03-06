@@ -6,8 +6,8 @@
         {% leaflet_css %}
         <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
         <style>
-        .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
-        .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+    .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+    .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
         </style>
 {% endblock %}
 
@@ -93,7 +93,7 @@
                  
                 // Modify popup text 
                 info.update = function (props) {
-                    this._div.innerHTML = '<p><b>Indicator of Interest</b></p>' +  (props ?
+                    this._div.innerHTML = '<h4>Indicator of Interest</h4>' +  (props ?
                         '<b>' + "Buffer Type" + '</b><br/>' + props['holc_bound'] +
                         '<br/><b>' + var_to_display[var_of_interest] + '</b><br/>' + representation(props[var_of_interest])
                         : '<small>Hover over buffer</small>');
@@ -112,8 +112,8 @@
                                : n > .4  ? '#feb24c'
                                : n > .3  ? '#fed976'
                                : n > .2  ? '#ffeda0'
-                               : n > .1  ? '#ffffcc'
-                               : n >= .0  ? '#ffffcc'
+                               : n > .1  ? '#ffffbe'
+                               : n >= .0  ? '#fdfdd7'
                                : '#85929E';
                     }
                     else if (vacant.includes(var_of_interest)) {
@@ -121,7 +121,7 @@
                                : n > .06 ? '#fc4e2a'
                                : n > .04  ? '#feb24c'
                                : n > .02  ? '#ffeda0'
-                               : n >= .0  ? '#ffffcc'
+                               : n >= .0  ? '#fdfdd7'
                                : '#85929E';
                     }
                     else {
@@ -132,8 +132,8 @@
                                : n > 80000  ? '#feb24c'
                                : n > 60000  ? '#fed976'
                                : n > 40000  ? '#ffeda0'
-                               : n > 20000  ? '#ffffcc'
-                               : n >= 0  ? '#ffffcc'
+                               : n > 20000  ? '#ffffbe'
+                               : n >= 0  ? '#fdfdd7'
                                : '#85929E';
                     }
                 }

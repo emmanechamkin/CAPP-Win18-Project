@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 LEAFLET_CONFIG = {
-    'SPATIAL_EXTENT': (-87.5, 41.6, -87.8, 42),
+    'SPATIAL_EXTENT': (-87.5, 41.7, -87.8, 42.1),
     'DEFAULT_CENTER': (0,0),
     'DEFAULT_ZOOM': 10,
     'MIN_ZOOM': 8,
