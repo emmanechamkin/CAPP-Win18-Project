@@ -91,7 +91,7 @@
                     }
                 }
                  
-                // Modify popup text 
+                // Modify inset text 
                 info.update = function (props) {
                     this._div.innerHTML = '<h4>Indicator of Interest</h4>' +  (props ?
                         '<b>' + "Buffer Type" + '</b><br/>' + props['holc_bound'] +
@@ -201,13 +201,13 @@
                 // LEGEND CODING //
                 function grade (var_of_interest) {
                     if (standard.includes(var_of_interest)){
-                        return grades = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
+                        return grades = [-1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
                     }
                     else if (vacant.includes(var_of_interest)) {
-                        return grades = [0, 0.02, 0.04, 0.06, 0.08];
+                        return grades = [-1, 0, 0.02, 0.04, 0.06, 0.08];
                     }
                     else {
-                        return grades = [0, 20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000];
+                        return grades = [-1, 0, 20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000];
                     }                    
                 }
 
@@ -217,9 +217,9 @@
                  
                     var div = L.DomUtil.create('div', 'info legend'),
                         grades = grade(var_of_interest)
-                        labels = [];
+                        labels = ['<i style="background:' + getColor(grades[0]) + '"></i> ' + representation(grades[0])];
 
-                    for (var i = 0; i < grades.length; i++) {
+                    for (var i = 1; i < grades.length; i++) {
                         from = grades[i];
                         to = grades[i + 1];
 
