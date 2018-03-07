@@ -12,8 +12,11 @@ UPDATE Census_Weighted_Avg_All SET pct_occupied = -1 WHERE pct_occupied = '-Infi
 
 #noted that average of Median = NaN, because contained 'NaN' values that were not updated with
 #update NULL in function
+SELECT min(median) from census_weighted_avg_all where median != 'NaN';
+# min is -1.65 so set norm_med null to -99
 SELECT SUM(CASE WHEN Median  ='NaN' THEN 1 END) AS count_null FROM census_weighted_avg_all;
-UPDATE Census_Weighted_Avg_All SET Median = -1 WHERE Median = 'NaN'; 
+UPDATE Census_Weighted_Avg_All SET Median = -1 WHERE Median = 'NaN';
+UPDATE Census_Weighted_Avg_All SET norm_med = -99 WHERE norm_med = 'NaN'; 
 
 #check averages again
 select avg(case when pct_occupied > -1 then pct_occupied  end) from census_weighted_avg_all;
@@ -21,3 +24,4 @@ select avg(case when median > -1 then median end) from census_weighted_avg_all;
 
 #pct_occ = 0.950268781563176
 #median = 190901.216970817
+
