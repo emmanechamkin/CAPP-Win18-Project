@@ -44,6 +44,7 @@
             {% leaflet_map "main" callback="mainmap" %}
         </map>
         <script type="text/javascript">
+            // ACKNOWLDGEMENT: Code addapted from Leaflet Chloropleth Tutorial http://leafletjs.com/examples/choropleth/
 
             function mainmap(map, options) {
                 // Pull information from context
@@ -65,9 +66,6 @@
                 var standard = ["pct_white", "pct_black", "pct_own_occ", "pct_rent_occ"]
                 var median = ["median"]
                 var vacant = ["pct_vacant"]
-
-                console.log(data)
-                console.log(var_of_interest)
                 
                 // control what shows state info on hover
                 var info = L.control();
@@ -138,6 +136,7 @@
                     }
                 }
 
+                // Get color for buffer based on value of indicator of interest
                 function getBufferColor(feature) {
                     var color;
                     color = getColor(feature.properties[var_of_interest]);
@@ -145,6 +144,7 @@
                     return color;
                 }
 
+                // Build feature style
                 function style(feature) {
                     return {
                         weight: 1,
@@ -161,7 +161,7 @@
                  
                     layer.setStyle({
                         weight: 2,
-                        color: '#333',
+                        color: 'white',
                         dashArray: '',
                         fillOpacity: 0.7
                     });
@@ -193,12 +193,14 @@
 
                 var geojson;
 
+                // Apply style and mouseover settings to each feature
                 geojson = L.geoJson(data, {
                     style: style,
                     onEachFeature: onEachFeature
                 }).addTo(map);  
 
                 // LEGEND CODING //
+                // Change grade based on variable of interest
                 function grade (var_of_interest) {
                     if (standard.includes(var_of_interest)){
                         return grades = [-1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
@@ -213,10 +215,12 @@
 
                 var legend = L.control({position: 'bottomright'});
 
+                //Build legend based on grade
                 legend.onAdd = function (map) {
                  
                     var div = L.DomUtil.create('div', 'info legend'),
                         grades = grade(var_of_interest)
+                        // Force no data at first position in legend
                         labels = ['<i style="background:' + getColor(grades[0]) + '"></i> ' + representation(grades[0])];
 
                     for (var i = 1; i < grades.length; i++) {
