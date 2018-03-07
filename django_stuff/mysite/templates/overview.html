@@ -1,5 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block main %} 
-<h5> [Project overview here] </h5>
+<h3> Project overview </h3>
+<p> In the wake of the Great Depression, the Federal government created new institutions such as the Home Owners’ Loan Corporation (HOLC) to stabilize housing markets. The legislation to create HOLC was passed during the first 100 days of the Roosevelt administration and provided billions of dollars for the rescue of banks, thrifts, and distressed homeowners.  The legislation was passed overwhelmingly by the Democratically-controlled House of Representatives 383-4. (Nelson et al).</p>
+
+<p>Between 1933 and 1936, HOLC gave mortgages to one million homeowners who were in default or had already lost their homes. In 1935, HOLC’s parent organization, the Federal Home Loan Bank Board (FHLBB), established a program that used HOLC staff and local realtors and lenders to appraise real estate risk levels in 239 cities. (Hillier, 2003). From 1935-1940, HOLC created color-coded “security” maps in these cities that assigned levels of risk to areas based upon neighborhood-level characteristics, including demographics and economic reports. (Nelson et al).
+<br>
+<figure>
+	<img src="{% static 'map/Holc_Form.jpg' %}" style="width:600px;height:400px;" align="center"></p>
+	<figcaption>Portion of the HOLC “area description” for Woodlawn neighborhood of Chicago (obtained from Nelson et al).</figcaption>
+</figure>
+
+<p>This practice “rated entire residential communities as hazardous bank investments whenever they were inhabited by undesirable occupants… [which] systematically disadvantaged low-income and minority city-dwelling residents from obtaining mortgage financing.” (Woods, 2012). As these “high-risk” neighborhoods were noted in red on the HOLC maps, the practice of denying financing to inhabitants of certain geographic areas (especially inner-city areas based upon ethnic and racial demographics) has become known as “redlining.”</p>
+
+<p>The Federal government officially made redlining illegal with the 1968 Fair Housing Act. Subsequent legislation, notably the 1974 Equal Credit Opportunity Act (ECOA), and the 1977 Community Reinvestment Act (CRA), were implemented to work to remediate some of the effects of redlining by expanding access to lending markets for families living in low and moderate-income neighborhoods (Aaronson et al., 2017). </p>
+<p>Yet evidence - including from the Washington Post, the Atlantic, and an expose by Reveal as recently as February 2018 - suggests that practices of redlining still persist today, if in more subtle forms than their 20th century counterparts. In this context, we think it is critical to understand the impact that the HOLC redlining had on economic outcomes in the city of Chicago during the implementation of the redlining policies - and how those effects persist to this day.</p>
+<p>The authors owe a debt of gratitude to Daniel Aaronson , Daniel Hartley , Bhash Mazumder at the Federal Reserve Bank of Chicago whose paper “The Effects of the 1930s HOLC “Redlining” Maps” <a href="https://www.chicagofed.org/publications/working-papers/2017/wp2017-12">(Aaronson et al 2017)</a> provided a great resource for this project and who graciously made themselves available over email to answer our questions regarding data sources. 
+
 {% endblock %}

@@ -1,46 +1,75 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block main %} 
-<h3> Methods </h3>
-<ul>
-	<li><a href="#Identifying"> Identifying the area of analysis</a></li>
-	<li><a href="#Limitations"> Limitations with analysis boundaries</a></li>
-	<li><a href="#Outcomes"> Analyzing outcomes </a></li>
-	<li><a href="#Data">Compiling data </a></li>
-</ul>
+{% block main %}
+<div class = "rightnavbar">
+	<h3 align="center"> Methods navigation </h3>
+	<a href="#Identifying"> Identifying the area of analysis</a>
+	<br>
+	<a href="#Limitations"> Limitations with analysis boundaries</a>
+	<br>
+	<a href="#Outcomes"> Analyzing outcomes </a>
+	<br>
+	<a href="#Data">Compiling data </a>
+	<br>
+	<a href="#foot">Footnotes</a>
+</div>
+{% endblock %}
+
+{% block maintextblock %} 
 
 <a name="Identifying"></a>
-<table style="width:900px">
-	<col width="300px">
-	<col width="300px">
-	<col width="300px">
-<tr> <th align="left"> Identifying the area for analysis </th> </tr>
-<tr> <td colspan="3"> &nbsp &nbsp &nbsp &nbsp To assess the effect of Redlining, we compare outcomes on either side of HOLC boundaries demarcating areas that received different grades. We first identified the HOLC boundaries using data from the <a href="https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8">Mapping Inequality</a> project at the University of Richmond. We then generate a 1/4 mile “buffer” on either side of the border between HOLC areas of different grades and restrict our analysis to the areas that fall within these “boundary buffers” as shown in figure 1 below. Note that borders demarcating areas that received the same HOLC grade are not considered in our analysis as we are interested in the differences in outcomes between areas that received different HOLC grades.
-</td></tr>
-<tr> 
-	<td align="center"> Step 1: Defining HOLC areas </td>
-	<td align="center"> Step 2: Drawing buffers </td>
-	<td align="center"> Step 3: Obtaining boundary buffer areas </td>
-</tr>
-<tr>
-	<td align="center"><img src="{% static 'map/HOLCareas.jpg' %}" style="width:200px;height:200px;"> </td>
-	<td align="center"><img src="{% static '/map/AddingBuffs.jpg' %}" style="width:200px;height:200px;"></td>
-	<td align="center"><img src="{% static '/map/JustBuffs.jpg' %}" style="width:200px;height:200px;"></td>
-</tr>
-<tr> <td colspan="3"> &nbsp &nbsp &nbsp &nbsp We chose to restrict our focus to the areas on either side of the boundary to (very roughly) approximate the a border regression discontinuity design (RD) that has been used in previous work on Redlining (e.g., Holmes 1998; Black 1999; Bayer et al 2007; and Dube et al 2010 - update) as well as extensively throughout the academic literature studying differences across borders (add examples). The logic behind a RD design is that the pretreatment (where the treatment is the establishment of the HOLC boundaries) conditions within a small distance of a border are most likely to be similar. This allows us to control for other factors that we would expect to affect our outcomes of interest besides redlining (such as access to transportation networks, proximity to commercial centers, etc.) as we could expect that these factors would be constant within a quarter mile of the boundary. In addition, other major changes that would occur over the 70 year time period of our analysis (such as the construction of a highway, or extreme weather)  would presumably affect the areas within the half-mile equally. Therefore, by comparing differences across the buffer borders, we are ideally comparing areas that are alike in all relevant ways except for the different HOLC grades assigned.</td></tr>
-</table>
-<br>
-<table style="width: 900px">
-<a name="Limitations"></a>
-<tr> <th align="left">Limitations with analysis areas</th></tr>
-<tr> <td> &nbsp &nbsp &nbsp &nbsp This approach relies on the assumption that the conditions on either side of the border were similar when HOLC established is maps and grading system. Yet this assumption may not hold in practice, as discussed by Aaronson et al 2017. In fact, Aaronson et al. argue based upon the area description forms used by HOLC assessors that the HOLC boundaries “were endogenously drawn based on information on where racial and housing gaps were already diverging” (Aaronson et al., 18). They analyze the pre-HOLC demographic trends in the buffer areas using 1910, 1920, and 1930 census data and find that the racial gap between D-C buffers was 3 percentage points in 1920 and grew to 6 percent by 1930, identifying similar patterns in other variables, including homeownership and home values. This illustrates that the pure border discontinuity design has some shortcomings as there may have already been some emerging differences between bordering buffer areas of different HOLC grades, before the HOLC maps were ever drawn. </td></tr>
-<tr> <td> &nbsp &nbsp &nbsp &nbsp Therefore, we cannot make a causal statement about whether the HOLC grade designations caused the divergent outcomes we observe. However, the border buffer approach enables us to see how outcomes have diverged over time for individuals living close together in distance, yet on opposite sides of a HOLC boundary.</td></tr>
+<h3> Identifying the area for analysis </h3>
+<p> To assess the effect of Redlining, we compare outcomes on either side of HOLC boundaries demarcating areas that received different grades. We first identified the HOLC boundaries using data from the <a href="https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8">Mapping Inequality</a> project at the University of Richmond. We then generate a 1/4 mile “buffer” on either side of the border between HOLC areas of different grades and restrict our analysis to the areas that fall within these “boundary buffers” as shown in figure 1 below. Note that borders demarcating areas that received the same HOLC grade are not considered in our analysis as we are interested in the differences in outcomes between areas that received different HOLC grades.</p>
 
-<tr> <td colspan="3"> &nbsp &nbsp &nbsp &nbsp In their paper, Aaronson et al. implement several innovative approaches to control for the endogeneity of the HOLC border drawing, enabling them to draw a much stronger conclusion than we can in our analysis. As an extension of this work, we would like to explore replicating their controls in our own analysis. </td></tr>
-</table>
+
+<figure>
+	<img src="{% static 'map/RedlineDiagram.jpg' %}" style="width:630px;height:200px;" align="center"> 
+	<figcaption>
+		Figure 1: Our process for obtaining boundary buffer areas by first definining HOLC areas, then drawing buffers, and finally retaining the relevant area.
+	</figcaption>
+</figure>
+
+<p> We chose to restrict our focus to the areas on either side of the boundary to (very roughly) approximate the border regression discontinuity design (RD) that has been used in previous work on Redlining as well as extensively throughout the academic literature studying differences across borders (e.g., Holmes 1998; Black 1999; Bayer et al 2007;  Dube et al 2010; Pinkovskiy 2013; Keele and Titiunik 2014). The logic behind a RD design is that the pretreatment (where the treatment is the establishment of the HOLC boundaries) conditions within a small distance of a border are most likely to be similar. This allows us to control for other factors that we would expect to affect our outcomes of interest besides redlining (such as access to transportation networks, proximity to commercial centers, etc.) as we could expect that these factors would be constant within a quarter mile of the boundary. In addition, other major changes that would occur over the 70 year time period of our analysis (such as the construction of a highway, or extreme weather)  would presumably affect the areas within the half-mile equally. Therefore, by comparing differences across the buffer borders, we are ideally comparing areas that are alike in all relevant ways except for the different HOLC grades assigned.</p>
+
+<a name="Limitations"></a>
+<h3> Limitations </h3>
+<p> However, this approach relies on the assumption that the conditions on either side of the border were similar when HOLC established is maps and grading system. Yet this assumption may not hold in practice, as discussed by Aaronson et al 2017. In fact, Aaronson et al. argue based upon the area description forms used by HOLC assessors that the HOLC boundaries “were endogenously drawn based on information on where racial and housing gaps were already diverging” (Aaronson et al., 18). They analyze the pre-HOLC demographic trends in the buffer areas using 1910, 1920, and 1930 census data and find that the racial gap between D-C buffers was 3 percentage points in 1920 and grew to 6 percent by 1930, identifying similar patterns in other variables, including homeownership and home values. This illustrates that the pure border discontinuity design has some shortcomings as there may have already been some emerging differences between bordering buffer areas of different HOLC grades, before the HOLC maps were ever drawn. </p> 
+
+<p> Therefore, we cannot make a causal statement about whether the HOLC grade designations caused the divergent outcomes we observe. However, the border buffer approach enables us to see how outcomes have diverged over time for individuals living close together in distance, yet on opposite sides of a HOLC boundary. </p>
+
+<p> In their paper, Aaronson et al. implement several innovative approaches to control for the endogeneity of the HOLC border drawing, enabling them to draw a much stronger conclusion than we can in our analysis. As an extension of this work, we would like to explore replicating their controls in our own analysis. </p>
+
+
+<a name="Data"></a>
+<h3> Generating data </h3>
+<p> To analyze the outcomes in each border buffer area, we use Census data from 1940-2010 obtained via from <a href="https://usa.ipums.org/usa/">IPUMS</a>. Specific named variables varied by year based on census information, but our IPUMS pulls generally included:</p>
+<ul>
+	<li> Geographic Level: Tract or block depending on availability </li>
+	<li> Years: Specific year of interest </li>
+	<li> Topics: Total Housing Units OR Housing Value or Price OR Occupancy/Vacancy and Use OR Total Population OR Educational Attainment OR Race OR Personal Income </li>
+</ul>
+
+<p>The census data from 1940-1980 is available at the tract level (averaging between 1200-8000 inhabitants) <sup><a href="#foot1">1</a></sup> while the census data from 1990-2010 is available at the block level (averaging between 600 and 3,000 people)<sup><a href="#foot2">2</a></sup> , which is the smallest geographic unit used by the US Census. Each census tract contains at least one block. </p>
 
 <a name="Outcomes"></a>
-<a name="Data"></a>
+<h3> Analyzing outcomes </h3>
+<p> To calculate the outcomes in a given boundary buffer, we first identified which census units intersect each boundary buffer and then calculated the area of intersection between the boundary buffer and census unit. To ensure that we only included relevant census units in our analysis for each boundary area, we established a threshold for the size of the intersection and only included those census units that met the threshold in the calculation of outcome statistics. </p>
+<p> <img src="{% static 'map/block_buffer_overlap.jpg' %}" align=right style="width:200px;height:200px;margin: 10px 10px 10px 10px"/>
+Following the methodology of Aaronson et al, we initially established the threshold for the size of the intersection at 15% of the area of the census unit for tracts and 50% of the area of the census unit for blocks. The graphic to the left illustrates the basic idea of the intersection based threshold; we can see that Block A would be included in the calculation of statistics for the boundary buffer, but Block B would not as the size of the intersection would be too small. 
+</p>
+<p> However, these initial thresholds resulted in a loss in sample size of up to 75% in the tract years of our time-series as there were many buffer boundaries for which no census units passed the threshold and therefore had no data. To balance the rigor of our analysis against sample size concerns we added a second qualifying condition; if the intersection between a census unit and boundary buffer represented at least 70% of the area of the boundary buffer, that census unit would be included in the analysis. We feel that this second condition preserves a reasonable sample size while ensuring that we only include the census units that sufficiently characterize the boundary buffer. Because the census unit boundaries may change across decennial census years, we recalculate the census unit-boundary buffer intersections for each year in our analysis using the established thresholds. Across our full time-series, we lose 16.79% of boundary-buffer year observations due to insufficient overlap between census units and boundary-buffers. </p>
+
+<p> Then, for each buffer area we calculate the weighted average of each census indicator over the included census units, weighted by the total population of each census unit. Using this combination of the intersection inclusion threshold and weighted averages, we produce rigorous estimates of the indicators defined above for each of our boundary buffers for each year in our time-series. </p>
+
+
+
+<h4> Footnotes </h4>
+<a name="foot"></a>
+<a name="foot1"></a>
+<p><small> 1: From the <a href="https://www.census.gov/geo/reference/gtc/gtc_ct.html">Census website:</a> “Census tracts generally have a population size between 1,200 and 8,000 people, with an optimum size of 4,000 people.  A census tract usually covers a contiguous area; however, the spatial size of census tracts varies widely depending on the density of settlement.  Census tract boundaries are delineated with the intention of being maintained over a long time so that statistical comparisons can be made from census to census.  Census tracts occasionally are split due to population growth or merged as a result of substantial population decline.” 
+
+<a name="foot2"></a>
+<p><small>2: Census Blocks are the <a href="https://www.census.gov/geo/reference/gtc/gtc_bg.html">smallest geographic areas</a> that the Census Bureau uses to tabulate decennial data. Blocks are statistical areas bounded by visible features, such as streets, roads, streams, and railroad tracks, and by nonvisible boundaries, such as selected property lines and city, township, school district, and county limits. Generally, census blocks are small in area; for example, a block in a city bounded on all sides by streets.
 
 {% endblock %}

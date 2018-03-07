@@ -23,3 +23,14 @@ class DataForm(forms.Form):
 		choices = YEAR_CHOICES)
 
 
+class ContactForm(forms.Form):
+	email = forms.EmailField(required=True)
+	messsage = forms.CharField(
+		required=True,
+		widget=forms.Textarea)
+
+	#def __init__(self, *args, **kwargs):
+	#	super(ContactForm, self).__init__(*args, **kwargs)
+	#		self.fields['email'].help_text = "example@foo.bar"
+	#	self.fields['message'].help_text = "what would you like to share" 
+

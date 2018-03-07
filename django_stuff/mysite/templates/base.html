@@ -21,6 +21,10 @@
     	font-size: 50px
 	}
 
+    h3 {
+        font-size: 24px
+    }
+
 	.leaflet-container {  /* all maps */
         width:  635px;
         height: 600px;
@@ -51,15 +55,26 @@
 	}
 
 	.main {
-		margin-top: 25px;
-		display: block;
+		margin-top: 120px;
     	margin-left: 160px; 
-    	margin-right: 300px;
-    	width: 800px;
-    	min-width: 10000px;
-    	font-size: 18px; 
+    	width: 900px;
     	padding: 0px 10px;
+        word-wrap: break-word;
+        font-size: 16px;
+        line-height: 1.5;
+        text-justify: distribute;
 	}
+
+    .maintextblock{
+        margin-top: 0px;
+        margin-left: 160px;
+        width: 700px;
+        word-wrap: break-word;
+        font-size: 16px;
+        padding: 0px 10px;
+        line-height: 1.5;
+        text-justify: distribute;
+    }
 
     .introright {
         height: 600px;
@@ -84,12 +99,38 @@
     	padding: 0px 10px;
 	}
 
+    .rightnavbar {
+        height: 100%;
+        position: fixed;
+        top-margin: 125px;
+        left: 900px;
+        right: 0;
+        display: block;
+        width: 200px;
+        background-color: #d5e5e8;
+        padding: 0px 10px;
+    }
+
+    .rightnavbar a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 18px;
+        color: rgb(79, 83, 84);
+        display: block;
+    }
+
+    .rightnavbar a:hover {
+        color: rgb(53, 204, 255);
+    }
+
 	.titlebar{
+        background-color: rgb(215, 215, 215);
     	width: 100%;
     	top: 0;
     	margin-left: 160px;
     	padding: 0px 12px;
     	display: block;
+        position: fixed;
 	}
 
 	@media screen and (max-height: 450px) {
@@ -113,12 +154,15 @@
         <h1> Impact of HOLC Redlining, 1940-2010 </h1> 
         {% block titlebar %} {% endblock %}
 	</div>
-
-
+    
 	<div class="main">
 		{% block main %} {% endblock %}
 	</div>
 
+    <div class="maintextblock">
+        {% block maintextblock %} {% endblock %}
+    </div>
+    
 
 </body>
 </html>
