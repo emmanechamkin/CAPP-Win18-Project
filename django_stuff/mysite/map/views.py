@@ -4,9 +4,9 @@ from django import forms
 from . import forms
 from . import genquery
 import json
-from django.core.serializers import serialize
 
-filename = 'data/census_all_final2.geojson'
+
+filename = 'data/census_all_final.geojson'
 
 # Create your views here.
 def index(request):
@@ -36,22 +36,14 @@ def process_data(filename, year):
 	with open(filename) as f:
 		data = json.load(f)
 
-	#geojson['type'] = data['type']
-	#geojson['crs'] = data['crs']
 	geojson = []	
 
 	for feature in data['features']:
 		if feature['properties']['year'] == year:
 			geojson.append(feature)
-			#for coord in feature['geometry']['coordinates'][0]:
-			#geojson.append(coord)
-			
-	#json.dumps(geojson)
-	##if data[feature]
-	#geojson_geo = serialize('geojson', geojson, geometry_field = 'geometry')
-	#print(json.dumps(geojson))
+
 	response = json.dumps(geojson)
-	print(response)
+
 	return response
 
 def home(request):

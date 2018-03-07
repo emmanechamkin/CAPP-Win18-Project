@@ -27,6 +27,11 @@ for grade in holc_grade_list:
   insert = holc_buffer(grade)
   c.execute(insert)
 
+add_holc_bound = "ALTER TABLE redline_poly ADD COLUMN holc_bound varchar(10);"
+update_holc_bound = "UPDATE redline_poly SET holc_bound= concat(holc_grade_b, '-', holc_grade_a);"
+c.execute(add_holc_bound)
+c.execute(update_holc_bound)
+
 conn.commit()
 c.close()
 conn.close()

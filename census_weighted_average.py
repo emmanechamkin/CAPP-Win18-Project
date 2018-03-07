@@ -1,8 +1,8 @@
 import psycopg2 
 
 def census_weighted_average(year):
-    insert = "INSERT INTO Census_Weighted_Avg_All (poly_id, year, Total_Pop, PCT_WHITE, PCT_BLACK, PCT_OTHER, TOTAL_UNITS, Median, PCT_OCCUPIED, PCT_VACANT, PCT_OWN_OCC, PCT_RENT_OCC, geom) "
-    select = "SELECT redline_poly.poly_id, avg(c.year), avg(c.Total_Pop) AS Total_Pop, (SUM(c.pct_white*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_white, (SUM(c.pct_black*c.total_pop)/(SUM(c.total_pop) + 1)) AS PCT_BLACK, (SUM(c.pct_other*c.total_pop)/(SUM(c.total_pop) + 1)) as pct_other, \
+    insert = "INSERT INTO Census_Weighted_Avg_All (poly_id, holc_bound, holc_grade, year, Total_Pop, PCT_WHITE, PCT_BLACK, PCT_OTHER, TOTAL_UNITS, Median, PCT_OCCUPIED, PCT_VACANT, PCT_OWN_OCC, PCT_RENT_OCC, geom) "
+    select = "SELECT redline_poly.poly_id, redline_poly.holc_bound, redline_poly.holc_grade_b, avg(c.year), avg(c.Total_Pop) AS Total_Pop, (SUM(c.pct_white*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_white, (SUM(c.pct_black*c.total_pop)/(SUM(c.total_pop) + 1)) AS PCT_BLACK, (SUM(c.pct_other*c.total_pop)/(SUM(c.total_pop) + 1)) as pct_other, \
             (SUM(c.total_units*c.total_pop)/(SUM(c.total_pop) + 1)) AS total_units, (SUM(c.median*c.total_pop)/(SUM(c.total_pop) + 1)) AS median, (SUM(c.pct_occupied*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_occupied, (SUM(c.pct_vacant*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_vacant, \
             (SUM(c.pct_own_occ*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_own_occ, (SUM(c.pct_rent_occ*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_rent_occ, redline_poly.geom "
     fr = "FROM redline_poly LEFT JOIN (SELECT c{}.year, c{}.total_pop, c{}.pct_white, c{}.pct_black, c{}.pct_other, c{}.total_units, c{}.median, c{}.pct_occupied, c{}.pct_vacant, c{}.pct_own_occ, \
@@ -33,7 +33,7 @@ def census_weighted_average(year):
 conn = psycopg2.connect(database="capp30122", user="alenastern", password='', host="localhost", port="5432")
 c = conn.cursor()
 
-create = "CREATE TABLE Census_Weighted_Avg_All (poly_id int, year int, Total_Pop float8, PCT_WHITE float8, PCT_BLACK float8, PCT_OTHER float8, TOTAL_UNITS float8, Median float8, PCT_OCCUPIED float8, PCT_VACANT float8, PCT_OWN_OCC float8, PCT_RENT_OCC float8, geom geometry);"
+create = "CREATE TABLE Census_Weighted_Avg_All (poly_id int, holc_bound varchar(10), holc_grade varchar(10), year int, Total_Pop float8, PCT_WHITE float8, PCT_BLACK float8, PCT_OTHER float8, TOTAL_UNITS float8, Median float8, PCT_OCCUPIED float8, PCT_VACANT float8, PCT_OWN_OCC float8, PCT_RENT_OCC float8, geom geometry);"
 c.execute(create)
 
 
