@@ -62,6 +62,13 @@
                     "pct_vacant": "Percent vacant"  
                 };
 
+                const holc_grade = {
+                    "A": "green",
+                    "B": "blue",
+                    "C": "yellow",
+                    "D": "red"
+                }
+
                 // Define arrays for different chloropleth displays
                 var standard = ["pct_white", "pct_black", "pct_own_occ", "pct_rent_occ"]
                 var median = ["median"]
@@ -144,12 +151,16 @@
                     return color;
                 }
 
+                function getBorderColor(feature) {
+
+                }
+
                 // Build feature style
                 function style(feature) {
                     return {
-                        weight: 1,
+                        weight: .5,
                         opacity: 1,
-                        color: 'black',
+                        color: holc_grade[feature.properties.holc_grade],
                         fillOpacity: 0.7,
                         fillColor: getBufferColor(feature)
                     };
