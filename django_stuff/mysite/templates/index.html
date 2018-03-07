@@ -4,6 +4,11 @@
 		{% load leaflet_tags %}
         {% leaflet_js %}
         {% leaflet_css %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+        <style>
+    .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+    .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+        </style>
 {% endblock %}
 
 {% block main %}
@@ -39,55 +44,134 @@
             {% leaflet_map "main" callback="mainmap" %}
         </map>
         <script type="text/javascript">
+            // ACKNOWLDGEMENT: Code addapted from Leaflet Chloropleth Tutorial http://leafletjs.com/examples/choropleth/
 
             function mainmap(map, options) {
+                // Pull information from context
                 data = JSON.parse("{{ data|escapejs }}");
                 args = JSON.parse("{{ args|escapejs }}");
                 var_of_interest = args.ind.toLowerCase();
-                
-                console.log(data)
-                console.log(var_of_interest)
-                
-                // CHLOROPLETH //
-                // need this function to switch if not %, perhaps to indicate which scale is low/high?
-                // change these color options to blues rather than reds
-                function getColor(n) {
-                    return n > .8 ? '#b10026'
-                           : n > .7 ? '#e31a1c'
-                           : n > .6 ? '#fc4e2a'
-                           : n > .5 ? '#fd8d3c'
-                           : n > .4  ? '#feb24c'
-                           : n > .3  ? '#fed976'
-                           : n > .2  ? '#ffeda0'
-                           : n > .1  ? '#ffffcc'
-                           : n > .0  ? '#ffffcc'
-                           : '#85929E';
+
+                // Constant to convert lookup variable to name for output
+                const var_to_display = {  
+                    "pct_white": "Percent white",  
+                    "pct_black": "Percent black",  
+                    "pct_own_occ": "Percent owner occupied", 
+                    "pct_rent_occ": "Percent renter occupied",  
+                    "median": "Median home value",  
+                    "pct_vacant": "Percent vacant"  
+                };
+
+                const holc_grade = {
+                    "A": "green",
+                    "B": "blue",
+                    "C": "yellow",
+                    "D": "red"
                 }
 
+                // Define arrays for different chloropleth displays
+                var standard = ["pct_white", "pct_black", "pct_own_occ", "pct_rent_occ"]
+                var median = ["median"]
+                var vacant = ["pct_vacant"]
+                
+                // control what shows state info on hover
+                var info = L.control();
+                 
+                info.onAdd = function (map) {
+                    this._div = L.DomUtil.create('div', 'info');
+                    this.update();
+                    return this._div;
+                };
+
+                // Convert raw number to percentage, dollar value for display
+                var representation = function (num) {
+                    if (num < 0) {
+                        return "No data"
+                    }
+                    else if (median.includes(var_of_interest)) {
+                        return "$" + numeral(num).format('0,0')
+                    }
+                    else {
+                        return numeral(num * 100).format('0.00') + '%'
+                    }
+                }
+                 
+                // Modify inset text 
+                info.update = function (props) {
+                    this._div.innerHTML = '<h4>Indicator of Interest</h4>' +  (props ?
+                        '<b>' + "Buffer Type" + '</b><br/>' + props['holc_bound'] +
+                        '<br/><b>' + var_to_display[var_of_interest] + '</b><br/>' + representation(props[var_of_interest])
+                        : '<small>Hover over buffer</small>');
+                };
+                 
+                info.addTo(map);
+
+                // CHLOROPLETH //
+                // Coloring dependent on variable of interest
+                function getColor(n) {
+                    if (standard.includes(var_of_interest)) {
+                        return n > 0.9 ? '#4A235A'
+                               : n > .8 ? '#5B2C6F'
+                               : n > .7 ? '#6C3483'
+                               : n > .6 ? '#7D3C98'
+                               : n > .5 ? '#8E44AD'
+                               : n > .4  ? '#A569BD'
+                               : n > .3  ? '#BB8FCE'
+                               : n > .2  ? '#D2B4DE'
+                               : n > .1  ? '#E8DAEF'
+                               : n >= .0  ? '#F4ECF7'
+                               : '#85929E';
+                    }
+                    else if (vacant.includes(var_of_interest)) {
+                        return n > 0.09 ? '#4A235A'
+                               : n > .08 ? '#6C3483'
+                               : n > .06 ? '#8E44AD'
+                               : n > .04  ? '#BB8FCE'
+                               : n > .02  ? '#E8DAEF'
+                               : n >= .0  ? '#F4ECF7'
+                               : '#85929E';
+                    }
+                    else {
+                        return n > 250000 ? '#4A235A'
+                               : n > 225000 ? '#5B2C6F'
+                               : n > 200000 ? '#6C3483'
+                               : n > 150000 ? '#7D3C98'
+                               : n > 125000 ? '#8E44AD'
+                               : n > 100000  ? '#A569BD'
+                               : n > 75000  ? '#BB8FCE'
+                               : n > 50000  ? '#D2B4DE'
+                               : n > 25000  ? '#E8DAEF'
+                               : n >= 0  ? '#F4ECF7'
+                               : '#85929E';
+                    }
+                }
+
+                // Get color for buffer based on value of indicator of interest
                 function getBufferColor(feature) {
                     var color;
                     color = getColor(feature.properties[var_of_interest]);
+                    console.log(feature.properties[var_of_interest])
                     return color;
                 }
 
+                // Build feature style
                 function style(feature) {
                     return {
-                        weight: 1,
+                        weight: .5,
                         opacity: 1,
-                        color: 'black',
+                        color: holc_grade[feature.properties.holc_grade],
                         fillOpacity: 0.7,
                         fillColor: getBufferColor(feature)
                     };
                 }
                 
                 // MOUSEOVER CONTROLS //
-                // popup information as well?
                 function highlightFeature(e) {
                     var layer = e.target;
                  
                     layer.setStyle({
                         weight: 2,
-                        color: '#333',
+                        color: 'white',
                         dashArray: '',
                         fillOpacity: 0.7
                     });
@@ -113,19 +197,57 @@
                     layer.on({
                         mouseover: highlightFeature,
                         mouseout: resetHighlight,
-                        click: zoomToFeature
+                        click: zoomToFeature,
                     });
                 }
 
-
                 var geojson;
 
+                // Apply style and mouseover settings to each feature
                 geojson = L.geoJson(data, {
                     style: style,
                     onEachFeature: onEachFeature
                 }).addTo(map);  
 
-                //map.fitBounds(geojson.getBounds());    
+                // LEGEND CODING //
+                // Change grade based on variable of interest
+                function grade (var_of_interest) {
+                    if (standard.includes(var_of_interest)){
+                        return grades = [-1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
+                    }
+                    else if (vacant.includes(var_of_interest)) {
+                        return grades = [-1, 0, 0.02, 0.04, 0.06, 0.08];
+                    }
+                    else {
+                        return grades = [-1, 0, 20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000];
+                    }                    
+                }
+
+                var legend = L.control({position: 'bottomright'});
+
+                //Build legend based on grade
+                legend.onAdd = function (map) {
+                 
+                    var div = L.DomUtil.create('div', 'info legend'),
+                        grades = grade(var_of_interest)
+                        // Force no data at first position in legend
+                        labels = ['<i style="background:' + getColor(grades[0]) + '"></i> ' + representation(grades[0])];
+
+                    for (var i = 1; i < grades.length; i++) {
+                        from = grades[i];
+                        to = grades[i + 1];
+
+                        labels.push(
+                            '<i style="background:' + getColor(from + 0.01) + '"></i> ' +
+                            representation(from) + (to ? '&ndash;' + representation(to) : '+'));
+                    }
+
+                    div.innerHTML = labels.join('<br>');
+                    return div ;
+
+                };
+                 
+                legend.addTo(map);
 
             }
 
