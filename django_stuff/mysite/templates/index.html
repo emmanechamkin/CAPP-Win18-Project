@@ -110,35 +110,38 @@
                 // Coloring dependent on variable of interest
                 function getColor(n) {
                     if (standard.includes(var_of_interest)) {
-                        return n > .8 ? '#b10026'
-                               : n > .7 ? '#e31a1c'
-                               : n > .6 ? '#fc4e2a'
-                               : n > .5 ? '#fd8d3c'
-                               : n > .4  ? '#feb24c'
-                               : n > .3  ? '#fed976'
-                               : n > .2  ? '#ffeda0'
-                               : n > .1  ? '#ffffbe'
-                               : n >= .0  ? '#fdfdd7'
+                        return n > 0.9 ? '#4A235A'
+                               : n > .8 ? '#5B2C6F'
+                               : n > .7 ? '#6C3483'
+                               : n > .6 ? '#7D3C98'
+                               : n > .5 ? '#8E44AD'
+                               : n > .4  ? '#A569BD'
+                               : n > .3  ? '#BB8FCE'
+                               : n > .2  ? '#D2B4DE'
+                               : n > .1  ? '#E8DAEF'
+                               : n >= .0  ? '#F4ECF7'
                                : '#85929E';
                     }
                     else if (vacant.includes(var_of_interest)) {
-                        return n > .08 ? '#b10026'
-                               : n > .06 ? '#fc4e2a'
-                               : n > .04  ? '#feb24c'
-                               : n > .02  ? '#ffeda0'
-                               : n >= .0  ? '#fdfdd7'
+                        return n > 0.09 ? '#4A235A'
+                               : n > .08 ? '#6C3483'
+                               : n > .06 ? '#8E44AD'
+                               : n > .04  ? '#BB8FCE'
+                               : n > .02  ? '#E8DAEF'
+                               : n >= .0  ? '#F4ECF7'
                                : '#85929E';
                     }
                     else {
-                        return n > 160000 ? '#b10026'
-                               : n > 140000 ? '#e31a1c'
-                               : n > 120000 ? '#fc4e2a'
-                               : n > 100000 ? '#fd8d3c'
-                               : n > 80000  ? '#feb24c'
-                               : n > 60000  ? '#fed976'
-                               : n > 40000  ? '#ffeda0'
-                               : n > 20000  ? '#ffffbe'
-                               : n >= 0  ? '#fdfdd7'
+                        return n > 250000 ? '#4A235A'
+                               : n > 225000 ? '#5B2C6F'
+                               : n > 200000 ? '#6C3483'
+                               : n > 150000 ? '#7D3C98'
+                               : n > 125000 ? '#8E44AD'
+                               : n > 100000  ? '#A569BD'
+                               : n > 75000  ? '#BB8FCE'
+                               : n > 50000  ? '#D2B4DE'
+                               : n > 25000  ? '#E8DAEF'
+                               : n >= 0  ? '#F4ECF7'
                                : '#85929E';
                     }
                 }
