@@ -21,7 +21,8 @@ class DataForm(forms.Form):
 		label = 'Year', 
 		required = True, 
 		choices = YEAR_CHOICES)
-
+	tog = forms.BooleanField(
+		label= 'Toggle on redline boundaries')
 
 class ContactForm(forms.Form):
 	email = forms.EmailField(required=True)

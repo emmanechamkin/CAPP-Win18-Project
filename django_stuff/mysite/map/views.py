@@ -22,6 +22,8 @@ def index(request):
 			if form.cleaned_data['yr']:
 				args['yr'] = form.cleaned_data['yr']
 				cx['data'] = process_data(filename, int(form.cleaned_data['yr']))
+			if form.cleaned_data['tog']:
+				args['tog'] = form.cleaned_data['tog']
 	
 	# Build remaining context
 	cx['form'] = form
