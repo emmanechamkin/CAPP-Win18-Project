@@ -32,6 +32,7 @@ c.execute(create)
 
 census_years = [1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010]
 var_list = ["Total_Pop", "PCT_WHITE", "PCT_BLACK", "PCT_OTHER", "TOTAL_UNITS", "Median", "PCT_OCCUPIED", "PCT_VACANT", "PCT_OWN_OCC", "PCT_RENT_OCC"]
+# add norm_med to above?
 
 for year in census_years:
     query, update = census_weighted_average(year)
