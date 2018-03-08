@@ -8,7 +8,7 @@ YEAR_CHOICES = (('1940', '1940'), ('1950', '1950'),
 	('1990', '1990'), ('2000', '2000'), ('2010','2010'))
 
 IND_CHOICES = (('PCT_WHITE', 'Percent white'), ('PCT_BLACK', 'Percent black'), 
-	('Median', 'Median home value'), ('PCT_VACANT', 'Percent vacant'),
+	('norm_med', 'Normalized median home value'), ('PCT_VACANT', 'Percent vacant'),
 	('PCT_RENT_OCC', 'Percent renter occupied'), ('PCT_OWN_OCC', 'Percent owner occupied'))
 
 
