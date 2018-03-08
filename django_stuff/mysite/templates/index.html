@@ -32,7 +32,7 @@
     </h3>
     <ul>
         <li> <b> Percent white or black: </b> Percentage of residents that are of the given race </li> 
-        <li> <b> Median home value: </b> The median home value as reported on the US Censuss; not available for 1950, 1960, and 1970 </li>
+        <li> <b> Normalized Median home value: </b> The standardized difference from the mean of median home values as reported on the US Census; not available for 1960, 1970, and 1980 </li>
         <li><b> Percent vacant: </b> Share of the homes that are unoccupied </li>
         <li><b> Percent owner or renter occupied: </b> Share of occupied homes that are owned or rented </li>
     </ul>
@@ -58,9 +58,10 @@
                     "pct_black": "Percent black",  
                     "pct_own_occ": "Percent owner occupied", 
                     "pct_rent_occ": "Percent renter occupied",  
-                    "median": "Median home value",  
+                    "norm_med": "Normalized median home value",  
                     "pct_vacant": "Percent vacant"  
                 };
+                // change to norm_med
 
                 const holc_grade = {
                     "A": "green",
@@ -71,8 +72,9 @@
 
                 // Define arrays for different chloropleth displays
                 var standard = ["pct_white", "pct_black", "pct_own_occ", "pct_rent_occ"]
-                var median = ["median"]
+                var median = ["norm_med"]
                 var vacant = ["pct_vacant"]
+                // change to norm_med
                 
                 // control what shows state info on hover
                 var info = L.control();
@@ -85,14 +87,27 @@
 
                 // Convert raw number to percentage, dollar value for display
                 var representation = function (num) {
-                    if (num < 0) {
-                        return "No data"
+                    if (median.includes(var_of_interest)) {
+                        if (num < -10) {
+                            return "No data"
+                        }
+                        else {
+                            return num
+                        }
                     }
-                    else if (median.includes(var_of_interest)) {
-                        return "$" + numeral(num).format('0,0')
-                    }
+                    //else if (num < 0 && !(var_of_interest in median)) {
+                    //    return "No data"
+                    //}
+                    //else if (median.includes(var_of_interest)) {
+                    //    return numeral(num).format('0,0')
+                    //}
                     else {
-                        return numeral(num * 100).format('0.00') + '%'
+                        if (num < 0) {
+                            return "No data"
+                        }
+                        else {
+                            return numeral(num * 100).format('0.0') + '%'
+                        }
                     }
                 }
                  
@@ -123,7 +138,7 @@
                                : '#85929E';
                     }
                     else if (vacant.includes(var_of_interest)) {
-                        return n > 0.09 ? '#4A235A'
+                        return n > 0.1 ? '#4A235A'
                                : n > .08 ? '#6C3483'
                                : n > .06 ? '#8E44AD'
                                : n > .04  ? '#BB8FCE'
@@ -132,16 +147,16 @@
                                : '#85929E';
                     }
                     else {
-                        return n > 250000 ? '#4A235A'
-                               : n > 225000 ? '#5B2C6F'
-                               : n > 200000 ? '#6C3483'
-                               : n > 150000 ? '#7D3C98'
-                               : n > 125000 ? '#8E44AD'
-                               : n > 100000  ? '#A569BD'
-                               : n > 75000  ? '#BB8FCE'
-                               : n > 50000  ? '#D2B4DE'
-                               : n > 25000  ? '#E8DAEF'
-                               : n >= 0  ? '#F4ECF7'
+                        return n > 7 ? '#4A235A'
+                               : n > 6 ? '#5B2C6F'
+                               : n > 5 ? '#6C3483'
+                               : n > 4 ? '#7D3C98'
+                               : n > 3 ? '#8E44AD'
+                               : n > 2  ? '#A569BD'
+                               : n > 1  ? '#BB8FCE'
+                               : n > 0  ? '#D2B4DE'
+                               : n > -1  ? '#E8DAEF'
+                               : n >= -2  ? '#F4ECF7'
                                : '#85929E';
                     }
                 }
@@ -213,13 +228,13 @@
                 // Change grade based on variable of interest
                 function grade (var_of_interest) {
                     if (standard.includes(var_of_interest)){
-                        return grades = [-1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
+                        return grades = [-1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
                     }
                     else if (vacant.includes(var_of_interest)) {
-                        return grades = [-1, 0, 0.02, 0.04, 0.06, 0.08];
+                        return grades = [-1, 0, 0.02, 0.04, 0.06, 0.08, 0.1];
                     }
                     else {
-                        return grades = [-1, 0, 20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000];
+                        return grades = [-99, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
                     }                    
                 }
 
@@ -235,7 +250,7 @@
 
                     for (var i = 1; i < grades.length; i++) {
                         from = grades[i];
-                        to = grades[i + 1];
+                        to = grades[i + 1]; 
 
                         labels.push(
                             '<i style="background:' + getColor(from + 0.01) + '"></i> ' +

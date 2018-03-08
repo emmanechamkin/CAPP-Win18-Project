@@ -25,13 +25,6 @@
         font-size: 24px
     }
 
-    :target:before { 
-        content:""; /* source itsupportguides.com */
-        display:block;
-        height:120px; /* fixed header height*/
-        margin:-120px 0 0; /* negative fixed header height */
-    }
-
 	.leaflet-container {  /* all maps */
         width:  635px;
         height: 600px;
@@ -62,7 +55,7 @@
 	}
 
 	.main {
-		margin-top: 120px;
+		padding-top: 120px;
     	margin-left: 160px; 
     	width: 900px;
     	padding: 0px 10px;
@@ -73,11 +66,9 @@
 	}
 
     .maintextblock{
-        position: sticky;
-        margin-top: 120px;
+        margin-top: 0px;
         margin-left: 160px;
         width: 700px;
-        z-index: -1;
         word-wrap: break-word;
         font-size: 16px;
         padding: 0px 10px;
@@ -86,10 +77,10 @@
     }
 
     .introright {
-        position: fixed;
         height: 600px;
         top-margin: 125px;
         left: 880px;
+        position: fixed;
         right: 0;
         display: block;
         width: 180px;
