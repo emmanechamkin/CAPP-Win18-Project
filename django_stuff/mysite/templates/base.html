@@ -62,8 +62,9 @@
 	}
 
 	.main {
-		margin-top: 120px;
+        z-index: -3;
     	margin-left: 160px; 
+        margin-top: 120px;
     	width: 900px;
     	padding: 0px 10px;
         word-wrap: break-word;
@@ -72,8 +73,25 @@
         text-justify: distribute;
 	}
 
+    .main a {
+        text-decoration: none;
+        font-size: 16px;
+    }
+    
+    .main a:hover {
+        color: rgb(53, 204, 255);
+    }
+
+    .maintextblock a{
+        text-decoration: none;
+        font-size: 16px;
+    }
+    
+    .maintextblock a:hover {
+        color: rgb(53, 204, 255);
+    }
+
     .maintextblock{
-        position: sticky;
         margin-top: 120px;
         margin-left: 160px;
         width: 700px;
@@ -84,6 +102,7 @@
         line-height: 1.5;
         text-justify: distribute;
     }
+
 
     .introright {
         position: fixed;
@@ -97,7 +116,7 @@
     }
 
 	.rightbar {
-    	height: 600px;
+    	height: 100%;
     	position: fixed;
     	top-margin: 125px;
     	left: 830px;
@@ -111,7 +130,7 @@
     .rightnavbar {
         height: 100%;
         position: fixed;
-        top-margin: 125px;
+        top: 125px;
         left: 900px;
         right: 0;
         display: block;
