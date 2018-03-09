@@ -1,5 +1,0 @@
-Email: 
-{{ email }}
-
-Message:
-{{ message }}
