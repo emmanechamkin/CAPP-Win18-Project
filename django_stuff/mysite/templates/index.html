@@ -259,7 +259,7 @@
 
                         labels.push(
                             '<i style="background:' + getColor(from + 0.01) + '"></i> ' +
-                            representation(from) + (to || to == 0 ? '&ndash;' + representation(to) : '+'));
+                            representation(from) + (to || to == 0 ? ' &ndash; ' + representation(to) : '+'));
                     }
 
                     div.innerHTML = labels.join('<br>');
