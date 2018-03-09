@@ -22,5 +22,5 @@ class DataForm(forms.Form):
 		required = True, 
 		choices = YEAR_CHOICES)
 	tog = forms.BooleanField(
-		label= 'Toggle on redline boundaries', 
+		label= 'View redline boundaries', 
 		required = False)
