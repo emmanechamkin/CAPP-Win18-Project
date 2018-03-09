@@ -51,6 +51,9 @@
                 data = JSON.parse("{{ data|escapejs }}");
                 args = JSON.parse("{{ args|escapejs }}");
                 var_of_interest = args.ind.toLowerCase();
+                toggle = args.tog
+                console.log(toggle)
+                console.log(typeof toggle)
 
                 // Constant to convert lookup variable to name for output
                 const var_to_display = {  
@@ -95,12 +98,6 @@
                             return num
                         }
                     }
-                    //else if (num < 0 && !(var_of_interest in median)) {
-                    //    return "No data"
-                    //}
-                    //else if (median.includes(var_of_interest)) {
-                    //    return numeral(num).format('0,0')
-                    //}
                     else {
                         if (num < 0) {
                             return "No data"
@@ -165,8 +162,16 @@
                 function getBufferColor(feature) {
                     var color;
                     color = getColor(feature.properties[var_of_interest]);
-                    console.log(feature.properties[var_of_interest])
                     return color;
+                }
+
+                function turnBorderOn(feature) {
+                    if (toggle == true) {
+                        return holc_grade[feature.properties.holc_grade]
+                    }
+                    else {
+                        return 'black'
+                    }
                 }
 
                 // Build feature style
@@ -174,7 +179,7 @@
                     return {
                         weight: .5,
                         opacity: 1,
-                        color: holc_grade[feature.properties.holc_grade],
+                        color: turnBorderOn(feature),
                         fillOpacity: 0.7,
                         fillColor: getBufferColor(feature)
                     };
@@ -254,7 +259,7 @@
 
                         labels.push(
                             '<i style="background:' + getColor(from + 0.01) + '"></i> ' +
-                            representation(from) + (to ? '&ndash;' + representation(to) : '+'));
+                            representation(from) + (to || to == 0 ? '&ndash;' + representation(to) : '+'));
                     }
 
                     div.innerHTML = labels.join('<br>');
