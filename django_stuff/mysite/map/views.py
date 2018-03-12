@@ -6,12 +6,12 @@ from . import genquery
 import json
 
 
-filename = 'data/census_all_final7.geojson'
+filename = 'data/census_all_final.geojson'
 
-# Create your views here.
 def index(request):
 	args = {}
 	cx = {}
+
 	if request.method == 'GET':
 		form = forms.DataForm()
 	if request.method == 'POST':
@@ -21,7 +21,8 @@ def index(request):
 				args['ind'] = form.cleaned_data['ind']
 			if form.cleaned_data['yr']:
 				args['yr'] = form.cleaned_data['yr']
-				cx['data'] = process_data(filename, int(form.cleaned_data['yr']))
+				# Call to proces data to add datasubset to context
+				cx['data'] = process_data(filename,int(form.cleaned_data['yr']))
 			if form.cleaned_data['tog']:
 				args['tog'] = form.cleaned_data['tog']
 	
@@ -33,8 +34,19 @@ def index(request):
 
 def process_data(filename, year):
 	'''
-	process the rows of the file
+	Filter the full GeoJSON by year of interest and return a JSON string object
+
+	Inputs: 
+		filename (str): Path to location of full datafile within django 
+			infrastucture
+		year (int): Must be a decade between 1940 and 2010 as returned by the 
+			form
+
+	Returns JSON file object to read into JavaScript
 	'''
+	# It is impossible for the form to return an invalid year so not checking 
+	# that contingency here
+
 	with open(filename) as f:
 		data = json.load(f)
 
