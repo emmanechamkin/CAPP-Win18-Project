@@ -1,20 +1,25 @@
 {% extends "base.html" %}
 
 {% block lljs %}
-		{% load leaflet_tags %}
+        {% load leaflet_tags %}
         {% leaflet_js %}
         {% leaflet_css %}
         <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
         <style>
-    .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
-    .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+    .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; 
+        background: white; background: rgba(255,255,255,0.8); 
+        box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } 
+        .info h4 { margin: 0 0 5px; color: #777; }
+    .legend { text-align: left; line-height: 18px; color: #555; } 
+    .legend i { width: 18px; height: 18px; float: left; 
+        margin-right: 8px; opacity: 0.7; }
         </style>
 {% endblock %}
 
 {% block main %}
 <div class="rightbar">
-	<h3> Select an indicator: </h3>
-   	<form method="post">
+    <h3> Select an indicator: </h3>
+    <form method="post">
         {% csrf_token %}
         <table class="form" align="center">    
             <tr>              
@@ -31,20 +36,25 @@
         <b> Explanation of indicators: </b>
     </h3>
     <ul>
-        <li> <b> Percent white or black: </b> Percentage of residents by race </li> 
-        <li> <b> Normalized Median home value: </b> The standardized difference from mean of median home value </li>
-        <li><b> Percent vacant: </b> Share of the homes that are unoccupied </li>
-        <li><b> Percent owner or renter occupied: </b> Share of occupied homes that are owned or rented </li>
+        <li> <b> Percent white or black: </b> 
+        Percentage of residents by race </li> 
+        <li> <b> Normalized Median home value: </b> 
+        The standardized difference from mean of median home value </li>
+        <li><b> Percent vacant: </b> 
+        Share of the homes that are unoccupied </li>
+        <li><b> Percent owner or renter occupied: </b> 
+        Share of occupied homes that are owned or rented </li>
     </ul>
 </div>
 
 
 <div class="map">
-		<map>
+        <map>
             {% leaflet_map "main" callback="mainmap" %}
         </map>
         <script type="text/javascript">
-            // ACKNOWLDGEMENT: Code addapted from Leaflet Chloropleth Tutorial http://leafletjs.com/examples/choropleth/
+            // ACKNOWLDGEMENT: Code addapted from Leaflet Chloropleth Tutorial 
+            // http://leafletjs.com/examples/choropleth/
 
             function mainmap(map, options) {
                 // Pull information from context
@@ -64,8 +74,8 @@
                     "norm_med": "Normalized median home value",  
                     "pct_vacant": "Percent vacant"  
                 };
-                // change to norm_med
 
+                // Color mapping for HOLC grades
                 const holc_grade = {
                     "A": "green",
                     "B": "blue",
@@ -74,49 +84,27 @@
                 }
 
                 // Define arrays for different chloropleth displays
-                var standard = ["pct_white", "pct_black", "pct_own_occ", "pct_rent_occ"]
+                var standard = ["pct_white", "pct_black", "pct_own_occ", 
+                                "pct_rent_occ"]
                 var median = ["norm_med"]
                 var vacant = ["pct_vacant"]
-                // change to norm_med
-                
-                // control what shows state info on hover
-                var info = L.control();
-                 
-                info.onAdd = function (map) {
-                    this._div = L.DomUtil.create('div', 'info');
-                    this.update();
-                    return this._div;
-                };
 
-                // Convert raw number to percentage, dollar value for display
+                // Convert raw number to percentage, 2 digit float for display
                 var representation = function (num) {
                     if (median.includes(var_of_interest)) {
-                        if (num < -10) {
+                        if (num = -99) {
                             return "No data"
-                        }
-                        else {
+                        } else {
                             return numeral(num).format('0.00')
                         }
-                    }
-                    else {
+                    } else {
                         if (num < 0) {
                             return "No data"
-                        }
-                        else {
+                        } else {
                             return numeral(num * 100).format('0.0') + '%'
                         }
                     }
                 }
-                 
-                // Modify inset text 
-                info.update = function (props) {
-                    this._div.innerHTML = '<h4>Indicator of Interest</h4>' +  (props ?
-                        '<b>' + "Buffer Type" + '</b><br/>' + props['holc_bound'] +
-                        '<br/><b>' + var_to_display[var_of_interest] + '</b><br/>' + representation(props[var_of_interest])
-                        : '<small>Hover over buffer</small>');
-                };
-                 
-                info.addTo(map);
 
                 // CHLOROPLETH //
                 // Coloring dependent on variable of interest
@@ -133,17 +121,19 @@
                                : n > .1  ? '#E8DAEF'
                                : n >= .0  ? '#F4ECF7'
                                : '#85929E';
-                    }
-                    else if (vacant.includes(var_of_interest)) {
-                        return n > 0.1 ? '#4A235A'
-                               : n > .08 ? '#6C3483'
-                               : n > .06 ? '#8E44AD'
-                               : n > .04  ? '#BB8FCE'
-                               : n > .02  ? '#E8DAEF'
+                    } else if (vacant.includes(var_of_interest)) {
+                        return n > 0.09 ? '#4A235A'
+                               : n > .08 ? '#5B2C6F'
+                               : n > .07 ? '#6C3483'
+                               : n > .06 ? '#7D3C98'
+                               : n > .05 ? '#8E44AD'
+                               : n > .04 ? '#A569BD'
+                               : n > .03 ? '#BB8FCE'
+                               : n > .02 ? '#D2B4DE'
+                               : n > .01 ? '#E8DAEF'
                                : n >= .0  ? '#F4ECF7'
                                : '#85929E';
-                    }
-                    else {
+                    } else {
                         return n > 7 ? '#4A235A'
                                : n > 6 ? '#5B2C6F'
                                : n > 5 ? '#6C3483'
@@ -158,24 +148,24 @@
                     }
                 }
 
-                // Get color for buffer based on value of indicator of interest
                 function getBufferColor(feature) {
+                    // Get color for buffer based on value of indicator
                     var color;
                     color = getColor(feature.properties[var_of_interest]);
                     return color;
                 }
 
                 function turnBorderOn(feature) {
-                    if (toggle == true) {
+                    // Toggle border coloring based on form return
+                    if (toggle) {
                         return holc_grade[feature.properties.holc_grade]
-                    }
-                    else {
+                    } else {
                         return 'black'
                     }
                 }
 
-                // Build feature style
                 function style(feature) {
+                    // Build feature style with border and buffer coloring
                     return {
                         weight: .5,
                         opacity: 1,
@@ -184,9 +174,32 @@
                         fillColor: getBufferColor(feature)
                     };
                 }
+
+                // Control what shows state info on hover
+                var info = L.control();
+                 
+                info.onAdd = function (map) {
+                    this._div = L.DomUtil.create('div', 'info');
+                    this.update();
+                    return this._div;
+                };
+                 
+                // Modify inset text 
+                info.update = function (props) {
+                    this._div.innerHTML = '<h4>Indicator of Interest</h4>' +  
+                        (props ? '<b>' + "Buffer Type" + '</b><br/>' + 
+                            props['holc_bound'] + '<br/><b>' + 
+                            var_to_display[var_of_interest] + '</b><br/>' + 
+                            representation(props[var_of_interest])
+                        : '<small>Hover over buffer</small>');
+                };
+                 
+                info.addTo(map);
                 
+
                 // MOUSEOVER CONTROLS //
                 function highlightFeature(e) {
+                    // Adjust style if hovering over buffer
                     var layer = e.target;
                  
                     layer.setStyle({
@@ -205,15 +218,18 @@
 
 
                 function resetHighlight(e) {
+                    // Revert to standard feature formatting if not hovering 
                     geojson.resetStyle(e.target);
                     info.update();
                 }
                  
                 function zoomToFeature(e) {
+                    // Zoom to feature if clicked
                     map.fitBounds(e.target.getBounds());
                 }
                  
                 function onEachFeature(feature, layer) {
+                    // Define when to use above functions on a feature
                     layer.on({
                         mouseover: highlightFeature,
                         mouseout: resetHighlight,
@@ -233,33 +249,36 @@
                 // Change grade based on variable of interest
                 function grade (var_of_interest) {
                     if (standard.includes(var_of_interest)){
-                        return grades = [-1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
-                    }
-                    else if (vacant.includes(var_of_interest)) {
-                        return grades = [-1, 0, 0.02, 0.04, 0.06, 0.08, 0.1];
-                    }
-                    else {
+                        return grades = [-1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 
+                        0.7, 0.8, 0.9];
+                    } else if (vacant.includes(var_of_interest)) {
+                        return grades = [-1, 0, 0.01, 0.02, 0.03, 0.04, 0.05, 
+                        0.06, 0.07, 0.08, 0.09];
+                    } else {
                         return grades = [-99, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
                     }                    
                 }
 
                 var legend = L.control({position: 'bottomright'});
 
-                //Build legend based on grade
                 legend.onAdd = function (map) {
-                 
+                    //Build legend based on grade
                     var div = L.DomUtil.create('div', 'info legend'),
                         grades = grade(var_of_interest)
                         // Force no data at first position in legend
-                        labels = ['<i style="background:' + getColor(grades[0]) + '"></i> ' + representation(grades[0])];
+                        labels = ['<i style="background:' + getColor(grades[0]) 
+                                  + '"></i> ' + representation(grades[0])];
 
+                    // Iterate through grades, update color and label
                     for (var i = 1; i < grades.length; i++) {
                         from = grades[i];
                         to = grades[i + 1]; 
 
                         labels.push(
-                            '<i style="background:' + getColor(from + 0.01) + '"></i> ' +
-                            representation(from) + (to || to == 0 ? ' &ndash; ' + representation(to) : '+'));
+                            '<i style="background:' + getColor(from + 0.01) + 
+                            '"></i> ' + representation(from) + 
+                            (to || to == 0 ? ' &ndash; ' + representation(to) 
+                                : '+'));
                     }
 
                     div.innerHTML = labels.join('<br>');
@@ -272,6 +291,6 @@
             }
 
         </script>
-	</div>
+    </div>
 
 {% endblock %}
