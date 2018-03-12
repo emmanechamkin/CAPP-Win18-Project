@@ -1,0 +1,10 @@
+File: dataset_sources.txt
+Contains: notes on where data came from and how to acquire it
+
+1. Old census data (1940 - 1980): Emma downloaded manually 
+   - manual pull on tract level for indicators via ipums (https://www.nhgis.org/)
+   - codebook.txt in each directory indicates specific variables that have been pulled
+
+2. New census data (1990 - 2010): Claire downloaded manually
+
+3. Redline shape files: Claire download via web scraping

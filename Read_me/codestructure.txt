@@ -1,0 +1,12 @@
+File: codestructure.txt
+Contains: an overview of the structure of the code
+
+Overall code structure:
+-----------------------
+1. Code to pull data pulls data; manual pulls where indicated (census data)
+2. Code to clean data cleans data. This includes manually and automatically reading 
+	codebook files, and creating cleaned csv folders for the Postgres database
+3. Data is imported into Postgres
+4. Data is analyzed in Postgres using analysis code and data is returned into a JSON file
+5. Django filters and uses JSON file to update interactive map
+6. Other website code adds styling to the website 
