@@ -1,9 +1,0 @@
-File: dataset_sources.txt
-Contains: notes on where data came from and how to acquire it
-
-Data descr.  | Location on repo     | Acquired by...         | Responsible party
-             |  	   	    | W = webscrape, A=API,  |
-	     |			    | M=Manual               |
----------------------------------------------------------------------------------
-1940s census | Dir 02, file 01      | M, IPUMS pull          | Emma N.
----------------------------------------------------------------------------------
