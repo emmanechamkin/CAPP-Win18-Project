@@ -1,0 +1,18 @@
+File: directory_structure.txt
+Contains: Notes on what is in each directory
+
+Directory         | Contents
+-------------------------------------------------------------------------------
+Read_me           | Guides to all files and software in this project
+-------------------------------------------------------------------------------
+Data              | Code to webscrape data, API information incl. API keys
+		  | used, notes on manual data pulls, and csv files of data. 
+		  | Scripts to clean data, cleaned csvs of data
+-------------------------------------------------------------------------------
+Analysis          | Scripts and queries to analyze data, create buffer 
+		  | regions, etc. 
+-------------------------------------------------------------------------------
+Website           | Django and html files for the website 
+-------------------------------------------------------------------------------
+Other             | Key sources, presentations, etc. from the project 
+-------------------------------------------------------------------------------
