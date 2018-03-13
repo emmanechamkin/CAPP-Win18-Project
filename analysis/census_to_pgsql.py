@@ -2,7 +2,7 @@ import psycopg2
 import os
 
 FILE_PATH = "/Users/alenastern/Documents/Win2018/CAPP30122/raw_data/"
-DB_NAME = "test"
+DB_NAME = "test3"
 DB_USER = "alenastern"
 DB_PASS = ''
 DB_HOST = "localhost"
@@ -33,8 +33,8 @@ def census_to_sql(year):
 	TRACTA, C_CITYA, COUNTY, MSA_CMSAA, STATE, Total_Pop, PCT_WHITE, PCT_BLACK, 
 	PCT_OTHER, TOTAL_UNITS, Median, PCT_OCCUPIED, PCT_VACANT, PCT_OWN_OCC, 
 	PCT_RENT_OCC)'''
-	from_str = " FROM " + "'"FILE_PATH + str(year) +
-	"_census_data.csv'WITH DELIMITER AS '|' CSV HEADER NULL AS '';"
+	from_str = (" FROM " + "'"+ FILE_PATH + str(year) +
+	"_census_data.csv'WITH DELIMITER AS '|' CSV HEADER NULL AS '';")
 
 	return create_table_str,  copy_str + from_str
 
@@ -72,13 +72,29 @@ def old_census_to_sql(year):
 		Total_Pop, PCT_WHITE, PCT_BLACK, PCT_OTHER, TOTAL_UNITS, PCT_OCCUPIED, 
 		PCT_VACANT, PCT_OWN_OCC, PCT_RENT_OCC)'''	
 
-	from_str = " FROM " + "'" +FILE_PATH+str(year)+
-	"_census_data.csv' WITH DELIMITER AS ',' CSV HEADER NULL AS '';"
+	from_str = (" FROM " + "'" +FILE_PATH+str(year)+
+	"_census_data.csv' WITH DELIMITER AS ',' CSV HEADER NULL AS '';")
 
 	return create_table_str,  copy_str + from_str
 
 conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
 c = conn.cursor()
+
+# the coordinate projection system for the ipums data is not native to postgis
+# need to add it manually, text copied from the following source:
+# https://wiki.pop.umn.edu:4443/index.php/More_Advanced_PostGIS_playing
+
+c.execute('''INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, 
+	srtext) values ( 102003, 'esri', 102003, '+proj=aea +lat_1=29.5 +lat_2=45.5
+	+lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m 
+	+no_defs ', 'PROJCS["USA_Contiguous_Albers_Equal_Area_Conic",GEOGCS
+	["GCS_North_American_1983",DATUM["North_American_Datum_1983",SPHEROID
+	["GRS_1980",6378137,298.257222101]],PRIMEM["Greenwich",0],UNIT["Degree",
+	0.017453292519943295]],PROJECTION["Albers_Conic_Equal_Area"],
+	PARAMETER["False_Easting",0],PARAMETER["False_Northing",0],
+	PARAMETER["longitude_of_center",-96],PARAMETER["Standard_Parallel_1",29.5],
+	PARAMETER["Standard_Parallel_2",45.5],PARAMETER["latitude_of_center",37.5],
+	UNIT["Meter",1],AUTHORITY["EPSG","102003"]]');''')
 
 year_list = [1990, 2000, 2010]
 old_year_list = [1940, 1950, 1960, 1970, 1980]
