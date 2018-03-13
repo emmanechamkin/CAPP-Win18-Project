@@ -1,7 +1,12 @@
 import psycopg2 
 import os 
 
-FILE_PATH = "'/Users/alenastern/Documents/Win2018/CAPP30122/CAPP-Win18-Project/data/census_data/"
+FILE_PATH = "/Users/alenastern/Documents/Win2018/CAPP30122/raw_data/"
+DB_NAME = "capp30122"
+DB_USER = "alenastern"
+DB_PASS = ''
+DB_HOST = "localhost"
+DB_PORT = "5432"
 
 def census_to_sql(year, file_path = FILE_PATH):
 	'''
@@ -63,7 +68,7 @@ def census_to_sql(year, file_path = FILE_PATH):
 
 
 def normalized_median(year):
-	'''
+    '''
 	Performs calculations to generate normalized median variable for the census
 	table in a given year. Normalized median is defined as follows:
 
@@ -79,41 +84,50 @@ def normalized_median(year):
 			standardized median data from intermediate table
 
 	'''
+
     add_col = "ALTER TABLE census_{} add column norm_med float8;".format(year)
     insert_table = '''insert into intermed(gisjoin, norm_med) select gisjoin, 
-    	(median - (Select avg(median) from census_{} 
-    	where median != 'NaN'))/(select stddev(median) from census_{} 
-    	where median != 'NaN') as norm_med from census_{};'''.format(year, year, year)
+        (median - (Select avg(median) from census_{} 
+        where median != 'NaN'))/(select stddev(median) from census_{} 
+        where median != 'NaN') as norm_med from census_{};'''.format(year, year, year)
     update_table = '''update census_{} set norm_med= intermed.norm_med from 
-    	intermed where census_{}.gisjoin = intermed.gisjoin;'''.format(year,year)
+        intermed where census_{}.gisjoin = intermed.gisjoin;'''.format(year,year)
 
 
     return (add_col, insert_table, update_table)
 
 
-conn = psycopg2.connect(database="capp30122", user="alenastern", password='', 
-	host="localhost", port="5432")
+conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, 
+	host=DB_HOST, port=DB_PORT)
 c = conn.cursor()
+# The coordinate projection system used by IPUMS for shapefiles is not native
+# to PostGIS so it must be added manually to the database spatial reference
+# system. Code in execute statement below is directly copied from:
+# https://wiki.pop.umn.edu:4443/index.php/More_Advanced_PostGIS_playing
+
 
 year_list = [1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010]
 
 for year in year_list:
-	# Create database table for census data for given year
-	table, copy = census_to_sql(year)
-	c.execute(table)
-	c.execute(copy)
-	# Import census geographic unit shapefile for given year
-	shp_name = "census_shapefiles/IL_block_{}.shp".format(year)
-	table_name = "public.census_{}_shp".format(year)
-	os.system("shp2pgsql -s 102003:4326 {} {} | psql -d capp30122".format(shp_name, table_name))
-	# Add Median column set to null value for years 1960, 1970, 1980 (where Median
-	# not included in census data)
-	if year > 1959 and year < 1981:
-		c.execute("ALTER TABLE census_{} add Median float8;".format(year))
-		c.execute("UPDATE census_{} SET Median = 'NaN';".format(year))
+    # Create database table for census data for given year
+    table, copy = census_to_sql(year)
+    c.execute(table)
+    c.execute(copy)
+    # Import census geographic unit shapefile for given year
+    if year > 1981:
+        shp_name = FILE_PATH+"/IL_block_{}.shp".format(year)
+    else:
+        shp_name = FILE_PATH+"US_tract_{}.shp".format(year)
+    table_name = "public.census_{}_shp".format(year)
+    os.system("shp2pgsql -s 102003:4326 {} {} | psql -d {}".format(shp_name, table_name, DB_NAME))
+    # Add Median column set to null value for years 1960, 1970, 1980 (where Median
+    # not included in census data)
+    if year > 1959 and year < 1981:
+        c.execute("ALTER TABLE census_{} add Median float8;".format(year))
+        c.execute("UPDATE census_{} SET Median = 'NaN';".format(year))
 
-	# Add standardized median column to census table
-	c.execute("create table intermed (gisjoin varchar(50), norm_med float8);")
+    # Add standardized median column to census table
+    c.execute("create table intermed (gisjoin varchar(50), norm_med float8);")
     add, insert, update = normalized_median(year)
     c.execute(add)
     c.execute(insert)
