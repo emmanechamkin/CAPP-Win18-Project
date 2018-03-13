@@ -39,7 +39,7 @@ city_list = ['birmingham-al', 'mobile-al', 'montgomery-al', 'fresno-ca', 'los-an
 
 GeoJson = 'GeoJson'
 Shapefile = 'Shapefile'
-driver_location = '~/Documents/CS 122 Project Files/chromedriver'
+driver_location = 'Volume/Lexar/chromedriver/chromedriver'
 
 
 def geojson_by_city(driver_location, city, file_type):
