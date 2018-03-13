@@ -58,7 +58,12 @@ Data 	  | /census_data/           | C        | Contains code to transform raw 20
 	  | census_files_2000/      |          | census data to format to read into database 
 -------------------------------------------------------------------------------------
 Data 	  | /census_data/           | C        | Contains code to transform raw 2010
-	  | census_files_2010/      |          | census data to format to read into database     
+	  | census_files_2010/      |          | census data to format to read into database
+-------------------------------------------------------------------------------------
+Data 	  | /census_data/           | C        | Contains code to transform raw 
+	  | census_files_education/ |          | educational attainment census data 
+	  |                         |          | (1970 - 2010) to format to read into database
+	  |                         |          | Note: this is not implemented
 -------------------------------------------------------------------------------------
 Data 	  | /census_data/           | E        | Contains code to transform raw 1940
 	  | census_files_1940/      |          | census data to format to read into database   
@@ -74,5 +79,9 @@ Data 	  | /census_data/           | E        | Contains code to transform raw 19
 -------------------------------------------------------------------------------------
 Data 	  | /census_data/           | E        | Contains code to transform raw 1980
 	  | census_files_1980/      |          | census data to format to read into database  
+-------------------------------------------------------------------------------------
+Data 	  | /census_data/           | C        | Functions to scrape the Mapping Inequality 
+	  | holc_redline_data/      |          | site using headless browsing (Selenium)
+	  | map_scraping.py	    |          | 
 --------------------------------------------------------------------------------------
 Read_me	  | toc.sh		    | E        | Shell script to generate table of contents
