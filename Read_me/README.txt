@@ -28,7 +28,7 @@ The creation of the Postgres database and all of our analysis can be replicated 
 
 	1) census_to_pgsql.py
 	2) redline_boundaries.py
-	3) census_weighted_averages.py
+	3) census_weighted_avg.py
 
 
 3) Before running any of the files, update the global variables at the top of each file as follows:
@@ -51,7 +51,7 @@ Reads census data for each year into census_[year] postgres table and creates no
 
 Reads University of Richmond HOLC boundaries shapfile into postgres and performs analysis to create redline_poly table of boundary buffer polygons in postgres database
 
-6) census_weighted_averages.py
+6) census_weighted_avg.py
 
 Performs analysis to identify overlap between boundary buffers and census units that meet or exceed defined thresholds, calculate weighted averages of census statistics for each boundary buffer, and perform final data cleaning. The function produces the census_all_final.geojson file that is read into Django
 
