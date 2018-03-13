@@ -34,3 +34,19 @@ Website   | mysite/maps/views.py    | E, C     | E responsible for form
 	  |                         |          | implementation, C for map        
           | 			    |	       | visualization
 -----------------------------------------------------------------------------------
+Analysis  | census_to_pgsql.py      | A        | Contains code to add census data to db
+	  |                         |          | Written entirely by author, one 
+          |                         |          | command to add coordinate projection
+	  |                         |          | system to DB taken from internet source
+	  |                         |          | (attributed in file)
+------------------------------------------------------------------------------------
+Analysis  | redline_boundaries.py   | A        | Contains code to create redline boundary
+          |                         |          | buffer polygons in postgres database.
+	  |                         |          | Written entirely by author
+-------------------------------------------------------------------------------------
+Analysis  |census_weighted_avg.py   | A        | Contains code to produce weighted 
+          |                         |          | averages of census statistics by boundary
+	  |                         |          | buffer and perform data cleaning. Written
+	  |                         |          | entirely by author
+-------------------------------------------------------------------------------------
+Data 	  | 
