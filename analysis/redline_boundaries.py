@@ -2,28 +2,28 @@ import psycopg2
 import os
 
 FILE_PATH = "/Users/alenastern/Documents/Win2018/CAPP30122/raw_data/"
-DB_NAME = "test"
+DB_NAME = "test2"
 DB_USER = "alenastern"
 DB_PASS = "''"
 DB_HOST = "localhost"
 DB_PORT = "5432" 
 
 def holc_buffer(grade):
-	'''
-	For a given HOLC grade, creates a query to identify the borders where a holc 
-	area of the given grade touches a holc area of a different grade, and creates 
-	boundary buffer polygon representing a 1/4 mile buffer out from the border of 
-	the HOLC area of the given grade into the neighboring HOLC area of a 
-	different grade.
+    '''
+    For a given HOLC grade, creates a query to identify the borders where a holc 
+    area of the given grade touches a holc area of a different grade, and creates 
+    boundary buffer polygon representing a 1/4 mile buffer out from the border of 
+    the HOLC area of the given grade into the neighboring HOLC area of a 
+    different grade.
 
-	Inputs:
-		grade (str): string representing HOLC grade
+    Inputs:
+    	grade (str): string representing HOLC grade
 
-	Returns:
-		query (str): string with query to 
-	'''
+    Returns:
+    	query (str): string with query to 
+    '''
 
-  	query = '''INSERT INTO redline_poly (gid, holc_grade_b, holc_grade_a, geom) 
+    query = '''INSERT INTO redline_poly (gid, holc_grade_b, holc_grade_a, geom) 
           SELECT b.gid, b.holc_grade as holc_a, a.holc_grade as holc_b, 
           geometry(ST_Intersection(ST_Buffer(CAST(a.geom AS geography), 402), 
           b.geom)) FROM redline a, redline b  
@@ -31,7 +31,7 @@ def holc_buffer(grade):
           ST_Intersects(ST_Buffer(CAST(a.geom AS geography), 402), 
           b.geom);'''.format(grade, grade)
 
-  	return query
+    return query
 
 conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, 
 	host=DB_HOST, port=DB_PORT)

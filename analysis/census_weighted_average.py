@@ -1,4 +1,11 @@
 import psycopg2 
+import os 
+
+DB_NAME = "test"
+DB_USER = "alenastern"
+DB_PASS = ''
+DB_HOST = "localhost"
+DB_PORT = "5432"
 
 def census_weighted_average(year):
     '''
@@ -18,10 +25,12 @@ def census_weighted_average(year):
         update (str): query to update the year column in the 
             Census_Weighted_Avg_All table to add the given year
     '''
+    #Create insert statement
     insert = '''INSERT INTO Census_Weighted_Avg_All (poly_id, holc_bound, 
         holc_grade, year, Total_Pop, PCT_WHITE, PCT_BLACK, PCT_OTHER, 
         TOTAL_UNITS, Median, PCT_OCCUPIED, PCT_VACANT, PCT_OWN_OCC, 
         PCT_RENT_OCC, norm_med, geom) '''
+    # Create select statement to select weighted averages
     select = '''SELECT redline_poly.poly_id, redline_poly.holc_bound, 
         redline_poly.holc_grade_b, avg(c.year), avg(c.Total_Pop) AS Total_Pop, 
         (SUM(c.pct_white*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_white, 
@@ -35,6 +44,7 @@ def census_weighted_average(year):
         (SUM(c.pct_rent_occ*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_rent_occ, 
         (SUM(c.norm_med*c.total_pop)/(SUM(c.total_pop) + 1)) AS norm_med, 
         redline_poly.geom '''
+    #create from statement 
     fr = '''FROM redline_poly LEFT JOIN (SELECT c{}.year, c{}.total_pop, 
         c{}.pct_white, c{}.pct_black, c{}.pct_other, c{}.total_units, 
         c{}.median, c{}.pct_occupied, c{}.pct_vacant, c{}.pct_own_occ, 
@@ -43,6 +53,7 @@ def census_weighted_average(year):
         year, year, year, year, year, year, year, year, year, year, year, year, 
         year, year, year, year, year, year)
 
+    #create join statement applying different overlap thresholds for bloc/tract years
     if year < 1990:
         join = '''ON ST_Intersects(redline_poly.geom, c.geom) AND 
             (ST_Area(ST_Intersection(c.geom, redline_poly.geom)) 
@@ -57,18 +68,35 @@ def census_weighted_average(year):
             GROUP BY redline_poly.poly_id;'''
 
     query = insert + select + fr + join
+    #create quety to add year column to data
     update = '''UPDATE Census_Weighted_Avg_All SET Year = {} 
             WHERE Year IS NULL;'''.format(year)
 
     return (query, update)
 
+insert = "INSERT INTO Census_Weighted_Avg_All (poly_id, holc_bound, holc_grade, year, Total_Pop, PCT_WHITE, PCT_BLACK, PCT_OTHER, TOTAL_UNITS, Median, PCT_OCCUPIED, PCT_VACANT, PCT_OWN_OCC, PCT_RENT_OCC, norm_med, geom) "
+    select = "SELECT redline_poly.poly_id, redline_poly.holc_bound, redline_poly.holc_grade_b, avg(c.year), avg(c.Total_Pop) AS Total_Pop, (SUM(c.pct_white*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_white, (SUM(c.pct_black*c.total_pop)/(SUM(c.total_pop) + 1)) AS PCT_BLACK, (SUM(c.pct_other*c.total_pop)/(SUM(c.total_pop) + 1)) as pct_other, \
+            (SUM(c.total_units*c.total_pop)/(SUM(c.total_pop) + 1)) AS total_units, (SUM(c.median*c.total_pop)/(SUM(c.total_pop) + 1)) AS median, (SUM(c.pct_occupied*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_occupied, (SUM(c.pct_vacant*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_vacant, \
+            (SUM(c.pct_own_occ*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_own_occ, (SUM(c.pct_rent_occ*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_rent_occ, (SUM(c.norm_med*c.total_pop)/(SUM(c.total_pop) + 1)) AS norm_med, redline_poly.geom "
+    fr = "FROM redline_poly LEFT JOIN (SELECT c{}.year, c{}.total_pop, c{}.pct_white, c{}.pct_black, c{}.pct_other, c{}.total_units, c{}.median, c{}.pct_occupied, c{}.pct_vacant, c{}.pct_own_occ, \
+    c{}.pct_rent_occ, c{}.norm_med, c{}s.geom FROM census_{} AS c{} JOIN census_{}_shp AS c{}s ON c{}.gisjoin = c{}s.gisjoin) AS c ".format(year, year, year, year, year, year, year, year, year, year, year, year, year, year, year, year, year, year, year)
+    if year < 1990:
+        join = "ON ST_Intersects(redline_poly.geom, c.geom) AND (ST_Area(ST_Intersection(c.geom, redline_poly.geom)) >= 0.15*ST_Area(c.geom) OR ST_Area(ST_Intersection(c.geom, redline_poly.geom)) >= 0.70*ST_Area(redline_poly.geom)) \
+            GROUP BY redline_poly.poly_id;"
+    else:
+        join = "ON ST_Intersects(redline_poly.geom, c.geom) AND (ST_Area(ST_Intersection(c.geom, redline_poly.geom)) >= 0.50*ST_Area(c.geom) OR ST_Area(ST_Intersection(c.geom, redline_poly.geom)) >= 0.70*ST_Area(redline_poly.geom)) \
+            GROUP BY redline_poly.poly_id;"
 
-    
+    query = insert + select + fr + join
+    update = "UPDATE Census_Weighted_Avg_All SET Year = {} WHERE Year IS NULL;".format(year)
 
-conn = psycopg2.connect(database="capp30122", user="alenastern", password='', 
-    host="localhost", port="5432")
+
+
+conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, 
+    host=DB_HOST, port=DB_PORT)
 c = conn.cursor()
 
+# Create table to hold analyzed data in postgres 
 create = '''CREATE TABLE Census_Weighted_Avg_All (poly_id int, 
     holc_bound varchar(10), holc_grade varchar(10), year int, 
     Total_Pop float8, PCT_WHITE float8, PCT_BLACK float8, PCT_OTHER float8, 
@@ -77,8 +105,7 @@ create = '''CREATE TABLE Census_Weighted_Avg_All (poly_id int,
 
 c.execute(create)
 
-
-
+# add census data to postgres for each year in census year list
 census_years = [1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010]
 var_list = ["Total_Pop", "PCT_WHITE", "PCT_BLACK", "PCT_OTHER", "TOTAL_UNITS", 
     "Median", "PCT_OCCUPIED", "PCT_VACANT", "PCT_OWN_OCC", "PCT_RENT_OCC"]
@@ -88,10 +115,10 @@ for year in census_years:
     c.execute(query)
     c.execute(update)
 
-for var in var_list:
-    update_null = '''UPDATE Census_Weighted_Avg_All SET {} = -1 WHERE {} 
-    IS NULL;'''.format(var, var)
-    c.execute(update_null)
+#for var in var_list:
+#    update_null = '''UPDATE Census_Weighted_Avg_All SET {} = -1 WHERE {} 
+#    IS NULL;'''.format(var, var)
+#    c.execute(update_null)
 
 add_id_unique = '''ALTER TABLE Census_Weighted_Avg_All ADD COLUMN 
     id_unique varchar(10);'''
@@ -136,9 +163,8 @@ conn.commit()
 c.close()
 conn.close()
 
-os.system('''ogr2ogr -f "GeoJSON" census_all_final.geojson 
-PG:"host='localhost' dbname='capp30122' user='alenastern' password='' port='5432'" 
--sql "SELECT * from Census_Weighted_Avg_All;" -t_srs EPSG:4326''')
+gj_export = '''ogr2ogr -f "GeoJSON" census_all_final.geojson PG:"host='{}' dbname='{}' user='{}' password='{}' port='{}'" -sql "SELECT * from Census_Weighted_Avg_All;" -t_srs EPSG:4326'''.format(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+os.system(gj_export)
 
 
 
