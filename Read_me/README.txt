@@ -27,7 +27,9 @@ The creation of the Postgres database and all of our analysis can be replicated 
 
 	1) census_to_pgsql.py
 	2) redline_boundaries.py
-	3) census_weighted_avg.py
+	3) norm_med.py
+	4) census_weighted_average.py
+	5) data_cleaning_weighted_avg.py
 
 
 3) Before running any of the files, update the global variables at the top of each file as follows:
@@ -50,9 +52,17 @@ Reads census data for each year into census_[year] postgres table and creates no
 
 Reads University of Richmond HOLC boundaries shapfile into postgres and performs analysis to create redline_poly table of boundary buffer polygons in postgres database
 
-6) census_weighted_avg.py
+6) norm_med.py
 
-Performs analysis to identify overlap between boundary buffers and census units that meet or exceed defined thresholds, calculate weighted averages of census statistics for each boundary buffer, and perform final data cleaning. The function produces the census_all_final.geojson file that is read into Django
+Calculates normalized median column for census year tables
+
+7) census_weighted_avg.py
+
+Performs analysis to identify overlap between boundary buffers and census units that meet or exceed defined thresholds, calculate weighted averages of census statistics for each boundary buffer, and perform final data cleaning. 
+
+8) data_cleaning_weighted_avg.py
+
+Performs final data cleaning and produces the census_all_final.geojson file that is read into Django
 
 We have also included a folder on the flash drive called "database tables" that represents an export of all of the processed tables (census_[year] for each year, redline_poly, and census_weighted_avg_all) in our database. 
 
