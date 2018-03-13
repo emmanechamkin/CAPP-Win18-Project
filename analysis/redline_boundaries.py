@@ -1,5 +1,12 @@
 import psycopg2 
-import os 
+import os
+
+FILE_PATH = "/Users/alenastern/Documents/Win2018/CAPP30122/raw_data/"
+DB_NAME = "test"
+DB_USER = "alenastern"
+DB_PASS = "''"
+DB_HOST = "localhost"
+DB_PORT = "5432" 
 
 def holc_buffer(grade):
 	'''
@@ -26,12 +33,13 @@ def holc_buffer(grade):
 
   	return query
 
-conn = psycopg2.connect(database="capp30122", user="alenastern", password='', 
-	host="localhost", port="5432")
+conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, 
+	host=DB_HOST, port=DB_PORT)
 c = conn.cursor()
 
 #Import redline boundaries shapefile
-os.system("shp2pgsql -s 4326 HOLC_chicago.shp public.redline | psql -d capp30122") 
+shp_read = "shp2pgsql -s 4326 {}HOLC_chicago.shp public.redline | psql -d {}".format(FILE_PATH, DB_NAME)
+os.system(shp_read) 
 
 
 holc_grade_list = ['A', 'B', 'C', 'D']
