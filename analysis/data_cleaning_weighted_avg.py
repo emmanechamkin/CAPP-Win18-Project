@@ -1,3 +1,6 @@
+import psycopg2
+import os
+
 DB_NAME = "test2"
 DB_USER = "alenastern"
 DB_PASS = ''
@@ -39,3 +42,7 @@ conn.commit()
 c.close()
 conn.close()
 
+export_gj = '''ogr2ogr -f "GeoJSON" census_weighted_avg.geojson  
+PG:"host='{}}' dbname='{}' user='{}' password='{}' port='{}}'" 
+-sql "SELECT * from census_weighted_avg_all;" -t_srs EPSG:4326'''.format(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_PORT)
+os.system(export_gj)

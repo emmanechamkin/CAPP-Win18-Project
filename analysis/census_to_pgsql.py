@@ -1,4 +1,6 @@
 import psycopg2 
+import os
+
 FILE_PATH = "/Users/alenastern/Documents/Win2018/CAPP30122/raw_data/"
 DB_NAME = "test"
 DB_USER = "alenastern"

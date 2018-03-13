@@ -1,4 +1,6 @@
 import psycopg2 
+import os
+
 DB_NAME = "test"
 DB_USER = "alenastern"
 DB_PASS = ''
