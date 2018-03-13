@@ -13,4 +13,6 @@ The Chicago Health Atlas https://www.chicagohealthatlas.org/ (unused)\
 Census data from IPUMS (ipums.org)
 
 ## Thank you!
-Anne Rogers and the CS122 staff
+Anne Rogers and the CS122 staff\
+\
+Note: See Read_me folder for project instructions
