@@ -32,14 +32,14 @@ The creation of the Postgres database and all of our analysis can be replicated 
 
 
 3) Before running any of the files, update the global variables at the top of each file as follows:
-	FILE_PATH: file path of directory containing the raw data on the flash drive (in raw data folder)
+	FILE_PATH: file path of directory containing the data_for_db folder on the flash drive (in data_for_db folder)
 	DB_NAME: name of postgresql database created above
 	DB_USER: user name for postgresql database created above
 	DB_PASS: password for postgresql database created above
 	DB_HOST: host for postgresql database created above
 	DB_PORT: port for postgresql database created above
 
-Updating these variables will ensure that the functions can access the raw data and successfully populate the local posgres database you have created.
+Updating these variables will ensure that the functions can access the data_for_db data and successfully populate the local posgres database you have created.
 
 Once the global variables in each file have been updated, you can replicate our analysis by running the files from the command line in the following order:
 
