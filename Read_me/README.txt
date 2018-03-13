@@ -5,15 +5,14 @@ Installs required:
 1. django (COMMAND: sudo pip3 install django)
 2. leaflet (COMMAND: sudo pip3 install leaflet)
 3. django-leaflet (COMMAND: sudo pip3 install django-leaflet)
-4. psycopg2 (COMMAND)
-5. postgres (COMMAND)
-6. postgis  (COMMAND)
+4. psycopg2 (COMMAND: sudo pip3 install psycopg2)
+5. postgres (COMMAND: sudo pip3 install postgres)
+6. postgis  (COMMAND: sudo pip3 install postgis)
 
 
 Steps to duplicate the database:
 
-
-1) Download postgres and postgis (I used Homebrew for my installation)
+1) Download postgres and postgis (I used Homebrew for my installation, see above for VM commands)
 
 2) Create a postgis enabled postgres database using the following commands:
 
