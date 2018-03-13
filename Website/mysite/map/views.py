@@ -2,13 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
 from . import forms
-from . import genquery
 import json
 
 
-filename = 'data/census_all_final7.geojson'
+filename = 'data/census_all_final.geojson'
 
-# Create your views here.
 def index(request):
 	args = {}
 	cx = {}
@@ -21,7 +19,8 @@ def index(request):
 				args['ind'] = form.cleaned_data['ind']
 			if form.cleaned_data['yr']:
 				args['yr'] = form.cleaned_data['yr']
-				cx['data'] = process_data(filename, int(form.cleaned_data['yr']))
+				# Filter the data using year value returned from form
+				cx['data'] = process_data(filename,int(form.cleaned_data['yr']))
 			if form.cleaned_data['tog']:
 				args['tog'] = form.cleaned_data['tog']
 	
@@ -33,7 +32,15 @@ def index(request):
 
 def process_data(filename, year):
 	'''
-	process the rows of the file
+	Filter a GeoJSON file using on year and return a GeoJSON readable object
+
+	Inputs:
+		filename (str): directs to location of full GeoJSON file within the 
+			Django infrastructure
+		year (int): Year of interest, can only be a decade between 1940 and 2010
+			as returned by the form
+
+	Returns filtered GeoJSON object to read into Leaflet Javascript application
 	'''
 	with open(filename) as f:
 		data = json.load(f)
