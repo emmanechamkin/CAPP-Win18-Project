@@ -46,10 +46,20 @@ Analysis  | redline_boundaries.py   | A        | Contains code to create redlin
           |                         |          | buffer polygons in postgres database.
 	  |                         |          | Written entirely by author
 -------------------------------------------------------------------------------------
-Analysis  |census_weighted_avg.py   | A        | Contains code to produce weighted 
-          |                         |          | averages of census statistics by boundary
+Analysis  |census_weighted_         | A        | Contains code to produce weighted 
+          |             average.py  |          | averages of census statistics by boundary
 	  |                         |          | buffer and perform data cleaning. Written
 	  |                         |          | entirely by author
+-------------------------------------------------------------------------------------
+Analysis  |norm_med.py              | A        | Contains code to calculate normalized median
+          |                         |          | for each census year table
+	  |                         |          | Written entirely by author
+	  |                         |          | 
+-------------------------------------------------------------------------------------
+Analysis  |data_cleaning_           | A        | Contains code to do final data cleaning and
+          |        weighted_avg.py  |          | export geojson file for Django.
+	  |                         |          | Written entirely by author
+	  |                         |          | 
 -------------------------------------------------------------------------------------
 Data 	  | /census_data/           | C        | Contains code to transform raw 1990
 	  | census_files_1990/      |          | census data to format to read into database
