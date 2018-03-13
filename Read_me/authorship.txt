@@ -49,4 +49,12 @@ Analysis  |census_weighted_avg.py   | A        | Contains code to produce weigh
 	  |                         |          | buffer and perform data cleaning. Written
 	  |                         |          | entirely by author
 -------------------------------------------------------------------------------------
-Data 	  | 
+Data 	  | /census_data/           | C        | Contains code to transform raw 1990
+	  | census_files_1990/      |          | census data to format to read into database
+-------------------------------------------------------------------------------------
+Data 	  | /census_data/           | C        | Contains code to transform raw 2000
+	  | census_files_2000/      |          | census data to format to read into database 
+-------------------------------------------------------------------------------------
+Data 	  | /census_data/           | C        | Contains code to transform raw 2010
+	  | census_files_2010/      |          | census data to format to read into database  
+
