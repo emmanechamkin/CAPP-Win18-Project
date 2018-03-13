@@ -13,7 +13,9 @@ Website   | mysite/templates/*      | E        | Templates created using heavy
 	  |			    |	       | navigation for links sourced and 
 	  |     		    |          | reformatted from w3 schools. All 
 	  |			    |	       | other html created using a       
-	  |                         |  	       | references on html and CSS.  
+	  |                         |  	       | references on html and CSS. 
+	  |			    |	       | Formatting in base.html and form 
+	  |			    |	       | in index.html included.
 -----------------------------------------------------------------------------------
 Website   | mysite/templates        |C         | Contains JavaScript/Leaflet map
 	  | /index.html             |          | implementation, referenced        
@@ -56,5 +58,21 @@ Data 	  | /census_data/           | C        | Contains code to transform raw 20
 	  | census_files_2000/      |          | census data to format to read into database 
 -------------------------------------------------------------------------------------
 Data 	  | /census_data/           | C        | Contains code to transform raw 2010
-	  | census_files_2010/      |          | census data to format to read into database  
-
+	  | census_files_2010/      |          | census data to format to read into database     
+-------------------------------------------------------------------------------------
+Data 	  | /census_data/           | E        | Contains code to transform raw 1940
+	  | census_files_1940/      |          | census data to format to read into database   
+-------------------------------------------------------------------------------------
+Data 	  | /census_data/           | E        | Contains code to transform raw 1950
+	  | census_files_1950/      |          | census data to format to read into database  
+-------------------------------------------------------------------------------------
+Data 	  | /census_data/           | E        | Contains code to transform raw 1960
+	  | census_files_1960/      |          | census data to format to read into database  
+-------------------------------------------------------------------------------------
+Data 	  | /census_data/           | E        | Contains code to transform raw 1970
+	  | census_files_1970/      |          | census data to format to read into database  
+-------------------------------------------------------------------------------------
+Data 	  | /census_data/           | E        | Contains code to transform raw 1980
+	  | census_files_1980/      |          | census data to format to read into database  
+--------------------------------------------------------------------------------------
+Read_me	  | toc.sh		    | E        | Shell script to generate table of contents
