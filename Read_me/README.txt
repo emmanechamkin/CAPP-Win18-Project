@@ -9,6 +9,18 @@ Installs required:
 5. postgres (COMMAND: sudo pip3 install postgres)
 6. postgis  (COMMAND: sudo pip3 install postgis)
 
+Clone the repository:
+Navigating to the desired location and running the command 'git clone https://github.com/emmanechamkin/CAPP-Win18-Project/'
+
+Steps to run the website:
+1. Navigate to ~/CAPP-Win18-Project/Website/mysite in a terminal
+2. Run the command 'python3 manage.py runserver'
+3. In a browser, navigate to the location of the development server as stated in the terminal and add /home/, 
+   this will likely be http://127.0.0.1:8000/home
+4. Peruse the website at your leisure
+5. To use the interactive map, use the left-hand sidebar to navigate to Maps (http://127.0.0.1:8000/home/maps),
+   then choose variable and year of interest, toggle the border as desired and click "Submit" to render them map
+
 
 Steps to duplicate the database:
 
@@ -66,12 +78,3 @@ Performs final data cleaning and produces the census_all_final.geojson file that
 
 We have also included a folder on the flash drive called "database tables" that represents an export of all of the processed tables (census_[year] for each year, redline_poly, and census_weighted_avg_all) in our database. 
 
-Steps to run the website:
-1. Clone the reppository by navigating to the desired location and running the command 'git clone https://github.com/emmanechamkin/CAPP-Win18-Project/'
-2. Navigate to ~/CAPP-Win18-Project/Website/mysite in a terminal
-3. Run the command 'python3 manage.py runserver'
-4. In a browser, navigate to the location of the development server as stated in the terminal and add /home/, 
-   this will likely be http://127.0.0.1:8000/home
-5. Peruse the website at your leisure
-6. To use the interactive map, use the left-hand sidebar to navigate to Maps (http://127.0.0.1:8000/home/maps),
-   then choose variable and year of interest, toggle the border as desired and click "Submit" to render them map
