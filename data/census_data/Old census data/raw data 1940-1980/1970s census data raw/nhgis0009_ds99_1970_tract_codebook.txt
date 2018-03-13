@@ -1,0 +1,404 @@
+--------------------------------------------------------------------------------
+Codebook for NHGIS data file 'nhgis0009_ds99_1970_tract'
+--------------------------------------------------------------------------------
+ 
+Contents
+    - Data Summary
+    - Data Dictionary
+    - Citation and Use
+ 
+Additional documentation on NHGIS data sources is available at: 
+    https://www.nhgis.org/documentation/tabular-data 
+ 
+--------------------------------------------------------------------------------
+Data Summary
+--------------------------------------------------------------------------------
+ 
+Year:             1970
+Geographic level: Census Tract (by State--County)
+Dataset:          1970 Census: Count 4Pb - Sample-Based Population Data with Race/Ethnicity Breakdown
+   NHGIS code:    1970_Cnt4Pb
+   NHGIS ID:      ds99
+Breakdown(s):     Geographic Subarea:
+                     Total area (000)
+                  Race/Ethnicity:
+                     All races (000)
+ 
+Tables:
+ 
+1. Aggregate Income Deficit for Families Below Poverty Level
+   Universe:    Families Below Poverty Level
+   Source code: NT10
+   NHGIS code:  C1L
+ 
+2. Aggregate Value of Occupied Units by Poverty Status
+   Universe:    Owner-Occupied Units
+   Source code: NT14
+   NHGIS code:  C1R
+ 
+3. Aggregate Gross Rent of Occupied Units by Poverty Status of Family or Primary Individual
+   Universe:    Renter-Occupied Units of Family or Primary Individual
+   Source code: NT15
+   NHGIS code:  C1S
+ 
+4. Aggregate Income Deficit by Specified Poverty Level by Family Status
+   Universe:    Families and Unrelated Individuals 14 Years and Over
+   Source code: NT16
+   NHGIS code:  C1T
+ 
+5. Sex by Age
+   Universe:    Persons
+   Source code: NT17
+   NHGIS code:  C1U
+ 
+6. Household Relationship and Sex
+   Universe:    Persons
+   Source code: NT18
+   NHGIS code:  C1V
+ 
+7. Family Type by Presence and Age of Own Children
+   Universe:    Families
+   Source code: NT19
+   NHGIS code:  C1W
+ 
+8. Occupation
+   Universe:    Employed Persons 16 Years and Over
+   Source code: NT58
+   NHGIS code:  C27
+ 
+9. Family Income
+   Universe:    Families
+   Source code: NT75
+   NHGIS code:  C3T
+ 
+10. Income
+    Universe:    Unrelated Individuals 14 Years and Over
+    Source code: NT76
+    NHGIS code:  C3U
+ 
+11. Ratio of Family Income to Poverty Level
+    Universe:    Families
+    Source code: NT82
+    NHGIS code:  C35
+ 
+12. Aggregate Number of Persons in Families Below Poverty Level
+    Universe:    Persons in Families Below Poverty Level
+    Source code: NT83
+    NHGIS code:  C36
+ 
+13. Poverty Status by Family Type by Presence of Related Children Under 18
+    Universe:    Families
+    Source code: NT84
+    NHGIS code:  C37
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Context Fields 
+        GISJOIN:     GIS Join Match Code
+        YEAR:        Data File Year
+        STATE:       State Name
+        STATEA:      State Code
+        COUNTY:      County Name
+        COUNTYA:     County Code
+        CTY_SUBA:    County Subdivision Code
+        PLACEA:      Place Code
+        TRACTA:      Census Tract Code
+        SCSAA:       Standard Consolidated Statistical Area Code
+        SMSAA:       Standard Metropolitan Statistical Area Code
+        URB_AREAA:   Urban Area Code
+        BLOCKA:      Block Code
+        CDA:         Congressional District Code
+        AREANAME:    Area Name
+ 
+Breakdown:
+    Geographic Subarea: Total area (000)
+    Race/Ethnicity: All races (000)
+ 
+    Table 1:     Aggregate Income Deficit for Families Below Poverty Level
+    Universe:    Families Below Poverty Level
+    Source code: NT10
+    NHGIS code:  C1L
+        C1L001:      Aggregate income deficit
+ 
+    Table 2:     Aggregate Value of Occupied Units by Poverty Status
+    Universe:    Owner-Occupied Units
+    Source code: NT14
+    NHGIS code:  C1R
+        C1R001:      Aggregate value >> Above poverty level
+        C1R002:      Aggregate value >> Below poverty level
+ 
+    Table 3:     Aggregate Gross Rent of Occupied Units by Poverty Status of Family or Primary Individual
+    Universe:    Renter-Occupied Units of Family or Primary Individual
+    Source code: NT15
+    NHGIS code:  C1S
+        C1S001:      Aggregate gross rent >> Above poverty level
+        C1S002:      Aggregate gross rent >> Below poverty level
+ 
+    Table 4:     Aggregate Income Deficit by Specified Poverty Level by Family Status
+    Universe:    Families and Unrelated Individuals 14 Years and Over
+    Source code: NT16
+    NHGIS code:  C1T
+        C1T001:      Aggregate income deficit >> Less than 75 percent of the poverty level >> Family
+        C1T002:      Aggregate income deficit >> Less than 75 percent of the poverty level >> Unrelated individual
+        C1T003:      Aggregate income deficit >> Less than 125 percent of the poverty level >> Family
+        C1T004:      Aggregate income deficit >> Less than 125 percent of the poverty level >> Unrelated individual
+ 
+    Table 5:     Sex by Age
+    Universe:    Persons
+    Source code: NT17
+    NHGIS code:  C1U
+        C1U001:      Male >> Under 3
+        C1U002:      Male >> 3-4
+        C1U003:      Male >> 5
+        C1U004:      Male >> 6
+        C1U005:      Male >> 7-9
+        C1U006:      Male >> 10-13
+        C1U007:      Male >> 14
+        C1U008:      Male >> 15
+        C1U009:      Male >> 16
+        C1U010:      Male >> 17
+        C1U011:      Male >> 18
+        C1U012:      Male >> 19
+        C1U013:      Male >> 20
+        C1U014:      Male >> 21
+        C1U015:      Male >> 22-24
+        C1U016:      Male >> 25-29
+        C1U017:      Male >> 30-34
+        C1U018:      Male >> 35-39
+        C1U019:      Male >> 40-44
+        C1U020:      Male >> 45-49
+        C1U021:      Male >> 50-54
+        C1U022:      Male >> 55-59
+        C1U023:      Male >> 60-61
+        C1U024:      Male >> 62-64
+        C1U025:      Male >> 65-69
+        C1U026:      Male >> 70-74
+        C1U027:      Male >> 75 and over
+        C1U028:      Female >> Under 3
+        C1U029:      Female >> 3-4
+        C1U030:      Female >> 5
+        C1U031:      Female >> 6
+        C1U032:      Female >> 7-9
+        C1U033:      Female >> 10-13
+        C1U034:      Female >> 14
+        C1U035:      Female >> 15
+        C1U036:      Female >> 16
+        C1U037:      Female >> 17
+        C1U038:      Female >> 18
+        C1U039:      Female >> 19
+        C1U040:      Female >> 20
+        C1U041:      Female >> 21
+        C1U042:      Female >> 22-24
+        C1U043:      Female >> 25-29
+        C1U044:      Female >> 30-34
+        C1U045:      Female >> 35-39
+        C1U046:      Female >> 40-44
+        C1U047:      Female >> 45-49
+        C1U048:      Female >> 50-54
+        C1U049:      Female >> 55-59
+        C1U050:      Female >> 60-61
+        C1U051:      Female >> 62-64
+        C1U052:      Female >> 65-69
+        C1U053:      Female >> 70-74
+        C1U054:      Female >> 75 and over
+ 
+    Table 6:     Household Relationship and Sex
+    Universe:    Persons
+    Source code: NT18
+    NHGIS code:  C1V
+        C1V001:      Male primary individual
+        C1V002:      Female primary individual
+        C1V003:      Family head of household with male head
+        C1V004:      Family head of household with female head
+        C1V005:      Wife of head
+        C1V006:      Child of head
+        C1V007:      Other relative of head
+        C1V008:      Nonrelative (includes roomer, boarder or lodger) of head of household
+        C1V009:      Male inmate of institution
+        C1V010:      Female inmate of institution
+        C1V011:      Male in other group quarters
+        C1V012:      Female in other group quarters
+ 
+    Table 7:     Family Type by Presence and Age of Own Children
+    Universe:    Families
+    Source code: NT19
+    NHGIS code:  C1W
+        C1W001:      Husband-wife family >> Own children under 18 years old not present
+        C1W002:      Husband-wife family >> Own children under 18 years old present: Own children under 6 years old present
+        C1W003:      Husband-wife family >> Own children under 18 years old present: Own children under 6 years old not present
+        C1W004:      Other family with male head >> Own children under 18 years old not present
+        C1W005:      Other family with male head >> Own children under 18 years old present: Own children under 6 years old present
+        C1W006:      Other family with male head >> Own children under 18 years old present: Own children under 6 years old not present
+        C1W007:      Family with female head >> Own children under 18 years old not present
+        C1W008:      Family with female head >> Own children under 18 years old present: Own children under 6 years old present
+        C1W009:      Family with female head >> Own children under 18 years old present: Own children under 6 years old not present
+ 
+    Table 8:     Occupation
+    Universe:    Employed Persons 16 Years and Over
+    Source code: NT58
+    NHGIS code:  C27
+        C27001:      Professional, technical and kindred workers: Engineers, technical
+        C27002:      Professional, technical and kindred workers: Physicians, dentists, and related practitioners
+        C27003:      Professional, technical and kindred workers: Medical and other health workers, except practitioners
+        C27004:      Professional, technical and kindred workers: Teachers, elementary and secondary schools
+        C27005:      Professional, technical and kindred workers: Technical
+        C27006:      Professional, technical and kindred workers: Other professional workers
+        C27007:      Managers and administrators, except farm: Salaried: Manufacturing
+        C27008:      Managers and administrators, except farm: Salaried: Retail trade
+        C27009:      Managers and administrators, except farm: Salaried: Other industries
+        C27010:      Managers and administrators, except farm: Self-employed: Retail trade
+        C27011:      Managers and administrators, except farm: Self-employed: Other industries
+        C27012:      Sales workers: Manufacturing and wholesale trade
+        C27013:      Sales workers: Retail trade
+        C27014:      Sales workers: Other sales workers
+        C27015:      Clerical and kindred workers: Bookkeepers
+        C27016:      Clerical and kindred workers: Secretaries, stenographers, and typists
+        C27017:      Clerical and kindred workers: Other clerical workers
+        C27018:      Craftsmen, foremen, and kindred workers: Automobile mechanics and body repairmen
+        C27019:      Craftsmen, foremen, and kindred workers: Mechanics and repairmen, except auto
+        C27020:      Craftsmen, foremen, and kindred workers: Machinists
+        C27021:      Craftsmen, foremen, and kindred workers: Metal craftsmen, except mechanics and machinists
+        C27022:      Craftsmen, foremen, and kindred workers: Carpenters
+        C27023:      Craftsmen, foremen, and kindred workers: Construction craftsmen, except carpenters
+        C27024:      Craftsmen, foremen, and kindred workers: Other craftsmen
+        C27025:      Operatives, except transport: Durable goods, manufacturing
+        C27026:      Operatives, except transport: Nondurable goods, manufacturing
+        C27027:      Operatives, except transport: Nonmanufacturing industries
+        C27028:      Transport equipment operatives: Truck drivers
+        C27029:      Transport equipment operatives: Other transport equipment operatives
+        C27030:      Laborers, except farm: Construction laborers
+        C27031:      Laborers, except farm: Freight, stock, and material handlers
+        C27032:      Laborers, except farm: Other laborers, except farm
+        C27033:      Farmers and farm managers
+        C27034:      Farm laborers and farm foremen: Farm laborers, unpaid family workers
+        C27035:      Farm laborers and farm foremen: Farm laborers, except unpaid, farm foremen
+        C27036:      Service workers, except private household: Cleaning service workers
+        C27037:      Service workers, except private household: Food service workers
+        C27038:      Service workers, except private household: Health service workers
+        C27039:      Service workers, except private household: Personal service workers
+        C27040:      Service workers, except private household: Protective service workers
+        C27041:      Service workers, except private household: Service workers, except private household
+        C27042:      Private household workers
+ 
+    Table 9:     Family Income
+    Universe:    Families
+    Source code: NT75
+    NHGIS code:  C3T
+        C3T001:      Under $1000 (includes $1-$999, none, and loss)
+        C3T002:      $1000-$1999
+        C3T003:      $2000-$2999
+        C3T004:      $3000-$3999
+        C3T005:      $4000-$4999
+        C3T006:      $5000-$5999
+        C3T007:      $6000-$6999
+        C3T008:      $7000-$7999
+        C3T009:      $8000-$8999
+        C3T010:      $9000-$9999
+        C3T011:      $10000-$11999
+        C3T012:      $12000-$14999
+        C3T013:      $15000-$24999
+        C3T014:      $25000-$49999
+        C3T015:      $50000 and over
+ 
+    Table 10:    Income
+    Universe:    Unrelated Individuals 14 Years and Over
+    Source code: NT76
+    NHGIS code:  C3U
+        C3U001:      Under $1000 (includes $1-$999, none, and loss)
+        C3U002:      $1000-$1999
+        C3U003:      $2000-$2999
+        C3U004:      $3000-$3999
+        C3U005:      $4000-$4999
+        C3U006:      $5000-$5999
+        C3U007:      $6000-$6999
+        C3U008:      $7000-$7999
+        C3U009:      $8000-$8999
+        C3U010:      $9000-$9999
+        C3U011:      $10000-$11999
+        C3U012:      $12000-$14999
+        C3U013:      $15000-$24999
+        C3U014:      $25000-$49999
+        C3U015:      $50000 and over
+ 
+    Table 11:    Ratio of Family Income to Poverty Level
+    Universe:    Families
+    Source code: NT82
+    NHGIS code:  C35
+        C35001:      Under .50
+        C35002:      .50-.74
+        C35003:      .75-.99
+        C35004:      1.00-1.24
+        C35005:      1.25-1.49
+        C35006:      1.50-1.99
+        C35007:      2.00-2.99
+        C35008:      3.00 or more
+ 
+    Table 12:    Aggregate Number of Persons in Families Below Poverty Level
+    Universe:    Persons in Families Below Poverty Level
+    Source code: NT83
+    NHGIS code:  C36
+        C36001:      Aggregate number of persons in families below poverty level
+ 
+    Table 13:    Poverty Status by Family Type by Presence of Related Children Under 18
+    Universe:    Families
+    Source code: NT84
+    NHGIS code:  C37
+        C37001:      Above poverty level >> Male head >> No related children under 18 years old
+        C37002:      Above poverty level >> Male head >> 1 or more related children under 18 years old
+        C37003:      Above poverty level >> Male head >> Some related children under 6 years old
+        C37004:      Above poverty level >> Female head >> No related children under 18 years old
+        C37005:      Above poverty level >> Female head >> 1 or more related children under 18 years old
+        C37006:      Above poverty level >> Female head >> Some related children under 6 years old
+        C37007:      Below poverty level >> Male head >> No related children under 18 years old
+        C37008:      Below poverty level >> Male head >> 1 or more related children under 18 years old
+        C37009:      Below poverty level >> Male head >> Some related children under 6 years old
+        C37010:      Below poverty level >> Female head >> No related children under 18 years old
+        C37011:      Below poverty level >> Female head >> 1 or more related children under 18 years old
+        C37012:      Below poverty level >> Female head >> Some related children under 6 years old
+ 
+--------------------------------------------------------------------------------
+Citation and Use of NHGIS Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* Publications and research reports employing NHGIS data (either tabular or GIS)
+  must cite it appropriately. The citation should include the following:
+
+    Steven Manson, Jonathan Schroeder, David Van Riper, and Steven Ruggles. 
+    IPUMS National Historical Geographic Information System: Version 12.0 [Database]. 
+    Minneapolis: University of Minnesota. 2017. 
+    http://doi.org/10.18128/D050.V12.0
+
+* Publications and research reports employing school attendance areas data
+  (either tabular or GIS) must cite it appropriately. The citation should
+  include the following:
+
+    The College of William and Mary and the Minnesota Population Center.
+    School Attendance Boundary Information System (SABINS): Version 1.0.
+    Minneapolis, MN: University of Minnesota 2011.
+
+* For policy briefs or articles in the popular press, we recommend that you cite the use of NHGIS data as follows:
+
+    IPUMS NHGIS, University of Minnesota, www.nhgis.org.
+
+* If possible, citations involving school attendance areas should also include
+  the URL for the SABINS site:
+
+    http://www.sabinsdata.org/.
+
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+Printed matter should be sent to:
+
+    NHGIS
+    Minnesota Population Center
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455
+
+Send electronic material to: nhgis@umn.edu
