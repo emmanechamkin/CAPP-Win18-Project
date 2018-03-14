@@ -51,7 +51,7 @@ The creation of the Postgres database and all of our analysis can be replicated 
 	5) data_cleaning_weighted_avg.py
 
 
-3) Before running any of the files, update the global variables at the top of each file as follows:
+3) Before running any of the files, update the included global variables at the top of each file as follows:
 	FILE_PATH: file path of directory containing the data_for_db folder on the flash drive (in data_for_db folder)
 	DB_NAME: name of postgresql database created above
 	DB_USER: user name for postgresql database created above
