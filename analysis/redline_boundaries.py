@@ -2,7 +2,7 @@ import psycopg2
 import os
 
 FILE_PATH = "/Users/alenastern/Documents/Win2018/CAPP30122/raw_data/"
-DB_NAME = "test2"
+DB_NAME = "CAPP30122"
 DB_USER = "alenastern"
 DB_PASS = "''"
 DB_HOST = "localhost"

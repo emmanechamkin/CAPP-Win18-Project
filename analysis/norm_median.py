@@ -1,7 +1,7 @@
 import psycopg2 
 import os
 
-DB_NAME = "test"
+DB_NAME = "CAPP30122"
 DB_USER = "alenastern"
 DB_PASS = ''
 DB_HOST = "localhost"
@@ -26,8 +26,12 @@ def normalized_median(year):
     '''
 
     add_col = "ALTER TABLE census_{} add column norm_med float8;".format(year)
-    insert_table = "insert into intermed(gisjoin, norm_med) select gisjoin, (median - (Select avg(median) from census_{} where median != 'NaN'))/(select stddev(median) from census_{} where median != 'NaN') as norm_med from census_{};".format(year, year, year)
-    update_table = "update census_{} set norm_med= intermed.norm_med from intermed where census_{}.gisjoin = intermed.gisjoin;".format(year,year)
+    insert_table = '''insert into intermed(gisjoin, norm_med) select gisjoin, 
+        (median - (Select avg(median) from census_{} where median != 'NaN'))/
+        (select stddev(median) from census_{} where median != 'NaN') 
+        as norm_med from census_{};'''.format(year, year, year)
+    update_table = '''update census_{} set norm_med= intermed.norm_med from 
+    intermed where census_{}.gisjoin = intermed.gisjoin;'''.format(year,year)
 
 
     return (add_col, insert_table, update_table)
@@ -40,9 +44,12 @@ c = conn.cursor()
 year_list = [1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010]
 for year in year_list:
     if year > 1951 and year < 1981:
+        #for years where median not included, set norm_med to default missing value
         c.execute("ALTER TABLE census_{} add norm_med float8;".format(year))
         c.execute("UPDATE census_{} SET norm_med = -99;".format(year))
     else:
+        #Create intermediate table for calculation, then join calculated
+        #normalized median into census table
         c.execute("create table intermed (gisjoin varchar(50), norm_med float8);")
         add, insert, update = normalized_median(year)
         c.execute(add)
@@ -54,19 +61,3 @@ conn.commit()
 c.close()
 conn.close()
 
-
-'''
-### final answer
-create table intermed (gisjoin varchar(50), norm_med float8);
-
-
-update census_1940 
-set norm_med= intermed.norm_med
-from intermed where census_1940.gisjoin = intermed.gisjoin;
-
-insert into intermed(gisjoin, norm_med) select gisjoin, (median - (Select avg(median) from census_1950 where median != 'NaN'))/(select stddev(median) from census_1950 where median != 'NaN') as norm_med from census_1950;
-
-update census_1950 
-set norm_med= intermed.norm_med
-from intermed where census_1950.gisjoin = intermed.gisjoin;
-'''

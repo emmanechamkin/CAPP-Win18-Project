@@ -1,7 +1,6 @@
 import psycopg2 
-import os 
 
-DB_NAME = "test"
+DB_NAME = "CAPP30122"
 DB_USER = "alenastern"
 DB_PASS = ''
 DB_HOST = "localhost"
@@ -25,59 +24,81 @@ def census_weighted_average(year):
         update (str): query to update the year column in the 
             Census_Weighted_Avg_All table to add the given year
     '''
-    insert = '''INSERT INTO Census_Weighted_Avg_All (poly_id, holc_bound, holc_grade, year, Total_Pop, 
-    PCT_WHITE, PCT_BLACK, PCT_OTHER, TOTAL_UNITS, Median, PCT_OCCUPIED, PCT_VACANT, PCT_OWN_OCC, PCT_RENT_OCC, norm_med, geom) '''
-    select = '''SELECT redline_poly.poly_id, redline_poly.holc_bound, redline_poly.holc_grade_b, avg(c.year), 
-    avg(c.Total_Pop) AS Total_Pop, (SUM(c.pct_white*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_white, 
-    (SUM(c.pct_black*c.total_pop)/(SUM(c.total_pop) + 1)) AS PCT_BLACK, (SUM(c.pct_other*c.total_pop)/(SUM(c.total_pop) + 1)) as pct_other, 
-    (SUM(c.total_units*c.total_pop)/(SUM(c.total_pop) + 1)) AS total_units, (SUM(c.median*c.total_pop)/(SUM(c.total_pop) + 1)) AS median, 
-    (SUM(c.pct_occupied*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_occupied, (SUM(c.pct_vacant*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_vacant, 
-    (SUM(c.pct_own_occ*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_own_occ, (SUM(c.pct_rent_occ*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_rent_occ, 
-    (SUM(c.norm_med*c.total_pop)/(SUM(c.total_pop) + 1)) AS norm_med, redline_poly.geom '''
-    fr = '''FROM redline_poly LEFT JOIN (SELECT c{}.year, c{}.total_pop, c{}.pct_white, c{}.pct_black, c{}.pct_other, 
-    c{}.total_units, c{}.median, c{}.pct_occupied, c{}.pct_vacant, c{}.pct_own_occ, c{}.pct_rent_occ, c{}.norm_med, 
-    c{}s.geom FROM census_{} AS c{} JOIN census_{}_shp AS c{}s ON c{}.gisjoin = c{}s.gisjoin) AS c '''.format(year, year, year, year, 
-        year, year, year, year, year, year, year, year, year, year, year, year, year, year, year)
+    #create insert statement
+    insert = '''INSERT INTO Census_Weighted_Avg_All (poly_id, year, Total_Pop, 
+        PCT_WHITE, PCT_BLACK, PCT_OTHER, TOTAL_UNITS, Median, PCT_OCCUPIED, 
+        PCT_VACANT, PCT_OWN_OCC, PCT_RENT_OCC, norm_med, geom) '''
+    
+    #create select statement to calculate select weighted averages and geometry information
+    select = '''SELECT redline_poly.poly_id, avg(c.year), avg(c.Total_Pop) AS Total_Pop, 
+    (SUM(c.pct_white*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_white, 
+    (SUM(c.pct_black*c.total_pop)/(SUM(c.total_pop) + 1)) AS PCT_BLACK, 
+    (SUM(c.pct_other*c.total_pop)/(SUM(c.total_pop) + 1)) as pct_other, 
+    (SUM(c.total_units*c.total_pop)/(SUM(c.total_pop) + 1)) AS total_units,
+    (SUM(c.median*c.total_pop)/(SUM(c.total_pop) + 1)) AS median, 
+    (SUM(c.pct_occupied*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_occupied, 
+    (SUM(c.pct_vacant*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_vacant, 
+    (SUM(c.pct_own_occ*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_own_occ, 
+    (SUM(c.pct_rent_occ*c.total_pop)/(SUM(c.total_pop)+1)) AS pct_rent_occ, 
+    (SUM(c.norm_med*c.total_pop)/(SUM(c.total_pop)+1)) AS norm_med, redline_poly.geom '''
+    #from statement including nested query to join census data to census shapefile for same year
+    fr = '''FROM redline_poly LEFT JOIN (SELECT c{}.year, c{}.total_pop, 
+    c{}.pct_white, c{}.pct_black, c{}.pct_other, c{}.total_units, c{}.median, 
+    c{}.pct_occupied, c{}.pct_vacant, c{}.pct_own_occ, c{}.pct_rent_occ, 
+    c{}.norm_med, c{}s.geom FROM census_{} AS c{} JOIN census_{}_shp AS c{}s ON 
+    c{}.gisjoin = c{}s.gisjoin) AS c '''.format(year, year, year, year, year, 
+        year, year, year, year, year, year, year, year, year, year, year, year, 
+        year, year)
+
+    #identify census units that intersect redline boundary buffers according to threshold for given year
     if year < 1990:
-        join = '''ON ST_Intersects(redline_poly.geom, c.geom) AND (ST_Area(ST_Intersection(c.geom, redline_poly.geom)) 
-        >= 0.15*ST_Area(c.geom) OR ST_Area(ST_Intersection(c.geom, redline_poly.geom)) >= 0.70*ST_Area(redline_poly.geom)) 
-            GROUP BY redline_poly.poly_id;'''
+        join = '''ON ST_Intersects(redline_poly.geom, c.geom) AND 
+        (ST_Area(ST_Intersection(c.geom, redline_poly.geom)) >= 
+        0.15*ST_Area(c.geom) OR ST_Area(ST_Intersection(c.geom, 
+        redline_poly.geom)) >= 0.70*ST_Area(redline_poly.geom)) 
+        GROUP BY redline_poly.poly_id;'''
     else:
-        join = '''ON ST_Intersects(redline_poly.geom, c.geom) AND (ST_Area(ST_Intersection(c.geom, redline_poly.geom)) >= 
-        0.50*ST_Area(c.geom) OR ST_Area(ST_Intersection(c.geom, redline_poly.geom)) >= 0.70*ST_Area(redline_poly.geom)) 
-            GROUP BY redline_poly.poly_id;'''
+        join = '''ON ST_Intersects(redline_poly.geom, c.geom) 
+        AND (ST_Area(ST_Intersection(c.geom, redline_poly.geom)) >= 
+        0.50*ST_Area(c.geom) OR ST_Area(ST_Intersection(c.geom, 
+        redline_poly.geom)) >= 0.70*ST_Area(redline_poly.geom)) 
+        GROUP BY redline_poly.poly_id;'''
 
     query = insert + select + fr + join
+
+    #create year column in census weighted avg all table
     update = "UPDATE Census_Weighted_Avg_All SET Year = {} WHERE Year IS NULL;".format(year)
 
     return (query, update)
 
 
-    
-
-conn = psycopg2.connect(database=DB_NAME , user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+conn = psycopg2.connect(database=DB_NAME, user=DB_USER, 
+    password=DB_PASS, host=DB_HOST, port=DB_PORT)
 c = conn.cursor()
 
-create = '''CREATE TABLE Census_Weighted_Avg_All (poly_id int, holc_bound varchar(10), holc_grade varchar(10), 
-    year int, Total_Pop float8, PCT_WHITE float8, PCT_BLACK float8, PCT_OTHER float8, TOTAL_UNITS float8, Median float8, 
-    PCT_OCCUPIED float8, PCT_VACANT float8, PCT_OWN_OCC float8, PCT_RENT_OCC float8, norm_med float8, geom geometry);'''
+#create census weighted avg all table in database
+create = '''CREATE TABLE Census_Weighted_Avg_All (poly_id int, year int, 
+    Total_Pop float8, PCT_WHITE float8, PCT_BLACK float8, PCT_OTHER float8, 
+    TOTAL_UNITS float8, Median float8, PCT_OCCUPIED float8, PCT_VACANT float8, 
+    PCT_OWN_OCC float8, PCT_RENT_OCC float8, norm_med float8, geom geometry);'''
 c.execute(create)
 
-
-
 census_years = [1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010]
-var_list = ["Total_Pop", "PCT_WHITE", "PCT_BLACK", "PCT_OTHER", "TOTAL_UNITS", "Median", 
-"PCT_OCCUPIED", "PCT_VACANT", "PCT_OWN_OCC", "PCT_RENT_OCC"]
+var_list = ["Total_Pop", "PCT_WHITE", "PCT_BLACK", "PCT_OTHER", 
+"TOTAL_UNITS", "Median", "PCT_OCCUPIED", "PCT_VACANT", "PCT_OWN_OCC", "PCT_RENT_OCC"]
 
 for year in census_years:
     query, update = census_weighted_average(year)
     c.execute(query)
     c.execute(update)
 
+#replace missing values (except for norm_med) with -1 which is default missing 
+#value. We use a different default for norm_med as -1 is a valid value for that var
 for var in var_list:
     update_null = "UPDATE Census_Weighted_Avg_All SET {} = -1 WHERE {} IS NULL;".format(var, var)
     c.execute(update_null)
 
+#add unique identifier for records at the redline boundary buffer-year level
 add_id_unique = "ALTER TABLE Census_Weighted_Avg_All ADD COLUMN id_unique varchar(10);"
 update_id_unique = "UPDATE Census_Weighted_Avg_All SET id_unique = concat(poly_id::text, year::text);"
 c.execute(add_id_unique)
@@ -86,4 +107,9 @@ c.execute(update_id_unique)
 conn.commit()
 c.close()
 conn.close()
+
+
+
+
+
 
